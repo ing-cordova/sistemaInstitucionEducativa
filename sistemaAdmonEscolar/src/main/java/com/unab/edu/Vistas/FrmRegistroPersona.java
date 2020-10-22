@@ -425,7 +425,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
 
     private void lblRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegresarMouseClicked
        
-        FrmLoguin login = new FrmLoguin();
+        FrmLogin login = new FrmLogin();
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblRegresarMouseClicked
