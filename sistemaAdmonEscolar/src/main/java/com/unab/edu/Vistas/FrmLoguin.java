@@ -31,6 +31,8 @@ public class FrmLoguin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         pnIzquierdo = new javax.swing.JPanel();
         lblEncabezado = new javax.swing.JLabel();
         lblCorroElec = new javax.swing.JLabel();
@@ -47,6 +49,8 @@ public class FrmLoguin extends javax.swing.JFrame {
         lblImagenPresentacion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
+        jScrollPane1.setViewportView(jTree1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setOpacity(0.9F);
@@ -57,7 +61,6 @@ public class FrmLoguin extends javax.swing.JFrame {
 
         lblEncabezado.setBackground(new java.awt.Color(255, 255, 255));
         lblEncabezado.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        lblEncabezado.setForeground(new java.awt.Color(0, 0, 0));
         lblEncabezado.setText("Inicio de Sesión");
 
         lblCorroElec.setBackground(new java.awt.Color(255, 255, 255));
@@ -65,19 +68,22 @@ public class FrmLoguin extends javax.swing.JFrame {
         lblCorroElec.setForeground(new java.awt.Color(13, 94, 222));
         lblCorroElec.setText("Correo Electrónico:");
 
+<<<<<<< Updated upstream
         txtCorreoElectronico.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreoElectronico.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtCorreoElectronico.setForeground(new java.awt.Color(0, 0, 0));
         txtCorreoElectronico.setBorder(null);
+=======
+        txtUsuario.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txtUsuario.setBorder(null);
+>>>>>>> Stashed changes
 
         lblContra.setBackground(new java.awt.Color(255, 255, 255));
         lblContra.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         lblContra.setForeground(new java.awt.Color(13, 94, 222));
         lblContra.setText("Contraseña:");
 
-        pwContra.setBackground(new java.awt.Color(255, 255, 255));
         pwContra.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        pwContra.setForeground(new java.awt.Color(0, 0, 0));
         pwContra.setBorder(null);
 
         sepUsuario.setBackground(new java.awt.Color(13, 94, 222));
@@ -99,8 +105,12 @@ public class FrmLoguin extends javax.swing.JFrame {
 
         btnEntrar.setBackground(new java.awt.Color(255, 255, 255));
         btnEntrar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+<<<<<<< Updated upstream
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/botonInicio.png"))); // NOI18N
+=======
+        btnEntrar.setForeground(new java.awt.Color(225, 225, 225));
+>>>>>>> Stashed changes
         btnEntrar.setBorderPainted(false);
         btnEntrar.setFocusPainted(false);
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -315,7 +325,12 @@ public class FrmLoguin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JCheckBox chbMostrarCarac;
+<<<<<<< Updated upstream
     private javax.swing.JLabel jLabel1;
+=======
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree jTree1;
+>>>>>>> Stashed changes
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblCorroElec;
