@@ -33,8 +33,8 @@ public class FrmLoguin extends javax.swing.JFrame {
 
         pnIzquierdo = new javax.swing.JPanel();
         lblEncabezado = new javax.swing.JLabel();
-        lblNameUsu = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        lblCorroElec = new javax.swing.JLabel();
+        txtCorreoElectronico = new javax.swing.JTextField();
         lblContra = new javax.swing.JLabel();
         pwContra = new javax.swing.JPasswordField();
         sepUsuario = new javax.swing.JSeparator();
@@ -45,12 +45,12 @@ public class FrmLoguin extends javax.swing.JFrame {
         pnDerecho = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblImagenPresentacion = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setOpacity(0.9F);
         setSize(new java.awt.Dimension(720, 470));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnIzquierdo.setBackground(new java.awt.Color(255, 255, 255));
         pnIzquierdo.setForeground(new java.awt.Color(255, 255, 255));
@@ -60,15 +60,15 @@ public class FrmLoguin extends javax.swing.JFrame {
         lblEncabezado.setForeground(new java.awt.Color(0, 0, 0));
         lblEncabezado.setText("Inicio de Sesión");
 
-        lblNameUsu.setBackground(new java.awt.Color(255, 255, 255));
-        lblNameUsu.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        lblNameUsu.setForeground(new java.awt.Color(13, 94, 222));
-        lblNameUsu.setText("Nombre de Usuario:");
+        lblCorroElec.setBackground(new java.awt.Color(255, 255, 255));
+        lblCorroElec.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        lblCorroElec.setForeground(new java.awt.Color(13, 94, 222));
+        lblCorroElec.setText("Correo Electrónico:");
 
-        txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        txtUsuario.setBorder(null);
+        txtCorreoElectronico.setBackground(new java.awt.Color(255, 255, 255));
+        txtCorreoElectronico.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txtCorreoElectronico.setForeground(new java.awt.Color(0, 0, 0));
+        txtCorreoElectronico.setBorder(null);
 
         lblContra.setBackground(new java.awt.Color(255, 255, 255));
         lblContra.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -99,8 +99,8 @@ public class FrmLoguin extends javax.swing.JFrame {
 
         btnEntrar.setBackground(new java.awt.Color(255, 255, 255));
         btnEntrar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btnEntrar.setForeground(new java.awt.Color(225, 225, 225));
-        btnEntrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANDRES CORDOVA\\Documents\\GitHub\\sistemaInstitucionEducativa\\sistemaAdmonEscolar\\src\\main\\java\\com\\unab\\edu\\Resources\\botonInicio.png")); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/botonInicio.png"))); // NOI18N
         btnEntrar.setBorderPainted(false);
         btnEntrar.setFocusPainted(false);
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +113,11 @@ public class FrmLoguin extends javax.swing.JFrame {
         lblPiedeLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lblPiedeLogin.setForeground(new java.awt.Color(255, 0, 0));
         lblPiedeLogin.setText("¡Aún no soy un usuario, Resgistrame!");
+        lblPiedeLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPiedeLoginMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnIzquierdoLayout = new javax.swing.GroupLayout(pnIzquierdo);
         pnIzquierdo.setLayout(pnIzquierdoLayout);
@@ -126,8 +131,8 @@ public class FrmLoguin extends javax.swing.JFrame {
                             .addGroup(pnIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(sepContra, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblEncabezado)
-                                .addComponent(lblNameUsu)
-                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblCorroElec)
+                                .addComponent(txtCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblContra)
                                 .addComponent(pwContra, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(sepUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,9 +151,9 @@ public class FrmLoguin extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(lblEncabezado)
                 .addGap(62, 62, 62)
-                .addComponent(lblNameUsu)
+                .addComponent(lblCorroElec)
                 .addGap(6, 6, 6)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sepUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -166,53 +171,82 @@ public class FrmLoguin extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        getContentPane().add(pnIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 480));
-
         pnDerecho.setBackground(new java.awt.Color(13, 94, 222));
 
         lblCerrar.setBackground(new java.awt.Color(13, 94, 222));
         lblCerrar.setForeground(new java.awt.Color(255, 255, 255));
-        lblCerrar.setText("Cerrar");
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/close.png"))); // NOI18N
+        lblCerrar.setToolTipText("");
         lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCerrarMouseClicked(evt);
             }
         });
 
-        lblImagenPresentacion.setText("Imagen");
+        lblImagenPresentacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/graduation.png"))); // NOI18N
+
+        jLabel1.setBackground(new java.awt.Color(13, 94, 222));
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("¡Te damos la bienvenida!");
 
         javax.swing.GroupLayout pnDerechoLayout = new javax.swing.GroupLayout(pnDerecho);
         pnDerecho.setLayout(pnDerechoLayout);
         pnDerechoLayout.setHorizontalGroup(
             pnDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnDerechoLayout.createSequentialGroup()
-                .addContainerGap(136, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(pnDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDerechoLayout.createSequentialGroup()
                         .addComponent(lblCerrar)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDerechoLayout.createSequentialGroup()
-                        .addComponent(lblImagenPresentacion)
-                        .addGap(120, 120, 120))))
+                        .addGroup(pnDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(lblImagenPresentacion)
+                            .addComponent(jLabel1))
+                        .addGap(41, 41, 41))))
         );
         pnDerechoLayout.setVerticalGroup(
             pnDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnDerechoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblCerrar)
-                .addGap(142, 142, 142)
-                .addComponent(lblImagenPresentacion)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addComponent(lblImagenPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnDerecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 290, 480));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnIzquierdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(pnDerecho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnIzquierdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnDerecho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
 
-        JOptionPane.showMessageDialog(null, "Bienvenido " + txtUsuario.getText() + ", usted acaba de iniciar sesión.");
+        if (txtCorreoElectronico.getText().isEmpty() || pwContra.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "¡Por favor introduzca todos los datos para iniciar sesión!");
+        } else {
+//            FrmInicioAlumno startAlumno = new FrmInicioAlumno();
+//            startAlumno.setVisible(true);
+//            this.dispose();
+
+            JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreoElectronico.getText() + ", usted acaba de iniciar sesión.");
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void chbMostrarCaracActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbMostrarCaracActionPerformed
@@ -235,6 +269,13 @@ public class FrmLoguin extends javax.swing.JFrame {
             System.out.println("¡Cancelado!");
         }
     }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblPiedeLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPiedeLoginMouseClicked
+       
+        FrmRegistroPersona nuevoR = new FrmRegistroPersona();
+        nuevoR.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblPiedeLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -274,17 +315,18 @@ public class FrmLoguin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JCheckBox chbMostrarCarac;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblContra;
+    private javax.swing.JLabel lblCorroElec;
     private javax.swing.JLabel lblEncabezado;
     private javax.swing.JLabel lblImagenPresentacion;
-    private javax.swing.JLabel lblNameUsu;
     private javax.swing.JLabel lblPiedeLogin;
     private javax.swing.JPanel pnDerecho;
     private javax.swing.JPanel pnIzquierdo;
     private javax.swing.JPasswordField pwContra;
     private javax.swing.JSeparator sepContra;
     private javax.swing.JSeparator sepUsuario;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtCorreoElectronico;
     // End of variables declaration//GEN-END:variables
 }
