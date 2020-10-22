@@ -7,9 +7,8 @@ package com.unab.edu.DAO;
 
 import com.unab.edu.Conexion.ConexionBD;
 import com.unab.edu.Entidades.Materia;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -43,15 +42,41 @@ public class CLSMateria {
     return Materias;
     }   
     
-    
     public void BorrarMateria(Materia mate){
         try {
            CallableStatement Statement = conectar.prepareCall("call SP_D_Materia(?)");
         
-           Statement.setInt("PIdMateria", profe.getIdMateria());
+           Statement.setInt("PIdMateria", mate.getIdMateria());
            
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Materia eliminada");
+           
+           conectar.close();
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void ActualizarMateria(Materia mate) {
+         try {
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Materia(?,?,?,?,?,)");
+        
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Materia actualizada");
+           
+           conectar.close();
+           
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+        public void AgregarMateria(Materia mate){
+        try {
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Materia(?,?,?,?,?)");
+             
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Materia guardada");
            
            conectar.close();
         } catch (SQLException e) {

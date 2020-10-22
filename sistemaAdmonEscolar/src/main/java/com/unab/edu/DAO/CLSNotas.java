@@ -7,9 +7,8 @@ package com.unab.edu.DAO;
 
 import com.unab.edu.Conexion.ConexionBD;
 import com.unab.edu.Entidades.Notas;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -31,6 +30,7 @@ public class CLSNotas {
           while(resultadoConsulta.next()){
               Notas nota = new Notas();
               
+              nota.setIdNotas(resultadoConsulta.getInt("idNota"));
               nota.setIdEstudiante(resultadoConsulta.getInt("idEstudiante"));
               nota.setIdDocente(resultadoConsulta.getInt("idDocente"));
               nota.setIdMateria(resultadoConsulta.getInt("idMateria"));
@@ -51,5 +51,47 @@ public class CLSNotas {
         JOptionPane.showMessageDialog(null, e);
     }
     return Nota;
+    }
+    
+    public void BorrarNotas(Notas not){
+        try {
+           CallableStatement Statement = conectar.prepareCall("call SP_D_Notas(?)");
+        
+           Statement.setInt("PIdNotas", not.getIdNotas());
+           
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Notas eliminadas");
+           
+           conectar.close();
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void ActualizarNotas(Notas not) {
+         try {
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Notas(?,?,?,?,?,)");
+        
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Notas actualizada");
+           
+           conectar.close();
+           
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+        public void AgregarNotas(Notas not){
+        try {
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Notas(?,?,?,?,?)");
+             
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Notas guardada");
+           
+           conectar.close();
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }
 }

@@ -7,9 +7,8 @@ package com.unab.edu.DAO;
 
 import com.unab.edu.Conexion.ConexionBD;
 import com.unab.edu.Entidades.Persona;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -30,11 +29,13 @@ public class CLSPersona {
           
           while(resultadoConsulta.next()){
               Persona persona = new Persona();
+              
               persona.setIdPersona(resultadoConsulta.getInt("idPersona"));
               persona.setNombre(resultadoConsulta.getString("Nombre"));
               persona.setApellido(resultadoConsulta.getString("Apellido"));
               persona.setSexo(resultadoConsulta.getString("Sexo"));
               persona.setFechaNacimiento(resultadoConsulta.getDate("FechaNacimiento"));
+              persona.setUltimaModificacion(resultadoConsulta.getDate("UltimaModificacion"));
               
               Personas.add(persona);
           }
@@ -44,4 +45,47 @@ public class CLSPersona {
     }
     return Personas;
     }
+     
+     public void BorrarPersona(Persona per){
+        try {
+           CallableStatement Statement = conectar.prepareCall("call SP_D_Persona(?)");
+        
+           Statement.setInt("PIdPersona", per.getIdPersona());
+           
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Persona eliminada");
+           
+           conectar.close();
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }
+     
+     public void ActualizarPersona(Persona per) {
+         try {
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?,)");
+        
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Persona actualizada");
+           
+           conectar.close();
+           
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+        public void AgregarPersona(Persona per){
+        try {
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?)");
+             
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Persona guardada");
+           
+           conectar.close();
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
 }

@@ -7,10 +7,7 @@ package com.unab.edu.DAO;
 
 import com.unab.edu.Conexion.ConexionBD;
 import com.unab.edu.Entidades.Docente;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -32,6 +29,8 @@ public class CLSDocente {
           
           while(resultadoConsulta.next()){
               Docente prof = new Docente();
+              
+              prof.setIdDocente(resultadoConsulta.getInt("idDocente"));
               prof.setIdPersona(resultadoConsulta.getInt("idPersona"));
               prof.setCorreoElectronico(resultadoConsulta.getString("CorreoElectronico"));
               prof.setPass(resultadoConsulta.getString("Pass"));
@@ -48,30 +47,11 @@ public class CLSDocente {
     return Docentes;
     }
     
-    public void AgregarDocente(Docente profe){
-        try {
-           CallableStatement Statement = conectar.prepareCall("call SP_I_Docente(?,?,?,?,?)");
-//           Statement.setString("PNombre", profe.getNombre());
-//           Statement.setString("PApellido", profe.getApellido());
-//           Statement.setInt("PEdad", profe.getEdad());
-//           Statement.setString("Psexo", profe.getSexo());
-//           Statement.setDate("PFecha", new java.sql.Date(profe.getFecha().getTime()));
-                   
-           
-           Statement.execute();
-           JOptionPane.showMessageDialog(null, "Docente guardado");
-           
-           conectar.close();
-        } catch (SQLException e) {
-           JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
     public void BorrarDocente(Docente profe){
         try {
            CallableStatement Statement = conectar.prepareCall("call SP_D_Docente(?)");
-        
-           Statement.setInt("PIdPersona", profe.getIdDocente());
+           Statement.setInt("PIdDocente", profe.getIdDocente());
+           
            
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Docente eliminado");
@@ -83,16 +63,40 @@ public class CLSDocente {
     }
 
     public void ActualizarDocente(Docente profe) {
-         try {
-           CallableStatement Statement = conectar.prepareCall("call SP_U_Docente(?,?,?,?,?,)");
-//           Statement.setInt("PIdPersona", profe.getIdPersona());
-//           Statement.setString("PNombre", profe.getNombre());
-//           Statement.setString("PApellido", profe.getApellido());
-//           Statement.setInt("PEdad", profe.getEdad());
-//           Statement.setString("Psexo", profe.getSexo());
         
+         try {
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Docente(?,?,?,?,?,?)");
+           Statement.setInt("PIdDocente", profe.getIdDocente());
+           Statement.setInt("PIdPersona", profe.getIdPersona());
+           Statement.setString("PCorreoElectronico", profe.getCorreoElectronico());
+           Statement.setString("PPass", profe.getPass());
+           Statement.setString("PEspecialidad", profe.getEspecialidad());
+           Statement.setInt("PIdMateria", profe.getIdMateria());
+         
+           Statement.setInt("PIdPersona", profe.getIdDocente());
+           
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Docente actualizado");
+           
+           conectar.close();
+        } catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void AgregarDocente(Docente profe) {
+        try {
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Docente(?,?,?,?,?,?,?)");
+           Statement.setInt("PIdDocente", profe.getIdDocente());
+           Statement.setInt("PIdPersona", profe.getIdPersona());
+           Statement.setString("PCorreoElectronico", profe.getCorreoElectronico());
+           Statement.setString("PPass", profe.getPass());
+           Statement.setString("PEspecialidad", profe.getEspecialidad());
+           Statement.setInt("PIdMateria", profe.getIdMateria());
+           Statement.setDate("PUltimaModificacion", new java.sql.Date(profe.getUltimaModificacion().getTime()));
+          
+           Statement.execute();
+           JOptionPane.showMessageDialog(null, "Docente guardado");
            
            conectar.close();
            
