@@ -152,7 +152,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
 
         cbTipoUsuario.setBackground(new java.awt.Color(13, 94, 222));
         cbTipoUsuario.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        cbTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Alumno" }));
+        cbTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Docente" }));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
