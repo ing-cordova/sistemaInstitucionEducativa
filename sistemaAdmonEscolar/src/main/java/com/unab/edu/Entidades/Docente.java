@@ -6,13 +6,14 @@
 package com.unab.edu.Entidades;
 
 import java.util.Date;
-import lombok.Data;
+import lombok.*;
 
 /**
  *
  * @author BetoCalderon
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Docente extends Persona{
     private int idDocente;
     private int idPersona;

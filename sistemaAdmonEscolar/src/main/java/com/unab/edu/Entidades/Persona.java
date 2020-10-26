@@ -6,13 +6,14 @@
 package com.unab.edu.Entidades;
 
 import java.util.Date;
-import lombok.Data;
+import lombok.*;
 
 /**
  *
  * @author BetoCalderon
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Persona {
     protected int idPersona;
     protected String Nombre;
