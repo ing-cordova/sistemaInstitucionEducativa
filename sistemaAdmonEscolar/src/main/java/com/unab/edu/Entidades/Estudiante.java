@@ -14,11 +14,10 @@ import lombok.Data;
  */
 @Data
 public class Estudiante extends Persona {
-    private int idEstudiante;
-    private int idPersona;
-    private int idMateria;
-    private String CorreoElectronico;
-    private String Pass;
-    private String GradoAcademico;
+    protected int idEstudiante;
+    protected int idPersona;
+    protected String CorreoElectronico;
+    protected String Pass;
+    protected int idGradoAcademico;
     protected Date UltimaModificacion;
 }

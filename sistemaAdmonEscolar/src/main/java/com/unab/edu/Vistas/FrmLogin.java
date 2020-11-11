@@ -5,6 +5,8 @@
  */
 package com.unab.edu.Vistas;
 
+import com.unab.edu.DAO.CLSDocente;
+import com.unab.edu.DAO.CLSEstudiante;
 import javax.swing.JOptionPane;
 
 /**
@@ -248,13 +250,28 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         
-        if (txtCorreo.getText().isEmpty() || pwContra.getText().isEmpty()) {
+        String Correo = txtCorreo.getText();
+        String Password = pwContra.getText();
+        
+        if (Correo.isEmpty() || Password.isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Por favor introduzca todos los datos para iniciar sesión!");
         } else {
-//            FrmInicioAlumno startAlumno = new FrmInicioAlumno();
-//            startAlumno.setVisible(true);
-//            this.dispose();
-            JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreo.getText() + ", usted acaba de iniciar sesión.");
+            
+            CLSDocente clsDocente = new CLSDocente();
+            CLSEstudiante clsEstudiante = new CLSEstudiante();
+            var validacionDocente = clsDocente.LoguinDocente(Correo, Password);
+            var validacionEstudiante = clsEstudiante.LoguinEstudiante(Correo, Password);
+            
+            if(validacionDocente == true){
+                JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreo.getText() + ", usted acaba de iniciar sesión como DOCENTE.");
+            }
+            else if(validacionEstudiante == true){
+                JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreo.getText() + ", usted acaba de iniciar sesión como ESTUDIANTE.");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "¡Verifique sus datos!");
+            }
+            
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 

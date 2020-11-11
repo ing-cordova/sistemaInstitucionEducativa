@@ -20,7 +20,6 @@ public class Docente extends Persona{
     private String CorreoElectronico;
     private String Pass;
     private String Especialidad;
-    private int idMateria;
     protected Date UltimaModificacion;
     
 }

@@ -13,7 +13,6 @@ import lombok.*;
  * @author BetoCalderon
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
 public class Persona {
     protected int idPersona;
     protected String Nombre;
