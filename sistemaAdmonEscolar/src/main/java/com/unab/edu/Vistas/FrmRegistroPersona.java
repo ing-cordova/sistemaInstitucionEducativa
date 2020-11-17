@@ -391,7 +391,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(pwContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pwConfirmarContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -405,11 +405,6 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         pnPrincipal.add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 700, 590));
 
         pnSuperior.setBackground(new java.awt.Color(8, 62, 148));
-        pnSuperior.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnSuperiorMouseClicked(evt);
-            }
-        });
 
         lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/close.png"))); // NOI18N
         lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -419,6 +414,11 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         });
 
         lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/minus-sign.png"))); // NOI18N
+        lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseClicked(evt);
+            }
+        });
 
         lblRegresar.setBackground(new java.awt.Color(8, 62, 148));
         lblRegresar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -482,11 +482,6 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
             System.out.println("¡Cancelado!");
         }
     }//GEN-LAST:event_lblCerrarMouseClicked
-
-    private void pnSuperiorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnSuperiorMouseClicked
-
-        this.setExtendedState(this.ICONIFIED);
-    }//GEN-LAST:event_pnSuperiorMouseClicked
 
     private void lblRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegresarMouseClicked
 
@@ -556,6 +551,11 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
+        
+        this.setExtendedState(this.ICONIFIED);
+    }//GEN-LAST:event_lblMinimizeMouseClicked
 
     /**
      * @param args the command line arguments

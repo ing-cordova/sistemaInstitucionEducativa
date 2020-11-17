@@ -238,9 +238,9 @@
                                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="pwContra" min="-2" max="-2" attributes="0"/>
-                                  <Component id="pwConfirmarContra" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="pwContra" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pwConfirmarContra" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator6" min="-2" pref="11" max="-2" attributes="0"/>
@@ -713,9 +713,6 @@
               <Color blue="94" green="3e" red="8" type="rgb"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pnSuperiorMouseClicked"/>
-          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="700" height="40"/>
@@ -767,6 +764,9 @@
                   <Image iconType="3" name="/Images/minus-sign.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblMinimizeMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblRegresar">
               <Properties>

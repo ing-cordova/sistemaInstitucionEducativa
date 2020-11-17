@@ -7,6 +7,8 @@ package com.unab.edu.Vistas;
 
 import com.unab.edu.DAO.CLSDocente;
 import com.unab.edu.DAO.CLSEstudiante;
+import com.unab.edu.Vistas.Alumno.FrmInicioAlumno;
+import com.unab.edu.Vistas.Docente.FrmInicioDocente;
 import javax.swing.JOptionPane;
 
 /**
@@ -249,34 +251,38 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_chMostrarCaracActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        
+
         String Correo = txtCorreo.getText();
         String Password = pwContra.getText();
-        
+
         if (Correo.isEmpty() || Password.isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Por favor introduzca todos los datos para iniciar sesión!");
         } else {
-            
+
             CLSDocente clsDocente = new CLSDocente();
             CLSEstudiante clsEstudiante = new CLSEstudiante();
             var validacionDocente = clsDocente.LoguinDocente(Correo, Password);
             var validacionEstudiante = clsEstudiante.LoguinEstudiante(Correo, Password);
-            
-            if(validacionDocente == true){
+
+            if (validacionDocente == true) {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreo.getText() + ", usted acaba de iniciar sesión como DOCENTE.");
-            }
-            else if(validacionEstudiante == true){
+                FrmInicioDocente loginDocente = new FrmInicioDocente();
+                loginDocente.setVisible(true);
+                this.dispose();
+            } else if (validacionEstudiante == true) {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreo.getText() + ", usted acaba de iniciar sesión como ESTUDIANTE.");
-            }
-            else{
+                FrmInicioAlumno loginAlumno = new FrmInicioAlumno();
+                loginAlumno.setVisible(true);
+                this.dispose();
+            } else {
                 JOptionPane.showMessageDialog(null, "¡Verifique sus datos!");
             }
-            
+
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void lblRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistroMouseClicked
-        
+
         FrmRegistroPersona newReg = new FrmRegistroPersona();
         newReg.setVisible(true);
         this.dispose();
