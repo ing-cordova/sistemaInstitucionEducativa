@@ -16,8 +16,9 @@ import lombok.Data;
 public class Estudiante extends Persona {
     protected int idEstudiante;
     protected int idPersona;
-    protected String CorreoElectronico;
+    protected String Correo_Electronico;
     protected String Pass;
     protected int idGradoAcademico;
-    protected Date UltimaModificacion;
+    protected Date Ultima_Modificacion;
+    protected int Estado;
 }

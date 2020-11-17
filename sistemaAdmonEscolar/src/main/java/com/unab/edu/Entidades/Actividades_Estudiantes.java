@@ -6,19 +6,21 @@
 package com.unab.edu.Entidades;
 
 import java.util.Date;
-import lombok.*;
+import javax.print.attribute.standard.Media;
+import lombok.Data;
 
 /**
  *
  * @author BetoCalderon
  */
-@Data
-public class Persona {
-    protected int idPersona;
-    protected String Nombre;
-    protected String Apellido;
-    protected String Sexo; 
-    protected Date Fecha_Nacimiento;
+@Data 
+public class Actividades_Estudiantes {
+    protected int idActividadEstudiante;
+    protected int idEstudiante;
+    protected int idActividad;
+    protected double Nota_Obtenida;
+    protected Media  Archivo;
     protected Date Ultima_Modificacion;
     protected int Estado;
+    
 }

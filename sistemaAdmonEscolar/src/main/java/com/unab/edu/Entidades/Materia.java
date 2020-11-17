@@ -16,6 +16,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper=false)
 public class Materia {
     private int idMateria;
-    private String NombreMateria;
-    protected Date UltimaModificacion;
+    private String Nombre_Materia;
+    protected Date Ultima_Modificacion;
+    protected int Estado;
 }

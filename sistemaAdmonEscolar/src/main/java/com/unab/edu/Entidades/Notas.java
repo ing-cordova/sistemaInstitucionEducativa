@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 public class Notas {
-    private int idNotas;
+    private int idNota;
     private int idEstudiante;
     private int idDocente;
     private int idMateria;
@@ -25,5 +25,6 @@ public class Notas {
     private double Lab3;        
     private double Examen3;
     private double NotaFinal;
-    protected Date UltimaModificacion;
+    protected Date Ultima_Modificacion;
+    protected int Estado;
 }
