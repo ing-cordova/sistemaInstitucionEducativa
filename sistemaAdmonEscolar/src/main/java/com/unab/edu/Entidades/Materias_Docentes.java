@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 public class Materias_Docentes {
-    protected int idMateria_Docente;
+    protected int idMateriaDocente;
     protected int idDocente;
     protected int idMateria;
     protected Date Ultima_Modificacion;

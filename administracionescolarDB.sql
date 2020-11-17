@@ -48,14 +48,14 @@ DROP TABLE IF EXISTS `actividades_estudiantes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `actividades_estudiantes` (
-  `idActividad_Estudiante` int NOT NULL AUTO_INCREMENT,
+  `idActividadEstudiante` int NOT NULL AUTO_INCREMENT,
   `idEstudiante` int DEFAULT NULL,
   `idActividad` int DEFAULT NULL,
   `Nota_Obtenida` decimal(4,2) DEFAULT NULL,
   `Archivo` mediumblob,
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
-  PRIMARY KEY (`idActividad_Estudiante`),
+  PRIMARY KEY (`idActividadEstudiante`),
   KEY `FK_idEstudiante_idx` (`idEstudiante`),
   KEY `FK_idActividad_idx` (`idActividad`),
   CONSTRAINT `FK_idActividad` FOREIGN KEY (`idActividad`) REFERENCES `actividades` (`idActividad`),
@@ -147,12 +147,12 @@ DROP TABLE IF EXISTS `materias_alumnos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `materias_alumnos` (
-  `idmateria_alumno` int NOT NULL AUTO_INCREMENT,
+  `idMateriaAlumno` int NOT NULL AUTO_INCREMENT,
   `idEstudiante` int DEFAULT NULL,
   `idMateria` int DEFAULT NULL,
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
-  PRIMARY KEY (`idmateria_alumno`),
+  PRIMARY KEY (`idMateriaAlumno`),
   KEY `FK_idEstudiante_idx` (`idEstudiante`),
   KEY `FK_idMateria_idx` (`idMateria`),
   CONSTRAINT `FK_idEstudiante1` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiante`),
@@ -168,12 +168,12 @@ DROP TABLE IF EXISTS `materias_docentes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `materias_docentes` (
-  `idmateria_docente` int NOT NULL AUTO_INCREMENT,
+  `idMateriaDocente` int NOT NULL AUTO_INCREMENT,
   `idDocente` int DEFAULT NULL,
   `idMateria` int DEFAULT NULL,
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
-  PRIMARY KEY (`idmateria_docente`),
+  PRIMARY KEY (`idMateriaDocente`),
   KEY `FK_idDocente_idx` (`idDocente`),
   KEY `FK_idMateria2_idx` (`idMateria`),
   CONSTRAINT `FK_idDocente1` FOREIGN KEY (`idDocente`) REFERENCES `docentes` (`idDocente`),
@@ -754,4 +754,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-16 22:50:03
+-- Dump completed on 2020-11-17  0:12:19
