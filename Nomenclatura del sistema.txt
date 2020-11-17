@@ -1,0 +1,10 @@
+los nombres de las tablas seran minusculas, y de forma plural
+
+las propiedades seran en singular, 
+
+las propiedades que incien con "id" siempre iniciara en minuscula y seguira con mayuscula
+
+los campos que identifican las demas propiedades iniciaran con mayuscula cada inicio de palabra.
+
+los nombres compuestos de las tablas seran separados por un guion bajo "_", asi mismo el id que representa.
+

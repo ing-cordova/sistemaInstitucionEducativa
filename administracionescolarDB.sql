@@ -28,94 +28,99 @@ CREATE TABLE `actividades` (
   `idActividad` int NOT NULL AUTO_INCREMENT,
   `idDocente` int DEFAULT NULL,
   `idMateria` int DEFAULT NULL,
-  `nombreActividad` varchar(45) DEFAULT NULL,
-  `porcentaje` int DEFAULT NULL,
-  `ultimaModificacion` date DEFAULT NULL,
+  `Nombre_Actividad` varchar(45) DEFAULT NULL,
+  `Porcentaje` int DEFAULT NULL,
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idActividad`),
   KEY `FK_idDocente2_idx` (`idDocente`),
   KEY `FK_idMateria3_idx` (`idMateria`),
-  CONSTRAINT `FK_idDocente3` FOREIGN KEY (`idDocente`) REFERENCES `docente` (`idDocente`),
+  CONSTRAINT `FK_idDocente3` FOREIGN KEY (`idDocente`) REFERENCES `docentes` (`idDocente`),
   CONSTRAINT `FK_idMateria4` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `actividades_estudiante`
+-- Table structure for table `actividades_estudiantes`
 --
 
-DROP TABLE IF EXISTS `actividades_estudiante`;
+DROP TABLE IF EXISTS `actividades_estudiantes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `actividades_estudiante` (
-  `idactividades_estudiante` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `actividades_estudiantes` (
+  `idActividad_Estudiante` int NOT NULL AUTO_INCREMENT,
   `idEstudiante` int DEFAULT NULL,
   `idActividad` int DEFAULT NULL,
-  `notaObtenida` decimal(4,2) DEFAULT NULL,
-  `archivo` mediumblob,
-  `ultimaModificacion` date DEFAULT NULL,
-  PRIMARY KEY (`idactividades_estudiante`),
+  `Nota_Obtenida` decimal(4,2) DEFAULT NULL,
+  `Archivo` mediumblob,
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
+  PRIMARY KEY (`idActividad_Estudiante`),
   KEY `FK_idEstudiante_idx` (`idEstudiante`),
   KEY `FK_idActividad_idx` (`idActividad`),
   CONSTRAINT `FK_idActividad` FOREIGN KEY (`idActividad`) REFERENCES `actividades` (`idActividad`),
-  CONSTRAINT `FK_idEstudiante` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiante` (`idEstudiante`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_idEstudiante` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `docente`
+-- Table structure for table `docentes`
 --
 
-DROP TABLE IF EXISTS `docente`;
+DROP TABLE IF EXISTS `docentes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `docente` (
+CREATE TABLE `docentes` (
   `idDocente` int NOT NULL AUTO_INCREMENT,
   `idPersona` int DEFAULT NULL,
-  `CorreoElectronico` varchar(75) DEFAULT NULL,
+  `Correo_Electronico` varchar(100) DEFAULT NULL,
   `Pass` varchar(600) DEFAULT NULL,
   `Especialidad` varchar(45) DEFAULT NULL,
-  `UltimaModificacion` date DEFAULT NULL,
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idDocente`),
   KEY `FK_idPersona_idx` (`idPersona`),
   CONSTRAINT `FK_idPersona` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `estudiante`
+-- Table structure for table `estudiantes`
 --
 
-DROP TABLE IF EXISTS `estudiante`;
+DROP TABLE IF EXISTS `estudiantes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `estudiante` (
+CREATE TABLE `estudiantes` (
   `idEstudiante` int NOT NULL AUTO_INCREMENT,
   `idPersona` int DEFAULT NULL,
-  `CorreoElectronico` varchar(75) DEFAULT NULL,
+  `Correo_Electronico` varchar(100) DEFAULT NULL,
   `Pass` varchar(600) DEFAULT NULL,
-  `IdGradoAcademico` int DEFAULT NULL,
-  `UltimaModificacion` date DEFAULT NULL,
+  `idGradoAcademico` int DEFAULT NULL,
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idEstudiante`),
   KEY `FK_idPersona1_idx` (`idPersona`),
-  KEY `FK_idGradoAcademico_idx` (`IdGradoAcademico`),
-  CONSTRAINT `FK_idGradoAcademico` FOREIGN KEY (`IdGradoAcademico`) REFERENCES `gradosacademicos` (`idGradoAcademico`),
+  KEY `FK_idGradoAcademico_idx` (`idGradoAcademico`),
+  CONSTRAINT `FK_idGradoAcademico` FOREIGN KEY (`idGradoAcademico`) REFERENCES `grados_academicos` (`idGradoAcademico`),
   CONSTRAINT `FK_idPersona1` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `gradosacademicos`
+-- Table structure for table `grados_academicos`
 --
 
-DROP TABLE IF EXISTS `gradosacademicos`;
+DROP TABLE IF EXISTS `grados_academicos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `gradosacademicos` (
+CREATE TABLE `grados_academicos` (
   `idGradoAcademico` int NOT NULL AUTO_INCREMENT,
-  `NombreGradoAcad` varchar(50) DEFAULT NULL,
-  `UltimaModificacion` date DEFAULT NULL,
+  `Nombre_GradoAcad` varchar(50) DEFAULT NULL,
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idGradoAcademico`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,50 +132,53 @@ DROP TABLE IF EXISTS `materias`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `materias` (
   `idMateria` int NOT NULL AUTO_INCREMENT,
-  `NombreMateria` varchar(45) DEFAULT NULL,
-  `UltimaModificacion` date DEFAULT NULL,
+  `Nombre_Materia` varchar(45) DEFAULT NULL,
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `materias_alumno`
+-- Table structure for table `materias_alumnos`
 --
 
-DROP TABLE IF EXISTS `materias_alumno`;
+DROP TABLE IF EXISTS `materias_alumnos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `materias_alumno` (
-  `idmaterias_alumno` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `materias_alumnos` (
+  `idmateria_alumno` int NOT NULL AUTO_INCREMENT,
   `idEstudiante` int DEFAULT NULL,
   `idMateria` int DEFAULT NULL,
-  `ultimaModificacion` date DEFAULT NULL,
-  PRIMARY KEY (`idmaterias_alumno`),
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
+  PRIMARY KEY (`idmateria_alumno`),
   KEY `FK_idEstudiante_idx` (`idEstudiante`),
   KEY `FK_idMateria_idx` (`idMateria`),
-  CONSTRAINT `FK_idEstudiante1` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiante` (`idEstudiante`),
+  CONSTRAINT `FK_idEstudiante1` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiante`),
   CONSTRAINT `FK_idMateria1` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `materias_docente`
+-- Table structure for table `materias_docentes`
 --
 
-DROP TABLE IF EXISTS `materias_docente`;
+DROP TABLE IF EXISTS `materias_docentes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `materias_docente` (
-  `idmaterias_docente` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `materias_docentes` (
+  `idmateria_docente` int NOT NULL AUTO_INCREMENT,
   `idDocente` int DEFAULT NULL,
   `idMateria` int DEFAULT NULL,
-  `ultimaModificacion` date DEFAULT NULL,
-  PRIMARY KEY (`idmaterias_docente`),
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
+  PRIMARY KEY (`idmateria_docente`),
   KEY `FK_idDocente_idx` (`idDocente`),
   KEY `FK_idMateria2_idx` (`idMateria`),
-  CONSTRAINT `FK_idDocente1` FOREIGN KEY (`idDocente`) REFERENCES `docente` (`idDocente`),
+  CONSTRAINT `FK_idDocente1` FOREIGN KEY (`idDocente`) REFERENCES `docentes` (`idDocente`),
   CONSTRAINT `FK_idMateria2` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +189,7 @@ DROP TABLE IF EXISTS `notas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notas` (
-  `idNotas` int NOT NULL AUTO_INCREMENT,
+  `idNota` int NOT NULL AUTO_INCREMENT,
   `idEstudiante` int DEFAULT NULL,
   `idMateria` int DEFAULT NULL,
   `Periodo1` decimal(4,2) DEFAULT NULL,
@@ -189,13 +197,14 @@ CREATE TABLE `notas` (
   `Periodo3` decimal(4,2) DEFAULT NULL,
   `NotaFinal` decimal(4,2) DEFAULT NULL,
   `Recuperacion` decimal(4,2) DEFAULT NULL,
-  `UltimaModificacion` date DEFAULT NULL,
-  PRIMARY KEY (`idNotas`),
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
+  PRIMARY KEY (`idNota`),
   KEY `FK_idEstudiante1_idx` (`idEstudiante`),
   KEY `FK_idMateria_idx` (`idMateria`),
-  CONSTRAINT `FK_idEstudiante2` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiante` (`idEstudiante`),
+  CONSTRAINT `FK_idEstudiante2` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiante`),
   CONSTRAINT `FK_idMateria3` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,10 +219,11 @@ CREATE TABLE `personas` (
   `Nombre` varchar(45) DEFAULT NULL,
   `Apellido` varchar(45) DEFAULT NULL,
   `Sexo` varchar(45) DEFAULT NULL,
-  `FechaNacimiento` date DEFAULT NULL,
-  `UltimaModificacion` date DEFAULT NULL,
+  `Fecha_Nacimiento` date DEFAULT NULL,
+  `Ultima_Modificacion` date DEFAULT NULL,
+  `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -744,4 +754,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-10 21:49:56
+-- Dump completed on 2020-11-16 22:50:03
