@@ -97,7 +97,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
 
         pnCentral.setBackground(new java.awt.Color(68, 130, 195));
         pnCentral.setLayout(new javax.swing.BoxLayout(pnCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 850, 590));
+        getContentPane().add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 850, 590));
 
         pnIzquierdo.setBackground(new java.awt.Color(18, 58, 108));
 
@@ -107,7 +107,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
         btninicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Home.png"))); // NOI18N
-        btninicio.setText("         Inicio");
+        btninicio.setText("     Inicio");
         btninicio.setBorderPainted(false);
         btninicio.setFocusPainted(false);
         btninicio.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -119,21 +119,21 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         });
 
         btnMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Subjects.png"))); // NOI18N
-        btnMaterias.setText("         Materias");
+        btnMaterias.setText("     Materias");
         btnMaterias.setBorderPainted(false);
         btnMaterias.setFocusPainted(false);
         btnMaterias.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnMaterias.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btnTareas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Homeworks.png"))); // NOI18N
-        btnTareas.setText("         Tereas");
+        btnTareas.setText("     Tereas");
         btnTareas.setBorderPainted(false);
         btnTareas.setFocusPainted(false);
         btnTareas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnTareas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btnNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/grades.png"))); // NOI18N
-        btnNotas.setText("         Notas");
+        btnNotas.setText("     Notas");
         btnNotas.setBorderPainted(false);
         btnNotas.setFocusPainted(false);
         btnNotas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
