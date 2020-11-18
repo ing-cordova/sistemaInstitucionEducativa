@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `administracionescolar` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `administracionescolar`;
 -- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: administracionescolar
@@ -41,6 +39,15 @@ CREATE TABLE `actividades` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `actividades`
+--
+
+LOCK TABLES `actividades` WRITE;
+/*!40000 ALTER TABLE `actividades` DISABLE KEYS */;
+/*!40000 ALTER TABLE `actividades` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `actividades_estudiantes`
 --
 
@@ -64,6 +71,15 @@ CREATE TABLE `actividades_estudiantes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `actividades_estudiantes`
+--
+
+LOCK TABLES `actividades_estudiantes` WRITE;
+/*!40000 ALTER TABLE `actividades_estudiantes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `actividades_estudiantes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `docentes`
 --
 
@@ -83,6 +99,15 @@ CREATE TABLE `docentes` (
   CONSTRAINT `FK_idPersona` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `docentes`
+--
+
+LOCK TABLES `docentes` WRITE;
+/*!40000 ALTER TABLE `docentes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `docentes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `estudiantes`
@@ -108,6 +133,15 @@ CREATE TABLE `estudiantes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `estudiantes`
+--
+
+LOCK TABLES `estudiantes` WRITE;
+/*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `grados_academicos`
 --
 
@@ -124,6 +158,15 @@ CREATE TABLE `grados_academicos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `grados_academicos`
+--
+
+LOCK TABLES `grados_academicos` WRITE;
+/*!40000 ALTER TABLE `grados_academicos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `grados_academicos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `materias`
 --
 
@@ -138,6 +181,15 @@ CREATE TABLE `materias` (
   PRIMARY KEY (`idMateria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materias`
+--
+
+LOCK TABLES `materias` WRITE;
+/*!40000 ALTER TABLE `materias` DISABLE KEYS */;
+/*!40000 ALTER TABLE `materias` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `materias_alumnos`
@@ -161,6 +213,15 @@ CREATE TABLE `materias_alumnos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `materias_alumnos`
+--
+
+LOCK TABLES `materias_alumnos` WRITE;
+/*!40000 ALTER TABLE `materias_alumnos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `materias_alumnos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `materias_docentes`
 --
 
@@ -180,6 +241,15 @@ CREATE TABLE `materias_docentes` (
   CONSTRAINT `FK_idMateria2` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materias_docentes`
+--
+
+LOCK TABLES `materias_docentes` WRITE;
+/*!40000 ALTER TABLE `materias_docentes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `materias_docentes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `notas`
@@ -208,6 +278,15 @@ CREATE TABLE `notas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `notas`
+--
+
+LOCK TABLES `notas` WRITE;
+/*!40000 ALTER TABLE `notas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `personas`
 --
 
@@ -225,6 +304,19 @@ CREATE TABLE `personas` (
   PRIMARY KEY (`idPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personas`
+--
+
+LOCK TABLES `personas` WRITE;
+/*!40000 ALTER TABLE `personas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'administracionescolar'
+--
 
 --
 -- Dumping routines for database 'administracionescolar'
@@ -290,6 +382,48 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_D_MATERIAS_ALUMNOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_D_MATERIAS_ALUMNOS`(
+JIdMateriaAlumno int (11)
+)
+BEGIN
+delete from materias_alumnos where idMateriaAlumno = JIdMateriaAlumno;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_D_MATERIAS_DOCENTES` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_D_MATERIAS_DOCENTES`(
+JIdMateriaDocente int (11)
+)
+BEGIN
+delete from materias_docentes where idMateriaDocente = JIdMateriaDocente;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_D_NOTAS` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -346,10 +480,11 @@ PidPersona int(11),
 PCorreoElectronico varchar(45),
 PPass varchar (600), 
 PEspecialidad varchar(45),
-PUltimaModificacion date)
+PUltimaModificacion date,
+PEstado int(11))
 BEGIN
-INSERT INTO docente ( idPersona, CorreoElectronico, Pass, Especialidad,  UltimaModificacion) 
-values ( PidPersona, PCorreoElectronico,sha2(PPass,512), PEspecialidad, PUltimaModificacion);
+INSERT INTO docente ( idPersona, Correo_Electronico, Pass, Especialidad,  Ultima_Modificacion, Estado) 
+values ( PidPersona, PCorreoElectronico,sha2(PPass,512), PEspecialidad, PUltimaModificacion, PEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -371,10 +506,11 @@ PidPersona int(11),
 PCorreoElectronico varchar(75),
 PPass varchar (600), 
 PidGradoAcademico int,
-PUltimaModificacion date)
+PUltimaModificacion date,
+PEstado int(11))
 BEGIN
-INSERT INTO estudiante (idPersona, CorreoElectronico, Pass, idGradoAcademico, UltimaModificacion) 
-values (PidPersona, PcorreoElectronico, sha2(PPass,512), PidGradoAcademico, PUltimaModificacion);
+INSERT INTO estudiante (idPersona, Correo_Electronico, Pass, idGradoAcademico, Ultima_Modificacion, Estado) 
+values (PidPersona, PcorreoElectronico, sha2(PPass,512), PidGradoAcademico, PUltimaModificacion, PEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -387,16 +523,61 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_MATERIAS`(
 JNombreMateria Varchar (45),
-JUltimaModificacion date
+JUltimaModificacion date,
+JEstado int(11)
 )
 BEGIN
-insert into materias (NombreMateria,UltimaModificacion) values (JNombreMateria,JUltimaModificacion);
+insert into materias (Nombre_Materia,Ultima_Modificacion,Estado) values (JNombreMateria,JUltimaModificacion,JEstado);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_I_MATERIAS_ALUMNOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_MATERIAS_ALUMNOS`(
+MUltimaModificacion varchar (45),
+MEstado int(11)
+)
+BEGIN
+insert into materias_alumnos(Ultima_Modificacion, Estado) values(MUltimaModificacion,MEstado);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_I_MATERIAS_DOCENTES` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_MATERIAS_DOCENTES`(
+DUltimaModificacion varchar (45),
+DEstado int(11)
+)
+BEGIN
+insert into materias_docentes(Ultima_Modificacion, Estado) values(DUltimaModificacion,DEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -409,9 +590,9 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_NOTAS`(
 JIdEstudiante int(12),
@@ -421,11 +602,12 @@ JPeriodo2 decimal(4,2),
 JPeriodo3 decimal(4,2),
 JNotaFinal decimal(4,2),
 JRecuperacion decimal(4,2),
-JUltimaModificacion date
+JUltimaModificacion date,
+JEstado int(11)
 )
 BEGIN
-insert into notas(idEstudiante,idMateria,Periodo1,Periodo2,Periodo3,NotaFinal,UltimaModificacion)
-values (JIdEstudiante,JIdMateria,JPeriodo1, JPeriodo2, JPeriodo3,JNotaFinal,JUltimaModificacion,JUltimaModificacion);
+insert into notas(idEstudiante,idMateria,Periodo1,Periodo2,Periodo3,NotaFinal,Ultima_Modificacion,Estado)
+values (JIdEstudiante,JIdMateria,JPeriodo1, JPeriodo2, JPeriodo3,JNotaFinal,JUltimaModificacion,JUltimaModificacion,JEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -438,19 +620,20 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_PERSONAS`(
 PNombre varchar (45), 
 PApellido varchar (45), 
 PSexo varchar(45),
 PFechaNacimiento date,
-PUltimaModificacion date)
+PUltimaModificacion date,
+PEstado int(11))
 BEGIN
-INSERT INTO personas (Nombre, Apellido, Sexo, FechaNacimiento, UltimaModificacion) 
-value (PNombre, PApellido, PSexo, PFechaNacimiento, PUltimaModificacion);
+INSERT INTO personas (Nombre, Apellido, Sexo, Fecha_Nacimiento, Ultima_Modificacion, Estado) 
+value (PNombre, PApellido, PSexo, PFechaNacimiento, PUltimaModificacion, PEstado);
 
 END ;;
 DELIMITER ;
@@ -464,13 +647,13 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_LOGUIN_ESTUDIANTE`(PCorreo varchar (50), Ppass varchar(600))
 BEGIN
-select * from estudiante where CorreoElectronico = PCorreo and Pass = sha2(Ppass,512);
+select * from estudiante where Correo_Electronico = PCorreo and Pass = sha2(Ppass,512);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -483,13 +666,13 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_LOGUIN_PROFESOR`(PCorreo varchar(50), PPass varchar (600))
 BEGIN
-select * from docente where CorreoElectronico = PCorreo and Pass = sha2(PPass,512);
+select * from docente where Correo_Electronico = PCorreo and Pass = sha2(PPass,512);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -572,6 +755,44 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_MATERIAS_ALUMNOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_MATERIAS_ALUMNOS`()
+BEGIN
+SELECT * FROM administracionescolar.materias_alumnos;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_MATERIAS_DOCENTES` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_MATERIAS_DOCENTES`()
+BEGIN
+SELECT * FROM administracionescolar.materias_docentes;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_S_NOTAS` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -616,9 +837,9 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_DOCENTE`(
 PidDocente int(11),
@@ -626,10 +847,11 @@ PidPersona int(11),
 PCorreoElectronico varchar(45),
 PPass varchar (600), 
 PEspecialidad varchar(45),
-PUltimaModificacion date)
+PUltimaModificacion date,
+PEstado int(11))
 BEGIN
-update docente set idPersona = PidPersona,  CorreoElectronico = PCorreoElectronico, Pass = sha2(PPass,512), 
-Especialidad = PEspecialidad, UltimaModificacion = PUltimaModificacion 
+update docente set idPersona = PidPersona,  Correo_Electronico = PCorreoElectronico, Pass = sha2(PPass,512), 
+Especialidad = PEspecialidad, Ultima_Modificacion = PUltimaModificacion, Estado = PEstado
 where idDocente = PidDocente;
 END ;;
 DELIMITER ;
@@ -643,9 +865,9 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_ESTUDIANTE`(
 PidEstudiante int(11),
@@ -653,10 +875,11 @@ PidPersona int(11),
 PCorreoElectronico varchar(75),
 PPass varchar (600), 
 PidGradoAcademico int,
-PUltimaModificacion date )
+PUltimaModificacion date,
+PEstado int (11) )
 BEGIN
 update estudiante set idPersona = PidPersona, 
- CorreoElectronico = PCorreoElectronico, Pass = sha2(PPass,512), idGradoAcademico = PidGradoAcademico
+ Correo_Electronico = PCorreoElectronico, Pass = sha2(PPass,512), idGradoAcademico = PidGradoAcademico, Ultima_modificacion = PUltimaModificacion, Estado = PEstado
  where idEstudiante = PidEstudiante; 
 END ;;
 DELIMITER ;
@@ -670,17 +893,70 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_MATERIAS`(
 JIdMaterias int (12),
 JNombreMateria varchar (50),
-JUltimaModificacion date
+JUltimaModificacion date,
+JEstado int(11)
 )
 BEGIN
-update materias set NombreMateria = JNombreMateria,UltimaModificacion = JUltimaModificacion where idMateria = JIdMaterias;
+update materias set Nombre_Materia = JNombreMateria,Ultima_Modificacion = JUltimaModificacion,Estado = JEstado where idMateria = JIdMaterias;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_U_MATERIAS_ALUMNOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_MATERIAS_ALUMNOS`(
+MidMateriaAlumno int (11),
+MidEstudiante int (11),
+MidMateria int (11),
+MUltimaModificacion date,
+MEstado int (11)
+)
+BEGIN
+update materias_alumnos set idEstudiante = MidEstudiante, idMateria = MidMateria, Ultima_Modificacion = MUltimaModificacion,
+Estado = MEstado where idMateriaAlumno = MidMateriaAlumno;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_U_MATERIAS_DOCENTES` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_MATERIAS_DOCENTES`(
+DidMateriaDocente int (11),
+DidDocente int (11),
+DidMateria int (11),
+DUltimaModificacion date,
+DEstado int (11)
+)
+BEGIN
+update materias_docentes set idDocente = DidDocente, idMateria = DidMateria, Ultima_Modificacion = DUltimaModificacion,
+Estado = DEstado where idMateriaDocente = DidMateriaDocente;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -693,9 +969,9 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_NOTAS`(
 JIdNotas int (12),
@@ -706,11 +982,12 @@ JPeriodo2 decimal(4,2),
 JPeriodo3 decimal(4,2),
 JNotaFinal decimal(4,2),
 JRecuperacion decimal(4,2),
-JUltimaModificacion date
+JUltimaModificacion date,
+JEstado int(11)
 )
 BEGIN
 update notas set idEstudiante = JIdEstudiantes, idMateria = JIdMateria, Periodo1=JPeriodo1, Periodo2=JPeriodo2, Periodo3=JPeriodo3, 
-NotaFinal = JNotaFinal, Recuperacion = JRecuperacion,UltimaModificacion = JUltimaModificacion where idNotas = JIdNotas;
+NotaFinal = JNotaFinal, Recuperacion = JRecuperacion,Ultima_Modificacion = JUltimaModificacion, Estado = JEstado where idNotas = JIdNotas;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -723,9 +1000,9 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_PERSONAS`(
 PidPersona int(11),
@@ -733,10 +1010,11 @@ PNombre varchar (45),
 PApellido varchar (45), 
 PSexo varchar(45),
 PFechaNacimiento date,
-PUltimaModificacion date)
+PUltimaModificacion date,
+PEstado int(11))
 BEGIN
 update personas set Nombre = PNombre, Apellido = PApellido, Sexo = PSexo, 
-FechaNacimiento = PFechaNacimiento, UltimaModificacion = PUltimaModificacion
+Fecha_Nacimiento = PFechaNacimiento, Ultima_Modificacion = PUltimaModificacion, Estado = PEstado
 where idPersona = PidPersona; 
 END ;;
 DELIMITER ;
@@ -754,4 +1032,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-17  0:12:19
+-- Dump completed on 2020-11-17 20:49:41
