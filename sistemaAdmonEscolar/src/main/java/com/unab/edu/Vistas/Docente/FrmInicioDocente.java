@@ -47,10 +47,10 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         btnLogOut = new com.unab.edu.Otros.Boton();
         lblImagen = new javax.swing.JLabel();
         btnActividades = new com.unab.edu.Otros.Boton();
-        btnLogOut1 = new com.unab.edu.Otros.Boton();
         pnCentral = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnSuperior.setBackground(new java.awt.Color(8, 62, 148));
@@ -146,33 +146,14 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         btnActividades.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActividades.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        btnLogOut1.setForeground(new java.awt.Color(251, 74, 89));
-        btnLogOut1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout.png"))); // NOI18N
-        btnLogOut1.setText("         Cerrar Sesión");
-        btnLogOut1.setBorderPainted(false);
-        btnLogOut1.setColorHover(new java.awt.Color(251, 74, 89));
-        btnLogOut1.setFocusPainted(false);
-        btnLogOut1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnLogOut1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnLogOut1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogOut1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnIzquierdoLayout = new javax.swing.GroupLayout(pnIzquierdo);
         pnIzquierdo.setLayout(pnIzquierdoLayout);
         pnIzquierdoLayout.setHorizontalGroup(
             pnIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnIzquierdoLayout.createSequentialGroup()
-                .addGroup(pnIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnIzquierdoLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(lblImagen))
-                    .addGroup(pnIzquierdoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnLogOut1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(lblImagen)
+                .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(pnIzquierdoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,14 +181,12 @@ public class FrmInicioDocente extends javax.swing.JFrame {
                 .addComponent(btnTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(btnLogOut1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(pnIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 590));
+        getContentPane().add(pnIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 490));
 
         pnCentral.setBackground(new java.awt.Color(68, 130, 195));
         pnCentral.setLayout(new javax.swing.BoxLayout(pnCentral, javax.swing.BoxLayout.LINE_AXIS));
@@ -251,20 +230,6 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         cambio.CambiaPanel(pnCentral, new PnStartDocente());
     }//GEN-LAST:event_btninicioActionPerformed
 
-    private void btnLogOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOut1ActionPerformed
-
-        String botones[] = {"Cerrar Sesión", "Cancelar"};
-        int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que deseas cerrar sesión ahora?", "Confirmar", 0, 0, null, botones, this);
-
-        if (opcion == JOptionPane.YES_OPTION) {
-            FrmLogin logout = new FrmLogin();
-            logout.setVisible(true);
-            this.dispose();
-        } else if (opcion == JOptionPane.NO_OPTION) {
-            System.out.println("¡Cancelado!");
-        }
-    }//GEN-LAST:event_btnLogOut1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -303,7 +268,6 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnActividades;
     private com.unab.edu.Otros.Boton btnLogOut;
-    private com.unab.edu.Otros.Boton btnLogOut1;
     private com.unab.edu.Otros.Boton btnMaterias;
     private com.unab.edu.Otros.Boton btnTareas;
     private com.unab.edu.Otros.Boton btninicio;
