@@ -34,10 +34,10 @@ public class CLSPersona {
               persona.setNombre(resultadoConsulta.getString("Nombre"));
               persona.setApellido(resultadoConsulta.getString("Apellido"));
               persona.setSexo(resultadoConsulta.getString("Sexo"));
-              persona.setDUI(resultadoConsulta.getString("DUI"));
-              persona.setNIT(resultadoConsulta.getString("NIT"));
-              persona.setFecha_Nacimiento(resultadoConsulta.getDate("FechaNacimiento"));
-              persona.setUltima_Modificacion(resultadoConsulta.getDate("UltimaModificacion"));
+//              persona.setDUI(resultadoConsulta.getString("DUI"));
+//              persona.setNIT(resultadoConsulta.getString("NIT"));
+              persona.setFecha_Nacimiento(resultadoConsulta.getDate("Fecha_Nacimiento"));
+              persona.setUltima_Modificacion(resultadoConsulta.getDate("Ultima_Modificacion"));
               persona.setEstado(resultadoConsulta.getInt("Estado"));
               
               Personas.add(persona);
@@ -68,13 +68,13 @@ public class CLSPersona {
      public void ActualizarPersona(Persona per) {
          
          try {
-           CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?)");
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?,?,?)");
            Statement.setInt("PidPersona",per.getIdPersona());
            Statement.setString("PNombre", per.getNombre());
            Statement.setString("PApellido", per.getApellido());
            Statement.setString("PSexo", per.getSexo());
-           Statement.setString("PDui", per.getDUI());
-           Statement.setString("PNit", per.getNIT());
+//           Statement.setString("PDui", per.getDUI());
+//           Statement.setString("PNit", per.getNIT());
            Statement.setDate("PFechaNacimiento",new java.sql.Date(per.getFecha_Nacimiento().getTime()));
            Statement.setDate("PUltimaModificacion", new java.sql.Date(per.getUltima_Modificacion().getTime()));
            Statement.setInt("PEstado", per.getEstado());
@@ -93,13 +93,13 @@ public class CLSPersona {
             
         try {
            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?,?)");
-           Statement.setInt("pidPersona",per.getIdPersona());
-           Statement.setString("pNombre", per.getNombre());
-           Statement.setString("pApellido", per.getApellido());
-           Statement.setString("pSexo", per.getSexo());
-           Statement.setString("PDui", per.getDUI());
-           Statement.setString("PNit", per.getNIT());
-           Statement.setDate("pFechaNacimiento",new java.sql.Date(per.getFecha_Nacimiento().getTime()));
+//           Statement.setInt("pidPersona",per.getIdPersona());
+           Statement.setString("PNombre", per.getNombre());
+           Statement.setString("PApellido", per.getApellido());
+           Statement.setString("PSexo", per.getSexo());
+//           Statement.setString("PDui", per.getDUI());
+//           Statement.setString("PNit", per.getNIT());
+           Statement.setDate("PFechaNacimiento",new java.sql.Date(per.getFecha_Nacimiento().getTime()));
            Statement.setDate("PUltimaModificacion", new java.sql.Date(per.getUltima_Modificacion().getTime())); 
            Statement.setInt("PEstado", per.getEstado());
            
