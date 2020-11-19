@@ -8,11 +8,11 @@ package com.unab.edu.DAO;
 import com.unab.edu.Conexion.ConexionBD;
 import com.unab.edu.Entidades.Persona;
 import java.sql.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
+ * 
  *
  * @author dayan
  */
@@ -20,12 +20,12 @@ public class CLSPersona {
     ConexionBD claseConectar = new ConexionBD();
         Connection conectar = claseConectar.RetornarConexion();
         
-     public  ArrayList<Persona> MostrarPersona(){
+    public  ArrayList<Persona> MostrarPersona(){
     ArrayList<Persona> Personas = new ArrayList<> ();
 
     try{
         CallableStatement Statement = conectar.prepareCall("call SP_S_Persona()");
-          ResultSet resultadoConsulta = Statement.executeQuery();
+        ResultSet resultadoConsulta = Statement.executeQuery();
           
           while(resultadoConsulta.next()){
               Persona persona = new Persona();
@@ -49,12 +49,12 @@ public class CLSPersona {
     return Personas;
     }
      
-     public void BorrarPersona(Persona per){
+    public void BorrarPersona(Persona per){
          
         try {
            CallableStatement Statement = conectar.prepareCall("call SP_D_Persona(?)");
         
-           Statement.setInt("PIdPersona", per.getIdPersona());
+           Statement.setInt("PidPersona", per.getIdPersona());
            
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Persona eliminada");
@@ -65,10 +65,11 @@ public class CLSPersona {
         }
     }
      
-     public void ActualizarPersona(Persona per) {
+    public void ActualizarPersona(Persona per) {
          
          try {
-           CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?)");
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?,?,?,?,?)");
+           
            Statement.setInt("PidPersona",per.getIdPersona());
            Statement.setString("PNombre", per.getNombre());
            Statement.setString("PApellido", per.getApellido());
@@ -89,17 +90,17 @@ public class CLSPersona {
         }
     }
     
-        public void AgregarPersona(Persona per){
+    public void AgregarPersona(Persona per){
             
         try {
-           CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?,?)");
-           Statement.setInt("pidPersona",per.getIdPersona());
-           Statement.setString("pNombre", per.getNombre());
-           Statement.setString("pApellido", per.getApellido());
-           Statement.setString("pSexo", per.getSexo());
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?,?,?,?)");
+           
+           Statement.setString("PNombre", per.getNombre());
+           Statement.setString("PApellido", per.getApellido());
+           Statement.setString("PSexo", per.getSexo());
            Statement.setString("PDui", per.getDUI());
            Statement.setString("PNit", per.getNIT());
-           Statement.setDate("pFechaNacimiento",new java.sql.Date(per.getFecha_Nacimiento().getTime()));
+           Statement.setDate("PFechaNacimiento",new java.sql.Date(per.getFecha_Nacimiento().getTime()));
            Statement.setDate("PUltimaModificacion", new java.sql.Date(per.getUltima_Modificacion().getTime())); 
            Statement.setInt("PEstado", per.getEstado());
            

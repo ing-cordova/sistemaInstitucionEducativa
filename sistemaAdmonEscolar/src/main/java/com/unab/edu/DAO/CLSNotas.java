@@ -67,7 +67,7 @@ public class CLSNotas {
     
     public void ActualizarNotas(Notas not) {
          try {
-           CallableStatement Statement = conectar.prepareCall("call SP_U_Notas(?,?,?,?,?,)");
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Notas(?,?,?,?,?,?,?,?,?,?)");
            
            Statement.setInt("JIdNota",not.getIdNota());
            Statement.setInt("JIdEstudiante", not.getIdEstudiante());
@@ -92,7 +92,7 @@ public class CLSNotas {
     
         public void AgregarNotas(Notas not){
         try {
-           CallableStatement Statement = conectar.prepareCall("call SP_I_Notas(?,?,?,?,?)");
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Notas(?,?,?,?,?,?,?,?,?,?)");
            
            Statement.setInt("JIdNota",not.getIdNota());
            Statement.setInt("JIdEstudiante", not.getIdEstudiante());

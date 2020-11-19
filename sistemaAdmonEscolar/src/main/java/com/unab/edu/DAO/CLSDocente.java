@@ -64,7 +64,7 @@ public class CLSDocente {
     public void ActualizarDocente(Docente profe) {
 
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_U_Docente(?,?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_U_Docente(?,?,?,?,?,?,?)");
             Statement.setInt("PIdDocente", profe.getIdDocente());
             Statement.setInt("PIdPersona", profe.getIdPersona());
             Statement.setString("PCorreoElectronico", profe.getCorreo_Electronico());

@@ -61,7 +61,7 @@ public class CLSMateria {
     
     public void ActualizarMateria(Materia mate) {
          try {
-           CallableStatement Statement = conectar.prepareCall("call SP_U_Materia(?,?)");
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Materia(?,?,?,?)");
 
            Statement.setInt("JIdMateria", mate.getIdMateria());
            Statement.setString("JNombreMateria", mate.getNombre_Materia());
@@ -81,7 +81,7 @@ public class CLSMateria {
     
         public void AgregarMateria(Materia mate){
         try {
-           CallableStatement Statement = conectar.prepareCall("call SP_I_Materia(?,?,?)");
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Materia(?,?,?,?)");
            Statement.setInt("JIdMateria", mate.getIdMateria());
            Statement.setString("JNombreMateria", mate.getNombre_Materia());
            Statement.setDate("JUltimaModificacion", new java.sql.Date(mate.getUltima_Modificacion().getTime()));

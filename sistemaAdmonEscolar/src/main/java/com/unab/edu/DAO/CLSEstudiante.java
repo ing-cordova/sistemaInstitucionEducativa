@@ -85,7 +85,7 @@ public class CLSEstudiante {
 
     public void AgregarEstudiante(Estudiante est) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_Estudiante(?,?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_I_Estudiante(?,?,?,?,?,?,?)");
 
             Statement.setInt("PIdEstudiante", est.getIdEstudiante());
             Statement.setInt("PIdPersona", est.getIdPersona());
