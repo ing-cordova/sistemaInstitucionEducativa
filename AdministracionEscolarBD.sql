@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `administracionescolar` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `administracionescolar`;
 -- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: administracionescolar
@@ -39,15 +41,6 @@ CREATE TABLE `actividades` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `actividades`
---
-
-LOCK TABLES `actividades` WRITE;
-/*!40000 ALTER TABLE `actividades` DISABLE KEYS */;
-/*!40000 ALTER TABLE `actividades` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `actividades_estudiantes`
 --
 
@@ -71,15 +64,6 @@ CREATE TABLE `actividades_estudiantes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `actividades_estudiantes`
---
-
-LOCK TABLES `actividades_estudiantes` WRITE;
-/*!40000 ALTER TABLE `actividades_estudiantes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `actividades_estudiantes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `docentes`
 --
 
@@ -99,15 +83,6 @@ CREATE TABLE `docentes` (
   CONSTRAINT `FK_idPersona` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `docentes`
---
-
-LOCK TABLES `docentes` WRITE;
-/*!40000 ALTER TABLE `docentes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `docentes` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `estudiantes`
@@ -133,15 +108,6 @@ CREATE TABLE `estudiantes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `estudiantes`
---
-
-LOCK TABLES `estudiantes` WRITE;
-/*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `grados_academicos`
 --
 
@@ -158,15 +124,6 @@ CREATE TABLE `grados_academicos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `grados_academicos`
---
-
-LOCK TABLES `grados_academicos` WRITE;
-/*!40000 ALTER TABLE `grados_academicos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `grados_academicos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `materias`
 --
 
@@ -181,15 +138,6 @@ CREATE TABLE `materias` (
   PRIMARY KEY (`idMateria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `materias`
---
-
-LOCK TABLES `materias` WRITE;
-/*!40000 ALTER TABLE `materias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `materias` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `materias_alumnos`
@@ -213,15 +161,6 @@ CREATE TABLE `materias_alumnos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `materias_alumnos`
---
-
-LOCK TABLES `materias_alumnos` WRITE;
-/*!40000 ALTER TABLE `materias_alumnos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `materias_alumnos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `materias_docentes`
 --
 
@@ -241,15 +180,6 @@ CREATE TABLE `materias_docentes` (
   CONSTRAINT `FK_idMateria2` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `materias_docentes`
---
-
-LOCK TABLES `materias_docentes` WRITE;
-/*!40000 ALTER TABLE `materias_docentes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `materias_docentes` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `notas`
@@ -278,15 +208,6 @@ CREATE TABLE `notas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `notas`
---
-
-LOCK TABLES `notas` WRITE;
-/*!40000 ALTER TABLE `notas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `notas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `personas`
 --
 
@@ -298,25 +219,14 @@ CREATE TABLE `personas` (
   `Nombre` varchar(45) DEFAULT NULL,
   `Apellido` varchar(45) DEFAULT NULL,
   `Sexo` varchar(45) DEFAULT NULL,
+  `Dui` varchar(45) DEFAULT NULL,
+  `Nit` varchar(45) DEFAULT NULL,
   `Fecha_Nacimiento` date DEFAULT NULL,
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `personas`
---
-
-LOCK TABLES `personas` WRITE;
-/*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `personas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'administracionescolar'
---
 
 --
 -- Dumping routines for database 'administracionescolar'
@@ -355,6 +265,27 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_D_ESTUDIANTE`(
 PidEstudiante int(11))
 BEGIN
 delete from estudiante where idEstudiante = PidEstudiante;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_D_GRADOS_ACADEMICOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_D_GRADOS_ACADEMICOS`(
+PIdGradoAcademico int(11)
+)
+BEGIN
+delete from grados_academicos where idGradoAcademico = PIdGradoAcademico;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -517,6 +448,30 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_I_GRADOS_ACADEMICOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_GRADOS_ACADEMICOS`(
+PIdGradoAcademico int(11),
+PNombreGradoAcademico varchar(50),
+PUltimaModificacion date,
+PEstado int(11)
+)
+BEGIN
+insert into grados_academicos (Nombre_GradoAcad,Ultima_Modificacion,Estado) values (PNombreGradoAcademico,PUltimaModificacion,PEstado);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_I_MATERIAS` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -618,23 +573,24 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_PERSONAS`(
 PNombre varchar (45), 
 PApellido varchar (45), 
 PSexo varchar(45),
+PDui varchar(45),
+PNit varchar(45),
 PFechaNacimiento date,
 PUltimaModificacion date,
 PEstado int(11))
 BEGIN
-INSERT INTO personas (Nombre, Apellido, Sexo, Fecha_Nacimiento, Ultima_Modificacion, Estado) 
-value (PNombre, PApellido, PSexo, PFechaNacimiento, PUltimaModificacion, PEstado);
-
+INSERT INTO personas (Nombre, Apellido, Sexo, Dui, Nit, Fecha_Nacimiento, Ultima_Modificacion, Estado) 
+value (PNombre, PApellido, PSexo, PDui, PNit, PFechaNacimiento, PUltimaModificacion, PEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -730,6 +686,25 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_ESTUDIANTE`()
 BEGIN
 SELECT * FROM administracionescolar.estudiante;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_GRADOS_ACADEMICOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_GRADOS_ACADEMICOS`()
+BEGIN
+SELECT * FROM administracionescolar.grados_academicos;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -887,6 +862,31 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_U_GRADOS_ACADEMICOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_GRADOS_ACADEMICOS`(
+PIdGradoAcademico int(11),
+PNombreGradoAcademico varchar(50),
+PUltimaModificacion date,
+PEstado int(11)
+)
+BEGIN
+update grados_academicos set Nombre_GradoAcad = PNombreGradoAcademico, 
+Ultima_Modificacion = PUltimaModificacion, Estado = PEstado where idGradoAcademico = PIdGradoAcademico;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_U_MATERIAS` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -998,22 +998,24 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_PERSONAS`(
 PidPersona int(11),
 PNombre varchar (45), 
 PApellido varchar (45), 
 PSexo varchar(45),
+PDui varchar(45),
+PNit varchar(45),
 PFechaNacimiento date,
 PUltimaModificacion date,
 PEstado int(11))
 BEGIN
-update personas set Nombre = PNombre, Apellido = PApellido, Sexo = PSexo, 
+update personas set Nombre = PNombre, Apellido = PApellido, Sexo = PSexo, Dui=PDui, Nit=PNit,
 Fecha_Nacimiento = PFechaNacimiento, Ultima_Modificacion = PUltimaModificacion, Estado = PEstado
 where idPersona = PidPersona; 
 END ;;
@@ -1032,4 +1034,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-17 20:49:41
+-- Dump completed on 2020-11-19  1:01:57
