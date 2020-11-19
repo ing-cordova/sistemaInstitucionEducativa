@@ -32,10 +32,11 @@ public class CLSEstudiante {
 
                 est.setIdEstudiante(resultadoConsulta.getInt("idEstudiante"));
                 est.setIdPersona(resultadoConsulta.getInt("idPersona"));
-                est.setCorreoElectronico(resultadoConsulta.getString("CorreoElectronico"));
+                est.setCorreo_Electronico(resultadoConsulta.getString("CorreoElectronico"));
                 est.setPass(resultadoConsulta.getString("Pass"));
                 est.setIdGradoAcademico(resultadoConsulta.getInt("idGradoAcademico"));
-                est.setUltimaModificacion(resultadoConsulta.getDate("Fecha"));
+                est.setUltima_Modificacion(resultadoConsulta.getDate("Fecha"));
+                est.setEstado(resultadoConsulta.getInt("Estado"));
 
                 Estudiantes.add(est);
             }
@@ -66,10 +67,12 @@ public class CLSEstudiante {
             CallableStatement Statement = conectar.prepareCall("call SP_U_Estudiante(?,?,?,?,?,?,?)");
             Statement.setInt("PIdEstudiante", est.getIdEstudiante());
             Statement.setInt("PIdPersona", est.getIdPersona());
-            Statement.setString("PCorreoElectronico", est.getCorreoElectronico());
+            Statement.setString("PCorreoElectronico", est.getCorreo_Electronico());
             Statement.setString("PPass", est.getPass());
             Statement.setInt("PidGradoAcademico", est.getIdGradoAcademico());
-            Statement.setDate("PUltimaModificacion", new java.sql.Date(est.getUltimaModificacion().getTime()));
+            Statement.setDate("PUltimaModificacion", new java.sql.Date(est.getUltima_Modificacion().getTime()));
+            Statement.setInt("PEstado", est.getEstado());
+            
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Estudiante actualizado");
 
@@ -86,11 +89,12 @@ public class CLSEstudiante {
 
             Statement.setInt("PIdEstudiante", est.getIdEstudiante());
             Statement.setInt("PIdPersona", est.getIdPersona());
-            Statement.setString("PCorreoElectronico", est.getCorreoElectronico());
+            Statement.setString("PCorreoElectronico", est.getCorreo_Electronico());
             Statement.setString("PPass", est.getPass());
             Statement.setInt("PidGradoAcademico", est.getIdGradoAcademico());
-            Statement.setDate("PUltimaModificacion", new java.sql.Date(est.getUltimaModificacion().getTime()));
-
+            Statement.setDate("PUltimaModificacion", new java.sql.Date(est.getUltima_Modificacion().getTime()));
+            Statement.setInt("PEstado", est.getEstado());
+                
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Estudiante guardado");
 
@@ -113,7 +117,7 @@ public class CLSEstudiante {
             while (resultadoConsulta.next()) {
 
                 Estudiante est = new Estudiante();
-                est.setCorreoElectronico(resultadoConsulta.getString("CorreoElectronico"));
+                est.setCorreo_Electronico(resultadoConsulta.getString("CorreoElectronico"));
                 est.setPass(resultadoConsulta.getString("Pass"));
                 ListadoCORREOPASS.add(est);
             }
@@ -122,7 +126,7 @@ public class CLSEstudiante {
             String passBD = null;
             for (var iterar : ListadoCORREOPASS) {
 
-                correoBD = iterar.getCorreoElectronico();
+                correoBD = iterar.getCorreo_Electronico();
                 passBD = iterar.getPass();
             }
 
@@ -152,7 +156,6 @@ public class CLSEstudiante {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-
         return false;
     }
 }

@@ -30,8 +30,9 @@ public class CLSMateria {
           while(resultadoConsulta.next()){
               Materia mat = new Materia();
               mat.setIdMateria(resultadoConsulta.getInt("idMateria"));
-              mat.setNombreMateria(resultadoConsulta.getString("NombreMateria"));
-              mat.setUltimaModificacion(resultadoConsulta.getDate("Fecha"));
+              mat.setNombre_Materia(resultadoConsulta.getString("NombreMateria"));
+              mat.setUltima_Modificacion(resultadoConsulta.getDate("Fecha"));
+              mat.setEstado(resultadoConsulta.getInt("Estado"));
               
               Materias.add(mat);
           }
@@ -47,7 +48,7 @@ public class CLSMateria {
         try {
            CallableStatement Statement = conectar.prepareCall("call SP_D_Materia(?)");
         
-           Statement.setInt("PIdMateria", mate.getIdMateria());
+           Statement.setInt("JIdMateria", mate.getIdMateria());
            
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Materia eliminada");
@@ -62,8 +63,11 @@ public class CLSMateria {
          try {
            CallableStatement Statement = conectar.prepareCall("call SP_U_Materia(?,?)");
 
-           Statement.setInt("PIdMateria", mate.getIdMateria());
-           Statement.setString("PNombreMateria", mate.getNombreMateria());
+           Statement.setInt("JIdMateria", mate.getIdMateria());
+           Statement.setString("JNombreMateria", mate.getNombre_Materia());
+           Statement.setDate("JUltimaModificacion",new java.sql.Date(mate.getUltima_Modificacion().getTime()));
+           Statement.setInt("JEstado", mate.getEstado());
+           
            
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Materia actualizada");
@@ -78,9 +82,10 @@ public class CLSMateria {
         public void AgregarMateria(Materia mate){
         try {
            CallableStatement Statement = conectar.prepareCall("call SP_I_Materia(?,?,?)");
-           Statement.setInt("PIdMateria", mate.getIdMateria());
-           Statement.setString("PNombreMateria", mate.getNombreMateria());
-           Statement.setDate("PUltimaModificacion", new java.sql.Date(mate.getUltimaModificacion().getTime()));
+           Statement.setInt("JIdMateria", mate.getIdMateria());
+           Statement.setString("JNombreMateria", mate.getNombre_Materia());
+           Statement.setDate("JUltimaModificacion", new java.sql.Date(mate.getUltima_Modificacion().getTime()));
+           Statement.setInt("JEstado", mate.getEstado());
            
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Materia guardada");
