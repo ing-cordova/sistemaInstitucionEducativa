@@ -35,6 +35,7 @@ public class FrmLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -51,6 +52,8 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
+        jMenu1.setText("jMenu1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setOpacity(0.9F);
@@ -60,7 +63,6 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Inicio de Sesión");
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -68,9 +70,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(13, 94, 222));
         jLabel2.setText("Correo Electrónico:");
 
-        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreo.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txtCorreo.setForeground(new java.awt.Color(0, 0, 0));
         txtCorreo.setBorder(null);
 
         jSeparator1.setBackground(new java.awt.Color(13, 94, 222));
@@ -81,9 +81,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(13, 94, 222));
         jLabel3.setText("Contraseña:");
 
-        pwContra.setBackground(new java.awt.Color(255, 255, 255));
         pwContra.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        pwContra.setForeground(new java.awt.Color(0, 0, 0));
         pwContra.setBorder(null);
 
         jSeparator2.setBackground(new java.awt.Color(13, 94, 222));
@@ -331,6 +329,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;

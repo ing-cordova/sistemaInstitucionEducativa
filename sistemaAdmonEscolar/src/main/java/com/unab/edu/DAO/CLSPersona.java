@@ -63,8 +63,13 @@ public class CLSPersona {
      
      public void ActualizarPersona(Persona per) {
          try {
-           CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?,)");
-        
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Persona(?,?,?,?,?)");
+           Statement.setInt("pidPersona",per.getIdPersona());
+           Statement.setString("pNombre", per.getNombre());
+           Statement.setString("pApellido", per.getApellido());
+           Statement.setString("pSexo", per.getSexo());
+           Statement.setDate("pFechaNacimiento",new java.sql.Date(per.getFechaNacimiento().getTime()));
+
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Persona actualizada");
            
@@ -77,8 +82,14 @@ public class CLSPersona {
     
         public void AgregarPersona(Persona per){
         try {
-           CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?)");
-             
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?,?)");
+           Statement.setInt("pidPersona",per.getIdPersona());
+           Statement.setString("pNombre", per.getNombre());
+           Statement.setString("pApellido", per.getApellido());
+           Statement.setString("pSexo", per.getSexo());
+           Statement.setDate("pFechaNacimiento",new java.sql.Date(per.getFechaNacimiento().getTime()));
+           Statement.setDate("PUltimaModificacion", new java.sql.Date(per.getUltimaModificacion().getTime())); 
+           
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Persona guardada");
            

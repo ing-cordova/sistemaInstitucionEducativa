@@ -39,8 +39,9 @@ public class CLSMateria {
     }catch (Exception e){
         JOptionPane.showMessageDialog(null, e);
     }
-    return Materias;
+        return Materias;
     }   
+    
     
     public void BorrarMateria(Materia mate){
         try {
@@ -59,8 +60,11 @@ public class CLSMateria {
     
     public void ActualizarMateria(Materia mate) {
          try {
-           CallableStatement Statement = conectar.prepareCall("call SP_U_Materia(?,?,?,?,?,)");
-        
+           CallableStatement Statement = conectar.prepareCall("call SP_U_Materia(?,?)");
+
+           Statement.setInt("PIdMateria", mate.getIdMateria());
+           Statement.setString("PNombreMateria", mate.getNombreMateria());
+           
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Materia actualizada");
            
@@ -73,8 +77,11 @@ public class CLSMateria {
     
         public void AgregarMateria(Materia mate){
         try {
-           CallableStatement Statement = conectar.prepareCall("call SP_I_Materia(?,?,?,?,?)");
-             
+           CallableStatement Statement = conectar.prepareCall("call SP_I_Materia(?,?,?)");
+           Statement.setInt("PIdMateria", mate.getIdMateria());
+           Statement.setString("PNombreMateria", mate.getNombreMateria());
+           Statement.setDate("PUltimaModificacion", new java.sql.Date(mate.getUltimaModificacion().getTime()));
+           
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Materia guardada");
            

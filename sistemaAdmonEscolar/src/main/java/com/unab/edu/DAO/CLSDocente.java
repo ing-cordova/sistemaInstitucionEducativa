@@ -32,11 +32,12 @@ public class CLSDocente {
 
                 prof.setIdDocente(resultadoConsulta.getInt("idDocente"));
                 prof.setIdPersona(resultadoConsulta.getInt("idPersona"));
-                prof.setCorreoElectronico(resultadoConsulta.getString("CorreoElectronico"));
+                prof.setCorreo_Electronico(resultadoConsulta.getString("Correo_Electronico"));
                 prof.setPass(resultadoConsulta.getString("Pass"));
                 prof.setEspecialidad(resultadoConsulta.getString("Especialidad"));
-                prof.setUltimaModificacion(resultadoConsulta.getDate("Fecha"));
-
+                prof.setUltima_Modificacion(resultadoConsulta.getDate("Fecha"));
+                prof.setEstado(resultadoConsulta.getInt("Estado"));
+                
                 Docentes.add(prof);
             }
             conectar.close();
@@ -66,11 +67,11 @@ public class CLSDocente {
             CallableStatement Statement = conectar.prepareCall("call SP_U_Docente(?,?,?,?,?)");
             Statement.setInt("PIdDocente", profe.getIdDocente());
             Statement.setInt("PIdPersona", profe.getIdPersona());
-            Statement.setString("PCorreoElectronico", profe.getCorreoElectronico());
+            Statement.setString("PCorreoElectronico", profe.getCorreo_Electronico());
             Statement.setString("PPass", profe.getPass());
             Statement.setString("PEspecialidad", profe.getEspecialidad());
-
-            Statement.setInt("PIdPersona", profe.getIdDocente());
+            Statement.setDate("PUltimaModificacion", new java.sql.Date(profe.getUltima_Modificacion().getTime()));
+            Statement.setInt("PEstado", profe.getEstado());
 
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Docente actualizado");
@@ -86,10 +87,11 @@ public class CLSDocente {
             CallableStatement Statement = conectar.prepareCall("call SP_I_Docente(?,?,?,?,?,?,?)");
             Statement.setInt("PIdDocente", profe.getIdDocente());
             Statement.setInt("PIdPersona", profe.getIdPersona());
-            Statement.setString("PCorreoElectronico", profe.getCorreoElectronico());
+            Statement.setString("PCorreoElectronico", profe.getCorreo_Electronico());
             Statement.setString("PPass", profe.getPass());
             Statement.setString("PEspecialidad", profe.getEspecialidad());
-            Statement.setDate("PUltimaModificacion", new java.sql.Date(profe.getUltimaModificacion().getTime()));
+            Statement.setDate("PUltimaModificacion", new java.sql.Date(profe.getUltima_Modificacion().getTime()));
+            Statement.setInt("PEstado", profe.getEstado());
 
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Docente guardado");
@@ -114,7 +116,7 @@ public class CLSDocente {
             while (resultadoConsulta.next()) {
 
                 Docente doce = new Docente();
-                doce.setCorreoElectronico(resultadoConsulta.getString("CorreoElectronico"));
+                doce.setCorreo_Electronico(resultadoConsulta.getString("CorreoElectronico"));
                 doce.setPass(resultadoConsulta.getString("Pass"));
                 ListadoCORREOPASS.add(doce);
             }
@@ -123,7 +125,7 @@ public class CLSDocente {
             String passBD = null;
             for (var iterar : ListadoCORREOPASS) {
 
-                correoBD = iterar.getCorreoElectronico();
+                correoBD = iterar.getCorreo_Electronico();
                 passBD = iterar.getPass();
             }
 

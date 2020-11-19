@@ -34,7 +34,6 @@ public class CLSNotas {
               nota.setIdEstudiante(resultadoConsulta.getInt("idEstudiante"));
               nota.setIdDocente(resultadoConsulta.getInt("idDocente"));
               nota.setIdMateria(resultadoConsulta.getInt("idMateria"));
-              nota.setIdMateria(resultadoConsulta.getInt("idMateria"));
               nota.setLab1(resultadoConsulta.getDouble("Lab1"));
               nota.setExamen1(resultadoConsulta.getDouble("Examen1"));
               nota.setLab2(resultadoConsulta.getDouble("Lab2"));
@@ -71,7 +70,19 @@ public class CLSNotas {
     public void ActualizarNotas(Notas not) {
          try {
            CallableStatement Statement = conectar.prepareCall("call SP_U_Notas(?,?,?,?,?,)");
-        
+           
+           Statement.setInt("PidNota",not.getIdNotas());
+           Statement.setInt("PidEstudiante", not.getIdEstudiante());
+           Statement.setInt("PidDocente", not.getIdDocente());
+           Statement.setInt("pidMateria", not.getIdMateria());
+           Statement.setDouble("pLab1", not.getLab1());
+           Statement.setDouble("pExamen1", not.getExamen1());
+           Statement.setDouble("pLab2", not.getLab2());
+           Statement.setDouble("pExamen2", not.getExamen2());
+           Statement.setDouble("pLab3", not.getLab3());
+           Statement.setDouble("pExamen3", not.getExamen3());
+           Statement.setDouble("pNotaFinal", not.getNotaFinal());
+           
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Notas actualizada");
            
@@ -85,7 +96,19 @@ public class CLSNotas {
         public void AgregarNotas(Notas not){
         try {
            CallableStatement Statement = conectar.prepareCall("call SP_I_Notas(?,?,?,?,?)");
-             
+           Statement.setInt("PidNota",not.getIdNotas());
+           Statement.setInt("PidEstudiante", not.getIdEstudiante());
+           Statement.setInt("PidDocente", not.getIdDocente());
+           Statement.setInt("pidMateria", not.getIdMateria());
+           Statement.setDouble("pLab1", not.getLab1());
+           Statement.setDouble("pExamen1", not.getExamen1());
+           Statement.setDouble("pLab2", not.getLab2());
+           Statement.setDouble("pExamen2", not.getExamen2());
+           Statement.setDouble("pLab3", not.getLab3());
+           Statement.setDouble("pExamen3", not.getExamen3());
+           Statement.setDouble("pNotaFinal", not.getNotaFinal());
+           Statement.setDate("PUltimaModificacion", new java.sql.Date(not.getUltimaModificacion().getTime()));
+           
            Statement.execute();
            JOptionPane.showMessageDialog(null, "Notas guardada");
            

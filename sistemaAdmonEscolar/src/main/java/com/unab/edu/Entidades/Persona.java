@@ -18,6 +18,8 @@ public class Persona {
     protected String Nombre;
     protected String Apellido;
     protected String Sexo; 
+    protected String DUI;
+    protected String NIT;
     protected Date Fecha_Nacimiento;
     protected Date Ultima_Modificacion;
     protected int Estado;

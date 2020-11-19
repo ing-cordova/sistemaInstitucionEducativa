@@ -16,15 +16,12 @@ import lombok.Data;
 public class Notas {
     private int idNota;
     private int idEstudiante;
-    private int idDocente;
     private int idMateria;
-    private double Lab1;
-    private double Examen1;
-    private double Lab2;
-    private double Examen2;
-    private double Lab3;        
-    private double Examen3;
+    private double Periodo1;
+    private double Periodo2;
+    private double Periodo3;  
     private double NotaFinal;
+    private double Recuperacion;
     protected Date Ultima_Modificacion;
     protected int Estado;
 }
