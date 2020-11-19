@@ -405,10 +405,10 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_D_MATERIAS`(
-PIdMateria int (12)
+PidMateria int (12)
 )
 BEGIN
-delete from materias where idMateria = PIdMateria;
+delete from materias where idMateria = PidMateria;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -585,12 +585,14 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_MATERIAS`(
+PidGradoAcademico int(11),
 PNombre_Materia Varchar (45),
 PUltima_Modificacion date,
 PEstado int(11)
 )
 BEGIN
-insert into materias (Nombre_Materia,Ultima_Modificacion,Estado) values (PNombre_Materia,PUltima_Modificacion,PEstado);
+insert into materias (idGradoAcademico, Nombre_Materia,Ultima_Modificacion,Estado)
+ values (PidGradoAcademico, PNombre_Materia,PUltima_Modificacion,PEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1020,14 +1022,15 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_MATERIAS`(
-PidMateria int (12),
+PidMateria int (11),
+PidGradoAcademico int(11),
 PNombre_Materia varchar (45),
 PUltima_Modificacion date,
 PEstado int(11)
 )
 BEGIN
-update materias set Nombre_Materia = PNombre_Materia, Ultima_Modificacion = PUltima_Modificacion,
-Estado = PEstado 
+update materias set idGradoAcademico = PidGradoAcademico, Nombre_Materia = PNombre_Materia,
+ Ultima_Modificacion = PUltima_Modificacion, Estado = PEstado 
 where idMateria = PidMateria;
 END ;;
 DELIMITER ;
@@ -1164,4 +1167,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-19 15:39:17
+-- Dump completed on 2020-11-19 15:53:02
