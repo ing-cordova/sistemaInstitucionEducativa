@@ -27,7 +27,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        
+        lblUsuarioActual.setText("Usuario Actual: " + FrmLogin.FULLNAME);
     }
 
     /**
@@ -42,6 +42,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         pnSuperior = new javax.swing.JPanel();
         lblMinimize = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
+        lblUsuarioActual = new javax.swing.JLabel();
         pnCentral = new javax.swing.JPanel();
         pnIzquierdo = new javax.swing.JPanel();
         lblImagen = new javax.swing.JLabel();
@@ -72,12 +73,18 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
             }
         });
 
+        lblUsuarioActual.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblUsuarioActual.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuarioActual.setText("Usuario Actual:");
+
         javax.swing.GroupLayout pnSuperiorLayout = new javax.swing.GroupLayout(pnSuperior);
         pnSuperior.setLayout(pnSuperiorLayout);
         pnSuperiorLayout.setHorizontalGroup(
             pnSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSuperiorLayout.createSequentialGroup()
-                .addContainerGap(1014, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblUsuarioActual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 899, Short.MAX_VALUE)
                 .addComponent(lblMinimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,11 +92,15 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         );
         pnSuperiorLayout.setVerticalGroup(
             pnSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSuperiorLayout.createSequentialGroup()
+            .addGroup(pnSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblMinimize))
+                    .addGroup(pnSuperiorLayout.createSequentialGroup()
+                        .addGroup(pnSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMinimize)
+                            .addComponent(lblUsuarioActual))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -97,7 +108,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
 
         pnCentral.setBackground(new java.awt.Color(68, 130, 195));
         pnCentral.setLayout(new javax.swing.BoxLayout(pnCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 850, 590));
+        getContentPane().add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 850, 590));
 
         pnIzquierdo.setBackground(new java.awt.Color(18, 58, 108));
 
@@ -141,7 +152,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
 
         btnLogOut.setForeground(new java.awt.Color(251, 74, 89));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout.png"))); // NOI18N
-        btnLogOut.setText("         Cerrar Sesión");
+        btnLogOut.setText("     Cerrar Sesión");
         btnLogOut.setBorderPainted(false);
         btnLogOut.setColorHover(new java.awt.Color(251, 74, 89));
         btnLogOut.setFocusPainted(false);
@@ -202,23 +213,6 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
-
-        this.setExtendedState(this.ICONIFIED);
-    }//GEN-LAST:event_lblMinimizeMouseClicked
-
-    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
-
-        String botones[] = {"Salir", "Cancelar"};
-        int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres salir?", "Confirmar", 0, 0, null, botones, this);
-
-        if (opcion == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        } else if (opcion == JOptionPane.NO_OPTION) {
-            System.out.println("¡Cancelado!");
-        }
-    }//GEN-LAST:event_lblCerrarMouseClicked
-
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
 
         String botones[] = {"Cerrar Sesión", "Cancelar"};
@@ -236,6 +230,23 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
     private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninicioActionPerformed
        cambio.CambiaPanel(pnCentral, new PnStartAlumno());
     }//GEN-LAST:event_btninicioActionPerformed
+
+    private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
+
+        this.setExtendedState(this.ICONIFIED);
+    }//GEN-LAST:event_lblMinimizeMouseClicked
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+
+        String botones[] = {"Salir", "Cancelar"};
+        int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres salir?", "Confirmar", 0, 0, null, botones, this);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else if (opcion == JOptionPane.NO_OPTION) {
+            System.out.println("¡Cancelado!");
+        }
+    }//GEN-LAST:event_lblCerrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -282,6 +293,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblMinimize;
+    private javax.swing.JLabel lblUsuarioActual;
     private javax.swing.JPanel pnCentral;
     private javax.swing.JPanel pnIzquierdo;
     private javax.swing.JPanel pnSuperior;

@@ -248,6 +248,7 @@ public class FrmLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chMostrarCaracActionPerformed
 
+    public static String FULLNAME;
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
 
         String Correo = txtCorreo.getText();
@@ -261,14 +262,20 @@ public class FrmLogin extends javax.swing.JFrame {
             CLSEstudiante clsEstudiante = new CLSEstudiante();
             var validacionDocente = clsDocente.LoguinDocente(Correo, Password);
             var validacionEstudiante = clsEstudiante.LoguinEstudiante(Correo, Password);
+            var envioNombres_E = clsEstudiante.RetornoFullName(Correo, Password);
+            var envioNombres_D = clsDocente.RetornoFullName(Correo, Password);
+            
 
             if (validacionDocente == true) {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreo.getText() + ", usted acaba de iniciar sesión como DOCENTE.");
+                FULLNAME = envioNombres_D;
                 FrmInicioDocente loginDocente = new FrmInicioDocente();
                 loginDocente.setVisible(true);
                 this.dispose();
             } else if (validacionEstudiante == true) {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreo.getText() + ", usted acaba de iniciar sesión como ESTUDIANTE.");
+                FULLNAME = envioNombres_E;
+                System.out.println(FULLNAME);
                 FrmInicioAlumno loginAlumno = new FrmInicioAlumno();
                 loginAlumno.setVisible(true);
                 this.dispose();

@@ -72,7 +72,7 @@ public class CLSEstudiante {
             Statement.setInt("PidGradoAcademico", est.getIdGradoAcademico());
             Statement.setDate("PUltimaModificacion", new java.sql.Date(est.getUltima_Modificacion().getTime()));
             Statement.setInt("PEstado", est.getEstado());
-            
+
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Estudiante actualizado");
 
@@ -94,7 +94,7 @@ public class CLSEstudiante {
             Statement.setInt("PidGradoAcademico", est.getIdGradoAcademico());
             Statement.setDate("PUltimaModificacion", new java.sql.Date(est.getUltima_Modificacion().getTime()));
             Statement.setInt("PEstado", est.getEstado());
-                
+
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Estudiante guardado");
 
@@ -110,14 +110,14 @@ public class CLSEstudiante {
         ArrayList<Estudiante> ListarContra = new ArrayList<>();
 
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_LOGUIN_ESTUDIANTE (?,?)");
-            Statement.setString("PCorreo", correo);
+            CallableStatement Statement = conectar.prepareCall("call SP_S_LOGUIN_ESTUDIANTES(?,?)");
+            Statement.setString("PCorreo_Electronico", correo);
             Statement.setString("Ppass", pass);
             ResultSet resultadoConsulta = Statement.executeQuery();
             while (resultadoConsulta.next()) {
 
                 Estudiante est = new Estudiante();
-                est.setCorreo_Electronico(resultadoConsulta.getString("CorreoElectronico"));
+                est.setCorreo_Electronico(resultadoConsulta.getString("Correo_Electronico"));
                 est.setPass(resultadoConsulta.getString("Pass"));
                 ListadoCORREOPASS.add(est);
             }
@@ -157,5 +157,27 @@ public class CLSEstudiante {
             JOptionPane.showMessageDialog(null, e);
         }
         return false;
+    }
+
+    public String RetornoFullName(String correo, String pass) {
+
+        String fullName = "";
+
+        try {
+
+            CallableStatement consulta = conectar.prepareCall("call SP_S_APELLIDOSNOMBRES_E(?,?)");
+            consulta.setString("PCorreo", correo);
+            consulta.setString("Ppass", pass);
+            ResultSet resultado = consulta.executeQuery();
+
+            while (resultado.next()) {
+
+                fullName = resultado.getString("Nombres_Completos");
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error en: \n" + e);
+        }
+
+        return fullName;
     }
 }

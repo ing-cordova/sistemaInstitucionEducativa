@@ -25,6 +25,8 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     public FrmInicioDocente() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        lblUsuarioActual.setText("Usuario Actual: " + FrmLogin.FULLNAME);
     }
 
     /**
@@ -39,6 +41,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         pnSuperior = new javax.swing.JPanel();
         lblMinimize = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
+        lblUsuarioActual = new javax.swing.JLabel();
         pnIzquierdo = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         btninicio = new com.unab.edu.Otros.Boton();
@@ -69,12 +72,18 @@ public class FrmInicioDocente extends javax.swing.JFrame {
             }
         });
 
+        lblUsuarioActual.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lblUsuarioActual.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuarioActual.setText("Usuario Actual:");
+
         javax.swing.GroupLayout pnSuperiorLayout = new javax.swing.GroupLayout(pnSuperior);
         pnSuperior.setLayout(pnSuperiorLayout);
         pnSuperiorLayout.setHorizontalGroup(
             pnSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSuperiorLayout.createSequentialGroup()
-                .addContainerGap(1014, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblUsuarioActual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 899, Short.MAX_VALUE)
                 .addComponent(lblMinimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -82,11 +91,15 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         );
         pnSuperiorLayout.setVerticalGroup(
             pnSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSuperiorLayout.createSequentialGroup()
+            .addGroup(pnSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblMinimize))
+                    .addGroup(pnSuperiorLayout.createSequentialGroup()
+                        .addGroup(pnSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUsuarioActual)
+                            .addComponent(lblMinimize))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -125,7 +138,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
 
         btnLogOut.setForeground(new java.awt.Color(251, 74, 89));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout.png"))); // NOI18N
-        btnLogOut.setText("         Cerrar Sesión");
+        btnLogOut.setText("     Cerrar Sesión");
         btnLogOut.setBorderPainted(false);
         btnLogOut.setColorHover(new java.awt.Color(251, 74, 89));
         btnLogOut.setFocusPainted(false);
@@ -181,16 +194,16 @@ public class FrmInicioDocente extends javax.swing.JFrame {
                 .addComponent(btnTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(pnIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 490));
+        getContentPane().add(pnIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 590));
 
         pnCentral.setBackground(new java.awt.Color(68, 130, 195));
         pnCentral.setLayout(new javax.swing.BoxLayout(pnCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 850, 490));
+        getContentPane().add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 850, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -275,6 +288,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblMinimize;
+    private javax.swing.JLabel lblUsuarioActual;
     private javax.swing.JPanel pnCentral;
     private javax.swing.JPanel pnIzquierdo;
     private javax.swing.JPanel pnSuperior;

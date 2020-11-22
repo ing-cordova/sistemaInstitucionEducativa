@@ -37,7 +37,7 @@ public class CLSDocente {
                 prof.setEspecialidad(resultadoConsulta.getString("Especialidad"));
                 prof.setUltima_Modificacion(resultadoConsulta.getDate("Fecha"));
                 prof.setEstado(resultadoConsulta.getInt("Estado"));
-                
+
                 Docentes.add(prof);
             }
             conectar.close();
@@ -102,21 +102,21 @@ public class CLSDocente {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-     public boolean LoguinDocente(String correo, String pass) {
+
+    public boolean LoguinDocente(String correo, String pass) {
 
         ArrayList<Docente> ListadoCORREOPASS = new ArrayList<>();
         ArrayList<Docente> ListarContra = new ArrayList<>();
 
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_LOGUIN_PROFESOR (?,?)");
-            Statement.setString("PCorreo", correo);
+            CallableStatement Statement = conectar.prepareCall("call SP_S_LOGUIN_DOCENTES(?,?)");
+            Statement.setString("PCorreo_Electronico", correo);
             Statement.setString("PPass", pass);
             ResultSet resultadoConsulta = Statement.executeQuery();
             while (resultadoConsulta.next()) {
 
                 Docente doce = new Docente();
-                doce.setCorreo_Electronico(resultadoConsulta.getString("CorreoElectronico"));
+                doce.setCorreo_Electronico(resultadoConsulta.getString("Correo_Electronico"));
                 doce.setPass(resultadoConsulta.getString("Pass"));
                 ListadoCORREOPASS.add(doce);
             }
@@ -157,5 +157,27 @@ public class CLSDocente {
         }
 
         return false;
+    }
+
+ public String RetornoFullName(String correo, String pass) {
+
+        String fullName = "";
+
+        try {
+
+            CallableStatement consulta = conectar.prepareCall("call SP_S_APELLIDOSNOMBRES_D(?,?)");
+            consulta.setString("PCorreo", correo);
+            consulta.setString("Ppass", pass);
+            ResultSet resultado = consulta.executeQuery();
+
+            while (resultado.next()) {
+
+                fullName = resultado.getString("Nombres_Completos");
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error en: \n" + e);
+        }
+
+        return fullName;
     }
 }
