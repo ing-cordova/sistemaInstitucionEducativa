@@ -5,6 +5,13 @@
  */
 package com.unab.edu.Vistas;
 
+import com.unab.edu.DAO.CLSDocente;
+import com.unab.edu.DAO.CLSEstudiante;
+import com.unab.edu.DAO.CLSPersona;
+import com.unab.edu.Entidades.Docente;
+import com.unab.edu.Entidades.Estudiante;
+import com.unab.edu.Entidades.Persona;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,7 +38,24 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         
         cbGradoAcademico.addItem("");
         cbGradoAcademico.addItem("Ingenieria en Sistemas");
+        
     }
+    
+    public void VaciarControles(){
+
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        cbSexo.setSelectedItem("");
+        txtFecha.setDate(null);
+        txtDUI.setText("");
+        txtNIT.setText("");
+        cbTipoUsuario.setSelectedItem("Seleccione una opción");
+        cbGradoAcademico.setSelectedItem(null);
+        txtCorreoElectronico.setText("");
+        txtEspecialidad.setText("");
+        pwContra.setText("");
+        pwConfirmarContra.setText("");
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -520,6 +544,17 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
+        Date date = new Date();
+        CLSPersona clsPersona = new CLSPersona();
+        CLSEstudiante clsEstudiante = new CLSEstudiante();
+        CLSDocente clsDocente = new CLSDocente();
+        Persona persona = new Persona();
+        Docente docente = new Docente();
+        Estudiante estudiante = new Estudiante();
+        int ultimo = clsPersona.RetornoLastID() + 1;
+        //int combo = Integer.parseInt(valuemember[cbGradoAcademico.getSelectedIndex()]);
+        String fullname = txtApellidos.getText() + ", " + txtNombres.getText();
+
         if (txtNombres.getText().isEmpty() || txtApellidos.getText().isEmpty() || cbSexo.getSelectedItem() == null
                 || txtFecha.getDate() == null || txtDUI.getText().isEmpty() || txtNIT.getText().isEmpty()
                 || txtCorreoElectronico.getText().isEmpty() || pwContra.getText().isEmpty() || pwConfirmarContra.getText().isEmpty()) {
@@ -537,7 +572,25 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                         System.out.println("No ha seleccionado nada ");
                     }
                     else{
-                        System.out.println("Ya seleccionó algo");
+                        persona.setNombre(txtNombres.getText());
+                        persona.setApellido(txtApellidos.getText());
+                        persona.setSexo(String.valueOf(cbSexo.getSelectedItem()));
+                        persona.setDUI(txtDUI.getText());
+                        persona.setNIT(txtNIT.getText());
+                        persona.setFecha_Nacimiento(txtFecha.getDate());
+                        persona.setUltima_Modificacion(date);
+                        persona.setEstado(1);
+                        clsPersona.AgregarPersona(persona);
+
+                        estudiante.setCorreo_Electronico(txtCorreoElectronico.getText());
+                        estudiante.setPass(pwContra.getText());
+                        estudiante.setIdPersona(ultimo);
+                        //estudiante.setIdGradoAcademico(combo);
+                        estudiante.setUltima_Modificacion(date);
+                        estudiante.setEstado(1);
+                        clsEstudiante.AgregarEstudiante(estudiante);
+                        System.out.println(ultimo);
+                        VaciarControles();
                     }   
                 }
                 else if(cbTipoUsuario.getSelectedItem().equals("Docente")){
@@ -545,9 +598,27 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                         System.out.println("No ha escrito nada");
                     }
                     else{
-                        System.out.println("Ya escribió algo");
-                    } 
-                }      
+                        persona.setNombre(txtNombres.getText());
+                        persona.setApellido(txtApellidos.getText());
+                        persona.setSexo(String.valueOf(cbSexo.getSelectedItem()));
+                        persona.setDUI(txtDUI.getText());
+                        persona.setNIT(txtNIT.getText());
+                        persona.setFecha_Nacimiento(txtFecha.getDate());
+                        persona.setUltima_Modificacion(date);
+                        persona.setEstado(1);
+                        clsPersona.AgregarPersona(persona);
+
+                        docente.setIdPersona(ultimo);
+                        docente.setCorreo_Electronico(txtCorreoElectronico.getText());
+                        docente.setPass(pwContra.getText());
+                        docente.setEspecialidad(txtEspecialidad.getText());
+                        docente.setUltima_Modificacion(date);
+                        docente.setEstado(1);
+                        clsDocente.AgregarDocente(docente);
+                        VaciarControles();
+
+                    }
+                }
             }
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed

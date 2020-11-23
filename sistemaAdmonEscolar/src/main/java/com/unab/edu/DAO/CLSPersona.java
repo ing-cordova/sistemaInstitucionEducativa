@@ -48,6 +48,24 @@ public class CLSPersona {
     }
     return Personas;
     }
+    public int RetornoLastID(){
+        
+        int retorno = 0;
+        
+        try {
+            CallableStatement consulta = conectar.prepareCall("call SP_S_ULTIMAPERSONA()");
+            ResultSet resultado = consulta.executeQuery();
+            
+            while(resultado.next()){
+                
+                retorno = resultado.getInt("idPersona");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error en: \n\n\n\n" + e);
+        }
+        
+        return retorno;
+    }
      
     public void BorrarPersona(Persona per){
          
