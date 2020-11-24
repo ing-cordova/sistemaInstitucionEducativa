@@ -114,15 +114,15 @@ public class CLSPersona {
     public void AgregarPersona(Persona per) {
 
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_I_PERSONAS(?,?,?,?,?,?,?,?)");
 
             Statement.setString("PNombre", per.getNombre());
             Statement.setString("PApellido", per.getApellido());
             Statement.setString("PSexo", per.getSexo());
             Statement.setString("PDui", per.getDUI());
             Statement.setString("PNit", per.getNIT());
-            Statement.setDate("PFechaNacimiento", new java.sql.Date(per.getFecha_Nacimiento().getTime()));
-            Statement.setDate("PUltimaModificacion", new java.sql.Date(per.getUltima_Modificacion().getTime()));
+            Statement.setDate("PFecha_Nacimiento", new java.sql.Date(per.getFecha_Nacimiento().getTime()));
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(per.getUltima_Modificacion().getTime()));
             Statement.setInt("PEstado", per.getEstado());
 
             Statement.execute();

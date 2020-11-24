@@ -33,8 +33,8 @@ public class CLSGradoAcademico {
               Grados_Academicos gradAcad = new Grados_Academicos();
               
               gradAcad.setIdGradoAcademico(resultadoConsulta.getInt("idGradoAcademico"));
-              gradAcad.setNombre_GradoAcad(resultadoConsulta.getString("NombreGradoAcademico"));
-              gradAcad.setUltima_Modificacion(resultadoConsulta.getDate("UltimaModificacion"));
+              gradAcad.setNombre_GradoAcad(resultadoConsulta.getString("Nombre_GradoAcad"));
+              gradAcad.setUltima_Modificacion(resultadoConsulta.getDate("Ultima_Modificacion"));
               gradAcad.setEstado(resultadoConsulta.getInt("Estado"));
               
               GradoAcad.add(gradAcad);

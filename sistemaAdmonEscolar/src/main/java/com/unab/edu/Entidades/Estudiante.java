@@ -7,12 +7,14 @@ package com.unab.edu.Entidades;
 
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author BetoCalderon
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Estudiante extends Persona {
     protected int idEstudiante;
     protected int idPersona;

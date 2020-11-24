@@ -85,14 +85,13 @@ public class CLSEstudiante {
 
     public void AgregarEstudiante(Estudiante est) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_Estudiante(?,?,?,?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_I_ESTUDIANTES(?,?,?,?,?,?)");
 
-            Statement.setInt("PIdEstudiante", est.getIdEstudiante());
-            Statement.setInt("PIdPersona", est.getIdPersona());
-            Statement.setString("PCorreoElectronico", est.getCorreo_Electronico());
+            Statement.setInt("PidPersona", est.getIdPersona());
+            Statement.setString("PCorreo_Electronico", est.getCorreo_Electronico());
             Statement.setString("PPass", est.getPass());
             Statement.setInt("PidGradoAcademico", est.getIdGradoAcademico());
-            Statement.setDate("PUltimaModificacion", new java.sql.Date(est.getUltima_Modificacion().getTime()));
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(est.getUltima_Modificacion().getTime()));
             Statement.setInt("PEstado", est.getEstado());
 
             Statement.execute();

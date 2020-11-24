@@ -7,11 +7,15 @@ package com.unab.edu.Vistas;
 
 import com.unab.edu.DAO.CLSDocente;
 import com.unab.edu.DAO.CLSEstudiante;
+import com.unab.edu.DAO.CLSGradoAcademico;
 import com.unab.edu.DAO.CLSPersona;
 import com.unab.edu.Entidades.Docente;
 import com.unab.edu.Entidades.Estudiante;
+import com.unab.edu.Entidades.Grados_Academicos;
 import com.unab.edu.Entidades.Persona;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,9 +40,9 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtEspecialidad.setVisible(false);
         sepEspecialidad.setVisible(false);
         
-        cbGradoAcademico.addItem("");
-        cbGradoAcademico.addItem("Ingenieria en Sistemas");
-        
+        //cbGradoAcademico.addItem("");
+        //cbGradoAcademico.addItem("Ingenieria en Sistemas");
+        MostrarGrado();
     }
     
     public void VaciarControles(){
@@ -514,6 +518,29 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblRegresarMouseClicked
 
+    String valueMember[];
+    int contador = 1;
+    public void MostrarGrado() {
+
+        DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
+        CLSGradoAcademico ClsGrado = new CLSGradoAcademico();
+        ArrayList<Grados_Academicos> grado = ClsGrado.MostrarGradoAcademico();
+        valueMember = new String[grado.size() + 1];
+
+        String Filas[] = new String[6];
+        cbdefault.addElement("");
+        for (var iterar : grado) {
+
+            Filas[0] = String.valueOf(iterar.getIdGradoAcademico());
+            Filas[1] = iterar.getNombre_GradoAcad();
+            valueMember[contador] = Filas[0];
+            cbdefault.addElement(Filas[1]);
+            contador++;
+        }
+
+        cbGradoAcademico.setModel(cbdefault);
+    }
+    
     private void cbTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoUsuarioActionPerformed
 
         String opcion = String.valueOf(cbTipoUsuario.getSelectedItem());
@@ -552,7 +579,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         Docente docente = new Docente();
         Estudiante estudiante = new Estudiante();
         int ultimo = clsPersona.RetornoLastID() + 1;
-        //int combo = Integer.parseInt(valuemember[cbGradoAcademico.getSelectedIndex()]);
+        int combo = Integer.parseInt(valueMember[cbGradoAcademico.getSelectedIndex()]);
         String fullname = txtApellidos.getText() + ", " + txtNombres.getText();
 
         if (txtNombres.getText().isEmpty() || txtApellidos.getText().isEmpty() || cbSexo.getSelectedItem() == null
@@ -585,7 +612,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                         estudiante.setCorreo_Electronico(txtCorreoElectronico.getText());
                         estudiante.setPass(pwContra.getText());
                         estudiante.setIdPersona(ultimo);
-                        //estudiante.setIdGradoAcademico(combo);
+                        estudiante.setIdGradoAcademico(combo);
                         estudiante.setUltima_Modificacion(date);
                         estudiante.setEstado(1);
                         clsEstudiante.AgregarEstudiante(estudiante);
