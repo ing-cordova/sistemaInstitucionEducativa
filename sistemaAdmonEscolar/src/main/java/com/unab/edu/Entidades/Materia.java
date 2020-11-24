@@ -14,7 +14,7 @@ import lombok.*;
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Materia {
+public class Materia extends Grados_Academicos {
     private int idMateria;
     private String Nombre_Materia;
     protected Date Ultima_Modificacion;

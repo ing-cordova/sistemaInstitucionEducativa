@@ -83,17 +83,19 @@ public class CLSMateriaAlumno {
     
         try {
             
-            CallableStatement Statement = conectar.prepareCall("call SP_I_MATERIAS_ALUMNOS(?,?)");
-            
-            Statement.setDate("DUltimaModificacion", new java.sql.Date(matAlum.getUltima_Modificacion().getTime())); 
-            Statement.setInt("DEstado", matAlum.getEstado());
+            CallableStatement Statement = conectar.prepareCall("call SP_I_MATERIAS_ALUMNOS(?,?,?,?)");
+            Statement.setInt("PidEstudiante", matAlum.getIdEstudiante());
+            Statement.setInt("PidMateria", matAlum.getIdMateria());
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(matAlum.getUltima_Modificacion().getTime())); 
+            Statement.setInt("PEstado", matAlum.getEstado());
             
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Datos agregados con éxito");
+            System.out.println("Datos agregados con éxito");
             
             conectar.close();
             
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 }

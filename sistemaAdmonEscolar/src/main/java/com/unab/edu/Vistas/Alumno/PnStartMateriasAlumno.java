@@ -5,6 +5,17 @@
  */
 package com.unab.edu.Vistas.Alumno;
 
+import com.unab.edu.DAO.CLSMateria;
+import com.unab.edu.DAO.CLSMateriaAlumno;
+import com.unab.edu.Entidades.Materia;
+import com.unab.edu.Entidades.Materias_Alumnos;
+import com.unab.edu.Vistas.FrmLogin;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author CruzCalles
@@ -16,6 +27,21 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
      */
     public PnStartMateriasAlumno() {
         initComponents();
+
+        limpiarTabla(tb_MateriasAInscribir);
+        Mostrar_Tabla_Materias();
+    }
+
+    public void limpiarTabla(JTable Tabla) {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
+            int filas = Tabla.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modelo.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        }
     }
 
     /**
@@ -29,19 +55,17 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnInscribir = new com.unab.edu.Otros.Boton();
-        txtMatSeleccionada = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        txtBuscar1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tb_Mat_Inscribir = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tb_Buscar1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tb_Materias = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tb_MateriasAInscribir = new javax.swing.JTable();
+        lblEliminar = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(68, 130, 195));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -52,11 +76,6 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("¡Bienvenido a tu sección de Materias!");
 
-        jLabel3.setBackground(new java.awt.Color(68, 130, 195));
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Materia Seleccionada:");
-
         jLabel4.setBackground(new java.awt.Color(68, 130, 195));
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -65,61 +84,71 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         jLabel5.setBackground(new java.awt.Color(68, 130, 195));
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Materia a Inscribir");
+        jLabel5.setText("Materias a Inscribir:");
 
         btnInscribir.setText("      Inscribir");
         btnInscribir.setBorderPainted(false);
         btnInscribir.setFocusPainted(false);
         btnInscribir.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         btnInscribir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInscribirActionPerformed(evt);
+            }
+        });
 
-        txtMatSeleccionada.setBackground(new java.awt.Color(68, 130, 195));
-        txtMatSeleccionada.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txtMatSeleccionada.setForeground(new java.awt.Color(0, 0, 0));
-        txtMatSeleccionada.setBorder(null);
-
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator1.setForeground(new java.awt.Color(13, 94, 222));
-
-        txtBuscar1.setBackground(new java.awt.Color(68, 130, 195));
-        txtBuscar1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txtBuscar1.setForeground(new java.awt.Color(0, 0, 0));
-        txtBuscar1.setBorder(null);
+        txtBuscar.setBackground(new java.awt.Color(68, 130, 195));
+        txtBuscar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        txtBuscar.setBorder(null);
 
         jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator3.setForeground(new java.awt.Color(13, 94, 222));
 
-        tb_Mat_Inscribir.setBackground(new java.awt.Color(18, 58, 108));
-        tb_Mat_Inscribir.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        tb_Mat_Inscribir.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/estudiante.png"))); // NOI18N
+
+        tb_Materias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "", "", ""
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tb_Mat_Inscribir);
+        tb_Materias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_MateriasMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tb_Materias);
 
-        tb_Buscar1.setBackground(new java.awt.Color(18, 58, 108));
-        tb_Buscar1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        tb_Buscar1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_MateriasAInscribir.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "", "", ""
+                "CODIGO", "MATERIA SELECCIONADA"
             }
         ));
-        jScrollPane2.setViewportView(tb_Buscar1);
+        jScrollPane4.setViewportView(tb_MateriasAInscribir);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiante.png"))); // NOI18N
+        lblEliminar.setBackground(new java.awt.Color(68, 130, 195));
+        lblEliminar.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        lblEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
+        lblEliminar.setText("Eliminar Seleccionada");
+        lblEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEliminarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,47 +160,29 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(6, 6, 6)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtMatSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(39, 39, 39)
-                    .addComponent(jLabel4)
-                    .addContainerGap(747, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(128, 128, 128)
-                    .addComponent(txtBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(362, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(128, 128, 128)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(323, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(130, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(121, 121, 121)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEliminar))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,39 +194,23 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(203, 203, 203)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMatSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblEliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(107, 107, 107)
-                    .addComponent(jLabel4)
-                    .addContainerGap(460, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(111, 111, 111)
-                    .addComponent(txtBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(456, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(140, 140, 140)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(448, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(171, 171, 171)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(327, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -240,22 +235,112 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    String TITULOS1[] = {"CODIGO", "MATERIA SELECCIONADA"};
+    DefaultTableModel ModeloTabla_MatSele = new DefaultTableModel(null, TITULOS1);
+
+    private void tb_MateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_MateriasMouseClicked
+
+        //Acá estamos obteniendo la fila que el usuario seleccionó.
+        int filas = tb_Materias.getSelectedRow();
+        //Asignamos todos los campos de la tabla.
+        String ID = String.valueOf(tb_Materias.getValueAt(filas, 0));
+        String Nombre = String.valueOf(tb_Materias.getValueAt(filas, 1));
+        //Pasamos los datos para la tabla a inscribir.
+        String Filas[] = new String[3];
+        Filas[0] = ID;
+        Filas[1] = Nombre;
+
+        for (int i = 0; i < tb_MateriasAInscribir.getRowCount(); i++) {
+
+            if (tb_MateriasAInscribir.getValueAt(i, 0) == ID) {
+                JOptionPane.showMessageDialog(null, "¡Ya ha seleccionado esta materia!");
+                ModeloTabla_MatSele.removeRow(i);
+            }
+        }
+
+        ModeloTabla_MatSele.addRow(Filas);
+        tb_MateriasAInscribir.setModel(ModeloTabla_MatSele);
+    }//GEN-LAST:event_tb_MateriasMouseClicked
+
+    private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
+
+        Date date = new Date();
+        if (tb_MateriasAInscribir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
+        } else {
+
+            String botones[] = {"Aceptar", "Cancelar"};
+            int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres matricular " + tb_MateriasAInscribir.getRowCount() + " materias? \n\nYo que tu, lo pensara más.", "Confirmar", 0, 0, null, botones, this);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                for (int i = 0; i < tb_MateriasAInscribir.getRowCount(); i++) {
+                    CLSMateriaAlumno clsMatAlumn = new CLSMateriaAlumno();
+                    Materias_Alumnos materiasAlum = new Materias_Alumnos();
+                    String idMateria = String.valueOf(tb_MateriasAInscribir.getValueAt(i, 0));
+                    int idMateriaC = Integer.parseInt(idMateria);
+
+                    materiasAlum.setIdEstudiante(FrmLogin.envioIdEstudiante);
+                    materiasAlum.setIdMateria(idMateriaC);
+                    materiasAlum.setUltima_Modificacion(date);
+                    materiasAlum.setEstado(1);
+
+                    clsMatAlumn.AgregarMateriaAlumno(materiasAlum);
+                }
+
+                JOptionPane.showMessageDialog(null, "¡" + tb_MateriasAInscribir.getRowCount() + " Materias inscritas con éxito!");
+                limpiarTabla(tb_MateriasAInscribir);
+            } else if (opcion == JOptionPane.NO_OPTION) {
+                System.out.println("¡Cancelado!");
+            }
+
+        }
+    }//GEN-LAST:event_btnInscribirActionPerformed
+
+    private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
+
+        if (tb_MateriasAInscribir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
+        } else if (tb_MateriasAInscribir.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
+        } else {
+            ModeloTabla_MatSele.removeRow(tb_MateriasAInscribir.getSelectedRow());
+        }
+    }//GEN-LAST:event_lblEliminarMouseClicked
+
+    public void Mostrar_Tabla_Materias() {
+
+        String TITULOS2[] = {"CODIGO", "NOMBRE MATERIA"};
+        DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS2);
+        CLSMateria clsMateria = new CLSMateria();
+        Materia materia = new Materia();
+        materia.setIdGradoAcademico(FrmLogin.envioID);
+        ArrayList<Materia> vistaMaterias = clsMateria.MostrarMateria(materia);
+        String Filas[] = new String[5];
+
+        for (var iterar : vistaMaterias) {
+
+            Filas[0] = String.valueOf(iterar.getIdMateria());
+            Filas[1] = String.valueOf(iterar.getNombre_Materia());
+
+            ModeloTabla.addRow(Filas);
+        }
+
+        tb_Materias.setModel(ModeloTabla);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnInscribir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable tb_Buscar1;
-    private javax.swing.JTable tb_Mat_Inscribir;
-    private javax.swing.JTextField txtBuscar1;
-    private javax.swing.JTextField txtMatSeleccionada;
+    private javax.swing.JLabel lblEliminar;
+    private javax.swing.JTable tb_Materias;
+    private javax.swing.JTable tb_MateriasAInscribir;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

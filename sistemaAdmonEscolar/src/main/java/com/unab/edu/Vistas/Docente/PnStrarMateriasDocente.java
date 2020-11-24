@@ -103,7 +103,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tb_Buscar);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/libros.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/libros.png"))); // NOI18N
 
         btnInscribir1.setText("      Inscribir");
         btnInscribir1.setBorderPainted(false);
@@ -144,7 +144,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34))))
         );

@@ -231,6 +231,9 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMateriasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="com.unab.edu.Otros.Boton" name="btnTareas">
           <Properties>

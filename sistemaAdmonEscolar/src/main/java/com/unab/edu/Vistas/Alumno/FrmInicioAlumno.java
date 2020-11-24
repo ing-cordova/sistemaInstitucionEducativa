@@ -21,6 +21,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
      * Creates new form FrmInicioAlumno
      */
     PnStartAlumno pnStart = new PnStartAlumno();
+    PnStartMateriasAlumno pnMaterias = new PnStartMateriasAlumno();
     CambiarPanel cambio = new CambiarPanel();
 
     public FrmInicioAlumno() {
@@ -135,6 +136,11 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         btnMaterias.setFocusPainted(false);
         btnMaterias.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnMaterias.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMateriasActionPerformed(evt);
+            }
+        });
 
         btnTareas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Homeworks.png"))); // NOI18N
         btnTareas.setText("     Tereas");
@@ -247,6 +253,10 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
             System.out.println("¡Cancelado!");
         }
     }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void btnMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriasActionPerformed
+        cambio.CambiaPanel(pnCentral, pnMaterias);
+    }//GEN-LAST:event_btnMateriasActionPerformed
 
     /**
      * @param args the command line arguments

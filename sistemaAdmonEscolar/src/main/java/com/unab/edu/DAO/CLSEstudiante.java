@@ -180,4 +180,48 @@ public class CLSEstudiante {
 
         return fullName;
     }
+    
+    public int RetornoIdGrado(String correo, String pass) {
+
+        int ID = 0;
+
+        try {
+
+            CallableStatement consulta = conectar.prepareCall("call SP_S_APELLIDOSNOMBRES_E(?,?)");
+            consulta.setString("PCorreo", correo);
+            consulta.setString("Ppass", pass);
+            ResultSet resultado = consulta.executeQuery();
+
+            while (resultado.next()) {
+
+                ID = resultado.getInt("idGradoAcademico");
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error en: \n" + e);
+        }
+
+        return ID;
+    }
+    
+    public int RetornoIdEstudiante(String correo, String pass) {
+
+        int ID = 0;
+
+        try {
+
+            CallableStatement consulta = conectar.prepareCall("call SP_S_APELLIDOSNOMBRES_E(?,?)");
+            consulta.setString("PCorreo", correo);
+            consulta.setString("Ppass", pass);
+            ResultSet resultado = consulta.executeQuery();
+
+            while (resultado.next()) {
+
+                ID = resultado.getInt("idEstudiante");
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error en: \n" + e);
+        }
+
+        return ID;
+    }
 }

@@ -20,6 +20,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
      */
     
     PnStartDocente pnStart = new PnStartDocente();
+    PnStrarMateriasDocente pnMateria = new PnStrarMateriasDocente();
     CambiarPanel cambio = new CambiarPanel();
 
     public FrmInicioDocente() {
@@ -128,6 +129,11 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         btnMaterias.setFocusPainted(false);
         btnMaterias.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnMaterias.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMateriasActionPerformed(evt);
+            }
+        });
 
         btnTareas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Homeworks.png"))); // NOI18N
         btnTareas.setText("     Tereas");
@@ -242,6 +248,10 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninicioActionPerformed
         cambio.CambiaPanel(pnCentral, new PnStartDocente());
     }//GEN-LAST:event_btninicioActionPerformed
+
+    private void btnMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriasActionPerformed
+        cambio.CambiaPanel(pnCentral, pnMateria);
+    }//GEN-LAST:event_btnMateriasActionPerformed
 
     /**
      * @param args the command line arguments

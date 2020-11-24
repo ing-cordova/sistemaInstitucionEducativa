@@ -17,82 +17,83 @@ import javax.swing.JOptionPane;
  * @author dayan
  */
 public class CLSMateria {
-    ConexionBD claseConectar = new ConexionBD();
-        Connection conectar = claseConectar.RetornarConexion();
-        
-    public  ArrayList<Materia> MostrarMateria(){
-    ArrayList<Materia> Materias = new ArrayList<> ();
-    
-    try{
-        CallableStatement Statement = conectar.prepareCall("call SP_S_Materia()");
-          ResultSet resultadoConsulta = Statement.executeQuery();  
-          
-          while(resultadoConsulta.next()){
-              Materia mat = new Materia();
-              mat.setIdMateria(resultadoConsulta.getInt("idMateria"));
-              mat.setNombre_Materia(resultadoConsulta.getString("NombreMateria"));
-              mat.setUltima_Modificacion(resultadoConsulta.getDate("Fecha"));
-              mat.setEstado(resultadoConsulta.getInt("Estado"));
-              
-              Materias.add(mat);
-          }
-            conectar.close();
-    }catch (Exception e){
-        JOptionPane.showMessageDialog(null, e);
-    }
-        return Materias;
-    }   
-    
-    
-    public void BorrarMateria(Materia mate){
-        try {
-           CallableStatement Statement = conectar.prepareCall("call SP_D_Materia(?)");
-        
-           Statement.setInt("JIdMateria", mate.getIdMateria());
-           
-           Statement.execute();
-           JOptionPane.showMessageDialog(null, "Materia eliminada");
-           
-           conectar.close();
-        } catch (SQLException e) {
-           JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
-    public void ActualizarMateria(Materia mate) {
-         try {
-           CallableStatement Statement = conectar.prepareCall("call SP_U_Materia(?,?,?,?)");
 
-           Statement.setInt("JIdMateria", mate.getIdMateria());
-           Statement.setString("JNombreMateria", mate.getNombre_Materia());
-           Statement.setDate("JUltimaModificacion",new java.sql.Date(mate.getUltima_Modificacion().getTime()));
-           Statement.setInt("JEstado", mate.getEstado());
-           
-           
-           Statement.execute();
-           JOptionPane.showMessageDialog(null, "Materia actualizada");
-           
-           conectar.close();
-           
+    ConexionBD claseConectar = new ConexionBD();
+    Connection conectar = claseConectar.RetornarConexion();
+
+    public ArrayList<Materia> MostrarMateria(Materia materia) {
+        ArrayList<Materia> Materias = new ArrayList<>();
+
+        try {
+            CallableStatement Statement = conectar.prepareCall("call SP_S_MATERIAS(?)");
+            Statement.setInt("PidGrado_Academico", materia.getIdGradoAcademico());
+            ResultSet resultadoConsulta = Statement.executeQuery();
+
+            while (resultadoConsulta.next()) {
+                Materia mat = new Materia();
+                mat.setIdMateria(resultadoConsulta.getInt("idMateria"));
+                mat.setIdGradoAcademico(resultadoConsulta.getInt("idGradoAcademico"));
+                mat.setNombre_Materia(resultadoConsulta.getString("Nombre_Materia"));
+                mat.setUltima_Modificacion(resultadoConsulta.getDate("Ultima_Modificacion"));
+                mat.setEstado(resultadoConsulta.getInt("Estado"));
+
+                Materias.add(mat);
+            }
+            conectar.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return Materias;
+    }
+
+    public void BorrarMateria(Materia mate) {
+        try {
+            CallableStatement Statement = conectar.prepareCall("call SP_D_Materia(?)");
+
+            Statement.setInt("JIdMateria", mate.getIdMateria());
+
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Materia eliminada");
+
+            conectar.close();
         } catch (SQLException e) {
-           JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-        public void AgregarMateria(Materia mate){
+
+    public void ActualizarMateria(Materia mate) {
         try {
-           CallableStatement Statement = conectar.prepareCall("call SP_I_Materia(?,?,?,?)");
-           Statement.setInt("JIdMateria", mate.getIdMateria());
-           Statement.setString("JNombreMateria", mate.getNombre_Materia());
-           Statement.setDate("JUltimaModificacion", new java.sql.Date(mate.getUltima_Modificacion().getTime()));
-           Statement.setInt("JEstado", mate.getEstado());
-           
-           Statement.execute();
-           JOptionPane.showMessageDialog(null, "Materia guardada");
-           
-           conectar.close();
+            CallableStatement Statement = conectar.prepareCall("call SP_U_Materia(?,?,?,?)");
+
+            Statement.setInt("JIdMateria", mate.getIdMateria());
+            Statement.setString("JNombreMateria", mate.getNombre_Materia());
+            Statement.setDate("JUltimaModificacion", new java.sql.Date(mate.getUltima_Modificacion().getTime()));
+            Statement.setInt("JEstado", mate.getEstado());
+
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Materia actualizada");
+
+            conectar.close();
+
         } catch (SQLException e) {
-           JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    public void AgregarMateria(Materia mate) {
+        try {
+            CallableStatement Statement = conectar.prepareCall("call SP_I_Materia(?,?,?,?)");
+            Statement.setInt("JIdMateria", mate.getIdMateria());
+            Statement.setString("JNombreMateria", mate.getNombre_Materia());
+            Statement.setDate("JUltimaModificacion", new java.sql.Date(mate.getUltima_Modificacion().getTime()));
+            Statement.setInt("JEstado", mate.getEstado());
+
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Materia guardada");
+
+            conectar.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 }
