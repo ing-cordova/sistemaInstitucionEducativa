@@ -126,7 +126,7 @@ public class CLSPersona {
             Statement.setInt("PEstado", per.getEstado());
 
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Persona guardada");
+            System.out.println("Persona guardada");
 
             conectar.close();
         } catch (SQLException e) {

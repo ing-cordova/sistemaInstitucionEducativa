@@ -95,7 +95,7 @@ public class CLSEstudiante {
             Statement.setInt("PEstado", est.getEstado());
 
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Estudiante guardado");
+            System.out.println("Estudiante guardado");
 
             conectar.close();
         } catch (SQLException e) {

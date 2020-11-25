@@ -13,6 +13,7 @@ import com.unab.edu.Entidades.Docente;
 import com.unab.edu.Entidades.Estudiante;
 import com.unab.edu.Entidades.Grados_Academicos;
 import com.unab.edu.Entidades.Persona;
+import com.unab.edu.Otros.CambiarPanel;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
@@ -143,10 +144,8 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtApellidos.setForeground(new java.awt.Color(255, 255, 255));
         txtApellidos.setBorder(null);
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -173,7 +172,6 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtDUI.setForeground(new java.awt.Color(255, 255, 255));
         txtDUI.setBorder(null);
 
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -186,7 +184,6 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtNIT.setForeground(new java.awt.Color(255, 255, 255));
         txtNIT.setBorder(null);
 
-        jSeparator4.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -212,7 +209,6 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtCorreoElectronico.setForeground(new java.awt.Color(255, 255, 255));
         txtCorreoElectronico.setBorder(null);
 
-        jSeparator5.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -225,7 +221,6 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         pwContra.setForeground(new java.awt.Color(255, 255, 255));
         pwContra.setBorder(null);
 
-        jSeparator6.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -238,12 +233,10 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         pwConfirmarContra.setForeground(new java.awt.Color(255, 255, 255));
         pwConfirmarContra.setBorder(null);
 
-        jSeparator7.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
 
         btnRegistrar.setBackground(new java.awt.Color(13, 94, 222));
         btnRegistrar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrar.setText("¡Registrarse ahora!");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,7 +265,6 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
         txtEspecialidad.setBorder(null);
 
-        sepEspecialidad.setBackground(new java.awt.Color(255, 255, 255));
         sepEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
         sepEspecialidad.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
 
@@ -303,7 +295,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
                                 .addGroup(pnCentralLayout.createSequentialGroup()
                                     .addGroup(pnCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5)

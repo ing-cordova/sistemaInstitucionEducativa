@@ -10,11 +10,15 @@ import com.unab.edu.DAO.CLSMateriaAlumno;
 import com.unab.edu.Entidades.Materia;
 import com.unab.edu.Entidades.Materias_Alumnos;
 import com.unab.edu.Vistas.FrmLogin;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -31,7 +35,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         limpiarTabla(tb_MateriasAInscribir);
         Mostrar_Tabla_Materias();
     }
-
+    
     public void limpiarTabla(JTable Tabla) {
         try {
             DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
@@ -55,17 +59,15 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnInscribir = new com.unab.edu.Otros.Boton();
-        txtBuscar = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tb_Materias = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         tb_MateriasAInscribir = new javax.swing.JTable();
         lblEliminar = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(68, 130, 195));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,11 +77,6 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("¡Bienvenido a tu sección de Materias!");
-
-        jLabel4.setBackground(new java.awt.Color(68, 130, 195));
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Buscar:");
 
         jLabel5.setBackground(new java.awt.Color(68, 130, 195));
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -97,25 +94,17 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
             }
         });
 
-        txtBuscar.setBackground(new java.awt.Color(68, 130, 195));
-        txtBuscar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        txtBuscar.setBorder(null);
-
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator3.setForeground(new java.awt.Color(13, 94, 222));
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/estudiante.png"))); // NOI18N
 
         tb_Materias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CODIGO", "NOMBRE MATERIA"
             }
         ));
         tb_Materias.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -150,6 +139,11 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setBackground(new java.awt.Color(68, 130, 195));
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Materias disponibles para inscribir:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,25 +157,19 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                         .addGap(51, 51, 51)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEliminar))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEliminar))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
@@ -194,15 +182,11 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(lblEliminar))
@@ -235,8 +219,16 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    String TITULOS1[] = {"CODIGO", "MATERIA SELECCIONADA"};
-    DefaultTableModel ModeloTabla_MatSele = new DefaultTableModel(null, TITULOS1);
+    private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
+
+        if (tb_MateriasAInscribir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
+        } else if (tb_MateriasAInscribir.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
+        } else {
+            ModeloTabla_MatSele.removeRow(tb_MateriasAInscribir.getSelectedRow());
+        }
+    }//GEN-LAST:event_lblEliminarMouseClicked
 
     private void tb_MateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_MateriasMouseClicked
 
@@ -296,16 +288,8 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnInscribirActionPerformed
 
-    private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
-
-        if (tb_MateriasAInscribir.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
-        } else if (tb_MateriasAInscribir.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
-        } else {
-            ModeloTabla_MatSele.removeRow(tb_MateriasAInscribir.getSelectedRow());
-        }
-    }//GEN-LAST:event_lblEliminarMouseClicked
+    String TITULOS1[] = {"CODIGO", "MATERIA SELECCIONADA"};
+    DefaultTableModel ModeloTabla_MatSele = new DefaultTableModel(null, TITULOS1);
 
     public void Mostrar_Tabla_Materias() {
 
@@ -327,20 +311,18 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
 
         tb_Materias.setModel(ModeloTabla);
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnInscribir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblEliminar;
     private javax.swing.JTable tb_Materias;
     private javax.swing.JTable tb_MateriasAInscribir;
-    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
