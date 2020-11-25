@@ -85,7 +85,7 @@ public class CLSDocente {
     public void AgregarDocente(Docente profe) {
         try {
             CallableStatement Statement = conectar.prepareCall("call SP_I_DOCENTES(?,?,?,?,?,?)");
-            Statement.setInt("PIdPersona", profe.getIdPersona());
+            Statement.setInt("PidPersona", profe.getIdPersona());
             Statement.setString("PCorreo_Electronico", profe.getCorreo_Electronico());
             Statement.setString("PPass", profe.getPass());
             Statement.setString("PEspecialidad", profe.getEspecialidad());

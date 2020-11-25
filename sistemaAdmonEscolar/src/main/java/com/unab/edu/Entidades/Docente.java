@@ -15,11 +15,11 @@ import lombok.*;
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class Docente extends Persona{
-    private int idDocente;
-    private int idPersona;
-    private String Correo_Electronico;
-    private String Pass;
-    private String Especialidad;
+    protected int idDocente;
+    protected int idPersona;
+    protected String Correo_Electronico;
+    protected String Pass;
+    protected String Especialidad;
     protected Date Ultima_Modificacion;
     protected int Estado;
     
