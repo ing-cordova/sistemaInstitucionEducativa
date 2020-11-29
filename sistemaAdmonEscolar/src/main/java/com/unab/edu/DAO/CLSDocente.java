@@ -93,7 +93,7 @@ public class CLSDocente {
             Statement.setInt("PEstado", profe.getEstado());
 
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Docente guardado");
+            System.out.println("Docente guardado");
 
             conectar.close();
 

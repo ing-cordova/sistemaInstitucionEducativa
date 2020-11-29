@@ -37,7 +37,7 @@ CREATE TABLE `actividades` (
   KEY `FK_idMateria3_idx` (`idMateria`),
   CONSTRAINT `FK_idDocente3` FOREIGN KEY (`idDocente`) REFERENCES `docentes` (`idDocente`),
   CONSTRAINT `FK_idMateria4` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,6 @@ CREATE TABLE `actividades` (
 
 LOCK TABLES `actividades` WRITE;
 /*!40000 ALTER TABLE `actividades` DISABLE KEYS */;
-INSERT INTO `actividades` VALUES (1,1,1,'trigonometria',10,NULL,1),(2,1,2,'obras',20,NULL,1),(3,1,3,'medio ambiente',30,NULL,1),(4,1,4,'guerra civil',40,NULL,1),(5,1,5,'leyes de newton',50,NULL,1);
 /*!40000 ALTER TABLE `actividades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +69,7 @@ CREATE TABLE `actividades_estudiantes` (
   KEY `FK_idActividad_idx` (`idActividad`),
   CONSTRAINT `FK_idActividad` FOREIGN KEY (`idActividad`) REFERENCES `actividades` (`idActividad`),
   CONSTRAINT `FK_idEstudiante` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiante`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +78,6 @@ CREATE TABLE `actividades_estudiantes` (
 
 LOCK TABLES `actividades_estudiantes` WRITE;
 /*!40000 ALTER TABLE `actividades_estudiantes` DISABLE KEYS */;
-INSERT INTO `actividades_estudiantes` VALUES (1,1,1,9.00,NULL,NULL,1),(2,2,2,9.00,NULL,NULL,1),(3,3,3,9.00,NULL,NULL,1),(4,4,4,9.00,NULL,NULL,1),(5,5,5,9.00,NULL,NULL,1);
 /*!40000 ALTER TABLE `actividades_estudiantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +99,7 @@ CREATE TABLE `docentes` (
   PRIMARY KEY (`idDocente`),
   KEY `FK_idPersona_idx` (`idPersona`),
   CONSTRAINT `FK_idPersona` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +108,7 @@ CREATE TABLE `docentes` (
 
 LOCK TABLES `docentes` WRITE;
 /*!40000 ALTER TABLE `docentes` DISABLE KEYS */;
-INSERT INTO `docentes` VALUES (1,6,'juanperesosa@unab.edu.sv','123','Matematicas',NULL,1);
+INSERT INTO `docentes` VALUES (1,2,'julio.david@unab.edu.sv','d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db','Ingeniero en Sistemas','2020-11-28',1),(2,4,'docente','d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db','-','2020-11-28',1);
 /*!40000 ALTER TABLE `docentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +132,7 @@ CREATE TABLE `estudiantes` (
   KEY `FK_idGradoAcademico_idx` (`idGradoAcademico`),
   CONSTRAINT `FK_idGradoAcademico` FOREIGN KEY (`idGradoAcademico`) REFERENCES `grados_academicos` (`idGradoAcademico`),
   CONSTRAINT `FK_idPersona1` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +141,7 @@ CREATE TABLE `estudiantes` (
 
 LOCK TABLES `estudiantes` WRITE;
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
-INSERT INTO `estudiantes` VALUES (1,1,'fatimacalle@unab.edu.sv','123',1,NULL,1),(2,2,'andrescordova@unab.edu.sv','123',2,NULL,1),(3,3,'dayanacastra@unab.edu.sv','123',3,NULL,1),(4,4,'joshua@unab.edu.sv','123',4,NULL,1),(5,5,'betocalderon@unab.edu.sv','123',5,NULL,1);
+INSERT INTO `estudiantes` VALUES (1,1,'co0428032019@unab.edu.sv','d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db',1,'2020-11-28',1),(2,3,'estudiante','d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db',7,'2020-11-28',1);
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +158,7 @@ CREATE TABLE `grados_academicos` (
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idGradoAcademico`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +167,7 @@ CREATE TABLE `grados_academicos` (
 
 LOCK TABLES `grados_academicos` WRITE;
 /*!40000 ALTER TABLE `grados_academicos` DISABLE KEYS */;
-INSERT INTO `grados_academicos` VALUES (1,'primero',NULL,1),(2,'segundo',NULL,1),(3,'tercero',NULL,1),(4,'cuarto',NULL,1),(5,'quinto',NULL,1);
+INSERT INTO `grados_academicos` VALUES (1,'Ing. en Sistemas y Computación','2020-11-28',1),(2,'Lic. en Admón de Empresas','2020-11-28',1),(3,'Lic. en Computación','2020-11-28',1),(4,'Lic. Ciencias Jurídicas','2020-11-28',1),(5,'Lic. en Contaduría Pública','2020-11-28',1),(6,'Téc. en Diseño Gráfico','2020-11-28',1),(7,'Téc. en Inglés','2020-11-28',1);
 /*!40000 ALTER TABLE `grados_academicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +185,9 @@ CREATE TABLE `materias` (
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idMateria`),
-  KEY `fk_idMateria_idx` (`idMateria`)
+  KEY `fk_idMateria_idx` (`idMateria`),
+  KEY `FK_idGradoAcademico4_idx` (`idGradoAcademico`),
+  CONSTRAINT `FK_idGradoAcademico4` FOREIGN KEY (`idGradoAcademico`) REFERENCES `grados_academicos` (`idGradoAcademico`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -197,7 +197,7 @@ CREATE TABLE `materias` (
 
 LOCK TABLES `materias` WRITE;
 /*!40000 ALTER TABLE `materias` DISABLE KEYS */;
-INSERT INTO `materias` VALUES (1,1,'matematicas',NULL,1),(2,1,'lenguaje',NULL,1),(3,1,'ciencias',NULL,1),(4,1,'sociales',NULL,1),(5,1,'fisica',NULL,1);
+INSERT INTO `materias` VALUES (1,1,'Matemática IV','2020-11-28',1),(2,1,'Física I','2020-11-28',1),(3,1,'Programación II','2020-11-28',1),(4,1,'Sistemas Operativos I','2020-11-28',1),(5,1,'P.G de Economía','2020-11-28',1);
 /*!40000 ALTER TABLE `materias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +219,7 @@ CREATE TABLE `materias_alumnos` (
   KEY `FK_idMateria_idx` (`idMateria`),
   CONSTRAINT `FK_idEstudiante1` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiante`),
   CONSTRAINT `FK_idMateria1` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +228,6 @@ CREATE TABLE `materias_alumnos` (
 
 LOCK TABLES `materias_alumnos` WRITE;
 /*!40000 ALTER TABLE `materias_alumnos` DISABLE KEYS */;
-INSERT INTO `materias_alumnos` VALUES (6,1,1,NULL,1),(7,2,2,NULL,1),(8,3,3,NULL,1),(9,4,4,NULL,1),(10,5,5,NULL,1);
 /*!40000 ALTER TABLE `materias_alumnos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +249,7 @@ CREATE TABLE `materias_docentes` (
   KEY `FK_idMateria2_idx` (`idMateria`),
   CONSTRAINT `FK_idDocente1` FOREIGN KEY (`idDocente`) REFERENCES `docentes` (`idDocente`),
   CONSTRAINT `FK_idMateria2` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +258,6 @@ CREATE TABLE `materias_docentes` (
 
 LOCK TABLES `materias_docentes` WRITE;
 /*!40000 ALTER TABLE `materias_docentes` DISABLE KEYS */;
-INSERT INTO `materias_docentes` VALUES (6,1,1,NULL,1),(7,1,2,NULL,1),(8,1,3,NULL,1),(9,1,4,NULL,1),(10,1,5,NULL,1);
 /*!40000 ALTER TABLE `materias_docentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +293,7 @@ CREATE TABLE `notas` (
 
 LOCK TABLES `notas` WRITE;
 /*!40000 ALTER TABLE `notas` DISABLE KEYS */;
-INSERT INTO `notas` VALUES (1,1,1,9.00,9.00,9.00,9.00,NULL,NULL,1),(2,2,2,9.00,9.00,9.00,9.00,NULL,NULL,1),(3,3,3,9.00,9.00,9.00,9.00,NULL,NULL,1),(4,4,4,9.00,9.00,9.00,9.00,NULL,NULL,1),(5,5,5,9.00,9.00,9.00,9.00,NULL,NULL,1);
+INSERT INTO `notas` VALUES (1,1,1,0.00,0.00,0.00,0.00,0.00,'2020-11-28',1),(2,1,2,0.00,0.00,0.00,0.00,0.00,'2020-11-28',1),(3,1,3,0.00,0.00,0.00,0.00,0.00,'2020-11-28',1),(4,1,4,0.00,0.00,0.00,0.00,0.00,'2020-11-28',1),(5,1,5,0.00,0.00,0.00,0.00,0.00,'2020-11-28',1);
 /*!40000 ALTER TABLE `notas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,7 +315,7 @@ CREATE TABLE `personas` (
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -326,7 +324,7 @@ CREATE TABLE `personas` (
 
 LOCK TABLES `personas` WRITE;
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-INSERT INTO `personas` VALUES (1,'Fatima','Calle','F','343243423','3243243432','2000-01-01',NULL,1),(2,'Andres','Cordova','M','34354543434','234325436','2000-05-03',NULL,1),(3,'Dayana','Castra','F','675454333','783278474398','1990-08-04',NULL,1),(4,'Joshua',NULL,'M','6438748943',NULL,'2005-03-07',NULL,1),(5,'Beto ','Calderon','M','7438746743','7848498439','1819-03-09',NULL,1),(6,'Juan pere','Sosa',NULL,NULL,NULL,'2010-04-06',NULL,NULL);
+INSERT INTO `personas` VALUES (1,'Andrés Eduardo','Córdova Orellana','Masculino','05678909-2','0407-060301-101-9','2001-03-06','2020-11-28',1),(2,'Julio David','Serrano Mejía','Masculino','06753245-7','1010-029302-193-9','1970-11-06','2020-11-28',1),(3,'Estudiante','Prueba','Masculino','-','-','2020-11-19','2020-11-28',1),(4,'Docente','Prueba','Femenino','-','-','2020-11-09','2020-11-28',1);
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -561,7 +559,6 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_GRADOS_ACADEMICOS`(
-PIdGradoAcademico int(11),
 PNombre_GradoAcad varchar(50),
 PUltima_Modificacion date,
 PEstado int(11)
@@ -612,7 +609,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_MATERIAS_ALUMNOS`(
 PidEstudiante int(11),
 PidMateria int(11),
-PUltima_Modificacion varchar (45),
+PUltima_Modificacion date,
 PEstado int(11)
 )
 BEGIN
@@ -671,8 +668,8 @@ PUltima_Modificacion date,
 PEstado int(11)
 )
 BEGIN
-insert into notas(idEstudiante,idMateria,Periodo1,Periodo2,Periodo3,Nota_Final,Ultima_Modificacion,Estado)
-values (PidEstudiante,PidMateria,PPeriodo1, PPeriodo2, PPeriodo3, PNotaFinal, PUltima_Modificacion,PEstado);
+insert into notas(idEstudiante,idMateria,Periodo1,Periodo2,Periodo3,Nota_Final, Recuperacion, Ultima_Modificacion,Estado)
+values (PidEstudiante,PidMateria,PPeriodo1, PPeriodo2, PPeriodo3, PNota_Final, PRecuperacion, PUltima_Modificacion,PEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -701,6 +698,48 @@ PEstado int(11))
 BEGIN
 INSERT INTO personas (Nombre, Apellido, Sexo, Dui, Nit, Fecha_Nacimiento, Ultima_Modificacion, Estado) 
 value (PNombre, PApellido, PSexo, PDui, PNit, PFecha_Nacimiento, PUltima_Modificacion, PEstado);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_APELLIDOSNOMBRES_D` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_APELLIDOSNOMBRES_D`(PCorreo varchar (50), Ppass varchar(600))
+BEGIN
+Select concat_ws(', ', p.Apellido, p.Nombre) As Nombres_Completos from docentes d
+inner join personas p on d.idPersona = p.idPersona
+where d.Correo_Electronico = PCorreo and d.Pass = sha2(Ppass, 512);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_APELLIDOSNOMBRES_E` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_APELLIDOSNOMBRES_E`(PCorreo varchar (50), Ppass varchar(600))
+BEGIN
+Select concat_ws(', ', p.Apellido, p.Nombre) As Nombres_Completos, e.idGradoAcademico, e.idEstudiante from estudiantes e
+inner join personas p on e.idPersona = p.idPersona
+where e.Correo_Electronico = PCorreo and e.Pass = sha2(Ppass, 512);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -838,13 +877,13 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_MATERIAS`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_MATERIAS`(PidGrado_Academico int)
 BEGIN
-SELECT * FROM administracionescolar.materias;
+SELECT * FROM administracionescolar.materias where idGradoAcademico = PidGrado_Academico;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -908,6 +947,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_NOTAS_ALUMNO` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_NOTAS_ALUMNO`(PidEstudiante int)
+BEGIN
+SELECT m.Nombre_Materia, n.Periodo1, n.Periodo2, n.Periodo3, n.Nota_Final, 
+n.Recuperacion FROM administracionescolar.notas as n
+inner join materias as m on n.idMateria = m.idMateria where n.idEstudiante = PidEstudiante;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_S_PERSONAS` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -921,6 +981,25 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_PERSONAS`()
 BEGIN
 SELECT * FROM administracionescolar.personas;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_ULTIMAPERSONA` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_ULTIMAPERSONA`()
+BEGIN
+Select idPersona from personas order by idPersona desc limit 1;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1167,4 +1246,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-19 15:53:02
+-- Dump completed on 2020-11-28 22:36:58

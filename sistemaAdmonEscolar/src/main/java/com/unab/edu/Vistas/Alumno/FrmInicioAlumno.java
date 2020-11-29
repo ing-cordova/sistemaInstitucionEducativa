@@ -22,12 +22,13 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
      */
     PnStartAlumno pnStart = new PnStartAlumno();
     PnStartMateriasAlumno pnMaterias = new PnStartMateriasAlumno();
+    PnNotasAlumno pnNotas = new PnNotasAlumno();
     CambiarPanel cambio = new CambiarPanel();
 
     public FrmInicioAlumno() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        cambio.CambiaPanel(pnCentral, new PnStartAlumno());
         lblUsuarioActual.setText("Usuario Actual: " + FrmLogin.FULLNAME);
     }
 
@@ -155,6 +156,11 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         btnNotas.setFocusPainted(false);
         btnNotas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnNotas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNotasActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setForeground(new java.awt.Color(251, 74, 89));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout.png"))); // NOI18N
@@ -234,7 +240,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninicioActionPerformed
-       cambio.CambiaPanel(pnCentral, new PnStartAlumno());
+        cambio.CambiaPanel(pnCentral, new PnStartAlumno());
     }//GEN-LAST:event_btninicioActionPerformed
 
     private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
@@ -257,6 +263,11 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
     private void btnMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriasActionPerformed
         cambio.CambiaPanel(pnCentral, pnMaterias);
     }//GEN-LAST:event_btnMateriasActionPerformed
+
+    private void btnNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotasActionPerformed
+        PnNotasAlumno pnNota = new PnNotasAlumno();
+        cambio.CambiaPanel(pnCentral, pnNotas);
+    }//GEN-LAST:event_btnNotasActionPerformed
 
     /**
      * @param args the command line arguments

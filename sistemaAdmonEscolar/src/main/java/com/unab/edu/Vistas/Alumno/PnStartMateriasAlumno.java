@@ -7,8 +7,10 @@ package com.unab.edu.Vistas.Alumno;
 
 import com.unab.edu.DAO.CLSMateria;
 import com.unab.edu.DAO.CLSMateriaAlumno;
+import com.unab.edu.DAO.CLSNotas;
 import com.unab.edu.Entidades.Materia;
 import com.unab.edu.Entidades.Materias_Alumnos;
+import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
 import java.util.ArrayList;
 import java.util.Date;
@@ -261,17 +263,22 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
 
             if (opcion == JOptionPane.YES_OPTION) {
                 for (int i = 0; i < tb_MateriasAInscribir.getRowCount(); i++) {
-                    CLSMateriaAlumno clsMatAlumn = new CLSMateriaAlumno();
-                    Materias_Alumnos materiasAlum = new Materias_Alumnos();
+                    CLSNotas clsNotas = new CLSNotas();
+                    Notas notas = new Notas();
                     String idMateria = String.valueOf(tb_MateriasAInscribir.getValueAt(i, 0));
                     int idMateriaC = Integer.parseInt(idMateria);
 
-                    materiasAlum.setIdEstudiante(FrmLogin.envioIdEstudiante);
-                    materiasAlum.setIdMateria(idMateriaC);
-                    materiasAlum.setUltima_Modificacion(date);
-                    materiasAlum.setEstado(1);
+                    notas.setIdEstudiante(FrmLogin.envioIdEstudiante);
+                    notas.setIdMateria(idMateriaC);
+                    notas.setPeriodo1(0);
+                    notas.setPeriodo2(0);
+                    notas.setPeriodo3(0);
+                    notas.setNotaFinal(0);
+                    notas.setRecuperacion(0);
+                    notas.setUltima_Modificacion(date);
+                    notas.setEstado(1);
 
-                    clsMatAlumn.AgregarMateriaAlumno(materiasAlum);
+                    clsNotas.AgregarNotas(notas);
                 }
 
                 JOptionPane.showMessageDialog(null, "¡" + tb_MateriasAInscribir.getRowCount() + " Materias inscritas con éxito!");

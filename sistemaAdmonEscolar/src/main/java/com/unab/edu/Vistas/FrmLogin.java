@@ -285,7 +285,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 loginAlumno.setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "¡Verifique sus datos!");
+                JOptionPane.showMessageDialog(null, "¡El usuario no existe, verifique sus datos!");
             }
 
         }

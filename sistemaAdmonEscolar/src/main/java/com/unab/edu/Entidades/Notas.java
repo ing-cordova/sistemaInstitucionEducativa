@@ -7,21 +7,22 @@ package com.unab.edu.Entidades;
 
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author BetoCalderon
  */
 @Data
-public class Notas {
-    private int idNota;
-    private int idEstudiante;
-    private int idMateria;
-    private double Periodo1;
-    private double Periodo2;
-    private double Periodo3;  
-    private double NotaFinal;
-    private double Recuperacion;
+@EqualsAndHashCode(callSuper=false)
+public class Notas extends Materia{
+    protected int idNota;
+    protected int idEstudiante;
+    protected double Periodo1;
+    protected double Periodo2;
+    protected double Periodo3;  
+    protected double NotaFinal;
+    protected double Recuperacion;
     protected Date Ultima_Modificacion;
     protected int Estado;
 }
