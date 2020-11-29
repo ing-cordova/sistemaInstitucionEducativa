@@ -840,7 +840,7 @@ PPass varchar (600))
 BEGIN
 select * from docentes 
 where Correo_Electronico = PCorreo_Electronico
- and Pass = sha2(PPass,512);
+ and Pass = sha2(PPass,512) and Estado = 1;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -864,7 +864,7 @@ Ppass varchar(600)
 BEGIN
 select * from estudiantes
  where Correo_Electronico = PCorreo_Electronico 
- and Pass = sha2(Ppass,512);
+ and Pass = sha2(Ppass,512) and Estado = 1;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -883,7 +883,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_MATERIAS`(PidGrado_Academico int)
 BEGIN
-SELECT * FROM administracionescolar.materias where idGradoAcademico = PidGrado_Academico;
+SELECT * FROM administracionescolar.materias where idGradoAcademico = PidGrado_Academico
+and Estado = 1;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -961,7 +962,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_NOTAS_ALUMNO`(PidEstudiante in
 BEGIN
 SELECT m.Nombre_Materia, n.Periodo1, n.Periodo2, n.Periodo3, n.Nota_Final, 
 n.Recuperacion FROM administracionescolar.notas as n
-inner join materias as m on n.idMateria = m.idMateria where n.idEstudiante = PidEstudiante;
+inner join materias as m on n.idMateria = m.idMateria where n.idEstudiante = PidEstudiante
+and m.Estado = 1;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1246,4 +1248,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-28 22:36:58
+-- Dump completed on 2020-11-28 23:18:45
