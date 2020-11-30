@@ -48,15 +48,19 @@ public class CLSstartEstudiantePersona {
         
     ArrayList <Estudiante> lista =  new ArrayList();
         try {
-            CallableStatement st = conectar.prepareCall("Call SP_S_JOINESTUDIATEPERSONA");
+            CallableStatement st = conectar.prepareCall("Call SP_S_JOINESTUDIANTEPERSONA");
             
             ResultSet rs = st.executeQuery();
             while (rs.next ()){
                 Estudiante es = new Estudiante();
+                
                 es.setNombre(rs.getString("Nombre"));
                 es.setApellido(rs.getString("Apellido"));
                 es.setCorreo_Electronico(rs.getString("Correo_Electronico"));
                 es.setPass(rs.getString("Pass"));
+                es.setSexo(rs.getString("Sexo"));
+                es.setDUI(rs.getString("Dui"));
+                es.setNIT(rs.getString("Nit"));
                 
                 
                 lista.add(es);

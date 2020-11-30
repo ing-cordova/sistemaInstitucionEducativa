@@ -6,7 +6,6 @@
 package com.unab.edu.DAO;
 
 import com.unab.edu.Conexion.ConexionBD;
-import com.unab.edu.Entidades.Docente;
 import com.unab.edu.Entidades.Estudiante;
 import java.sql.*;
 import java.util.ArrayList;
