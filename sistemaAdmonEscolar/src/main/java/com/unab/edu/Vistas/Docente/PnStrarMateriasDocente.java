@@ -31,16 +31,16 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         btnInscribir = new com.unab.edu.Otros.Boton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblActulizar = new javax.swing.JLabel();
         btnInscribir1 = new com.unab.edu.Otros.Boton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_Materias_Docente = new javax.swing.JTable();
         txtNombres = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btnInscribir2 = new com.unab.edu.Otros.Boton();
+        btnGuardar = new com.unab.edu.Otros.Boton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tb_Materias_Asignadas = new javax.swing.JTable();
         cbGradoAcademico = new javax.swing.JComboBox<>();
 
         jLabel3.setBackground(new java.awt.Color(68, 130, 195));
@@ -63,9 +63,9 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("¡Bienvenido a tu sección de Materias!");
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browser.png"))); // NOI18N
-        jLabel2.setText("Actualizar");
+        lblActulizar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        lblActulizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browser.png"))); // NOI18N
+        lblActulizar.setText("Actualizar");
 
         btnInscribir1.setText("      Inscribir");
         btnInscribir1.setBorderPainted(false);
@@ -73,18 +73,18 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         btnInscribir1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         btnInscribir1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Materias_Docente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CÓDIGO", "NOMBRE MATERIA"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_Materias_Docente);
 
         txtNombres.setBackground(new java.awt.Color(68, 130, 195));
         txtNombres.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -95,27 +95,26 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("¿No encuentras la materia?, Registrala:");
 
-        btnInscribir2.setText("  Guardar");
-        btnInscribir2.setBorderPainted(false);
-        btnInscribir2.setFocusPainted(false);
-        btnInscribir2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnInscribir2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnGuardar.setText("  Guardar");
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.setFocusPainted(false);
+        btnGuardar.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnGuardar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Materias_Asignadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CÓDIGO", "MATERIA SELECCIONADA"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tb_Materias_Asignadas);
 
         cbGradoAcademico.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         cbGradoAcademico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado academico", " " }));
@@ -133,7 +132,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addComponent(lblActulizar)
                         .addGap(11, 11, 11)))
                 .addGap(34, 34, 34))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -153,9 +152,9 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbGradoAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(128, 128, 128)
-                                .addComponent(btnInscribir2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4))
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                        .addGap(0, 13, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -164,7 +163,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lblActulizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -176,7 +175,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnInscribir2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbGradoAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,20 +202,20 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.unab.edu.Otros.Boton btnGuardar;
     private com.unab.edu.Otros.Boton btnInscribir;
     private com.unab.edu.Otros.Boton btnInscribir1;
-    private com.unab.edu.Otros.Boton btnInscribir2;
     private javax.swing.JComboBox<String> cbGradoAcademico;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblActulizar;
+    private javax.swing.JTable tb_Materias_Asignadas;
+    private javax.swing.JTable tb_Materias_Docente;
     private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,7 +32,7 @@ public class CLSMateriaAlumno {
               MatAlum.setIdMateriaAlumno(resultadoConsulta.getInt("idMateriaAlumno"));
               MatAlum.setIdEstudiante(resultadoConsulta.getInt("idEstudiante"));
               MatAlum.setIdMateria(resultadoConsulta.getInt("idMateria"));
-              MatAlum.setUltima_Modificacion(resultadoConsulta.getDate("UltimaModificacion"));
+              MatAlum.setUltima_Modificacion(resultadoConsulta.getDate("Ultima_Modificacion"));
               MatAlum.setEstado(resultadoConsulta.getInt("Estado"));
               
               MateriaAlumno.add(MatAlum);
@@ -64,11 +64,11 @@ public class CLSMateriaAlumno {
         try {
             CallableStatement Statement = conectar.prepareCall("call SP_U_MATERIAS_ALUMNOS(?,?,?,?,?)");
             
-            Statement.setInt("MidMateriaAlumno", matAlum.getIdMateriaAlumno());
-            Statement.setInt("MidEstudiante", matAlum.getIdEstudiante());
-            Statement.setInt("MidMateria", matAlum.getIdMateria());
-            Statement.setDate("MUltimaModificacion", new java.sql.Date(matAlum.getUltima_Modificacion().getTime())); 
-            Statement.setInt("MEstado", matAlum.getEstado());
+            Statement.setInt("PidMateriaAlumno", matAlum.getIdMateriaAlumno());
+            Statement.setInt("PidEstudiante", matAlum.getIdEstudiante());
+            Statement.setInt("PidMateria", matAlum.getIdMateria());
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(matAlum.getUltima_Modificacion().getTime())); 
+            Statement.setInt("PEstado", matAlum.getEstado());
             
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Datos actualizados con éxito");

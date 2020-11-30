@@ -34,7 +34,7 @@ public class CLSMateriaDocente {
               MatProf.setIdMateriaDocente(resultadoConsulta.getInt("idMateriaDocente"));
               MatProf.setIdDocente(resultadoConsulta.getInt("idDocente"));
               MatProf.setIdMateria(resultadoConsulta.getInt("idMateria"));
-              MatProf.setUltima_Modificacion(resultadoConsulta.getDate("UltimaModificacion"));
+              MatProf.setUltima_Modificacion(resultadoConsulta.getDate("Ultima_Modificacion"));
               MatProf.setEstado(resultadoConsulta.getInt("Estado"));
               
               MateriaAlumno.add(MatProf);
@@ -68,11 +68,11 @@ public class CLSMateriaDocente {
         try {
             CallableStatement Statement = conectar.prepareCall("call SP_U_MATERIAS_DOCENTES(?,?,?,?,?)");
             
-            Statement.setInt("DidMateriaAlumno", matProf.getIdMateriaDocente());
-            Statement.setInt("DidDocente", matProf.getIdDocente());
-            Statement.setInt("DidMateria", matProf.getIdMateria());
-            Statement.setDate("DUltimaModificacion", new java.sql.Date(matProf.getUltima_Modificacion().getTime())); 
-            Statement.setInt("DEstado", matProf.getEstado());
+            Statement.setInt("PidMateriaAlumno", matProf.getIdMateriaDocente());
+            Statement.setInt("PidDocente", matProf.getIdDocente());
+            Statement.setInt("PidMateria", matProf.getIdMateria());
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(matProf.getUltima_Modificacion().getTime())); 
+            Statement.setInt("PEstado", matProf.getEstado());
             
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Datos actualizados con éxito");
@@ -87,10 +87,11 @@ public class CLSMateriaDocente {
     
         try {
             
-            CallableStatement Statement = conectar.prepareCall("call SP_I_MATERIAS_DOCENTES(?,?)");
-            
-            Statement.setDate("DUltimaModificacion", new java.sql.Date(matProf.getUltima_Modificacion().getTime())); 
-            Statement.setInt("DEstado", matProf.getEstado());
+            CallableStatement Statement = conectar.prepareCall("call SP_I_MATERIAS_DOCENTES(?,?,?,?)");
+            Statement.setInt("PidDocente", matProf.getIdDocente());
+            Statement.setInt("PidMateria", matProf.getIdMateria());
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(matProf.getUltima_Modificacion().getTime())); 
+            Statement.setInt("PEstado", matProf.getEstado());
             
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Datos agregados con éxito");
