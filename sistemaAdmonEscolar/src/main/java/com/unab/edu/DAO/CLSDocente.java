@@ -179,4 +179,30 @@ public class CLSDocente {
 
         return fullName;
     }
+     public ArrayList<Docente> MostrarJoinDocentePersona(){
+        
+    ArrayList <Docente> lista =  new ArrayList();
+        try {
+            CallableStatement st = conectar.prepareCall("Call SP_S_JOIN_DOCENTEPERSONA");
+            
+            ResultSet rs = st.executeQuery();
+            while (rs.next ()){
+                Docente Do = new Docente();
+                
+                Do.setNombre(rs.getString("Nombre"));
+                Do.setApellido(rs.getString("Apellido"));              
+                Do.setSexo(rs.getString("Sexo"));
+                Do.setDUI(rs.getString("Dui"));
+                Do.setNIT(rs.getString("Nit"));
+                Do.setEspecialidad(rs.getString("Especialidad"));
+                Do.setCorreo_Electronico(rs.getString("Correo_Electronico"));
+                
+                
+                lista.add(Do);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, lista);
+        } 
+        return lista;
+    }
 }
