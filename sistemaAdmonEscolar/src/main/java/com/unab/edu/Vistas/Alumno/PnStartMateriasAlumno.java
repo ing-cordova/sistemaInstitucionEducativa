@@ -12,6 +12,8 @@ import com.unab.edu.Entidades.Materia;
 import com.unab.edu.Entidades.Materias_Alumnos;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -28,6 +30,18 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
      */
     public PnStartMateriasAlumno() {
         initComponents();
+        
+        tb_Materias.getTableHeader().setOpaque(false);
+        tb_Materias.setBackground(new Color(0,201,215));
+        tb_Materias.setForeground(new Color(255,255,255));
+        tb_Materias.setRowHeight(25);
+        
+        tb_MateriasAInscribir.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_MateriasAInscribir.getTableHeader().setOpaque(false);
+        tb_MateriasAInscribir.setBackground(new Color(0,201,215));
+        tb_MateriasAInscribir.setForeground(new Color(255,255,255));
+        tb_MateriasAInscribir.setRowHeight(25);
+        
 
         limpiarTabla(tb_MateriasAInscribir);
         Mostrar_Tabla_Materias();
@@ -104,6 +118,12 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                 "CODIGO", "NOMBRE MATERIA"
             }
         ));
+        tb_Materias.setFocusable(false);
+        tb_Materias.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tb_Materias.setRowHeight(25);
+        tb_Materias.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_Materias.setShowVerticalLines(false);
+        tb_Materias.getTableHeader().setReorderingAllowed(false);
         tb_Materias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb_MateriasMouseClicked(evt);
@@ -122,6 +142,12 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                 "CODIGO", "MATERIA SELECCIONADA"
             }
         ));
+        tb_MateriasAInscribir.setFocusable(false);
+        tb_MateriasAInscribir.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tb_MateriasAInscribir.setRowHeight(25);
+        tb_MateriasAInscribir.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_MateriasAInscribir.setShowVerticalLines(false);
+        tb_MateriasAInscribir.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tb_MateriasAInscribir);
 
         lblEliminar.setBackground(new java.awt.Color(68, 130, 195));
