@@ -125,7 +125,7 @@ public class CLSNotas {
 
             while (resultadoConsulta.next()) {
                 Notas nota = new Notas();
-                
+                nota.setIdMateria(resultadoConsulta.getInt("idMateria"));
                 nota.setNombre_Materia(resultadoConsulta.getString("Nombre_Materia"));
                 nota.setPeriodo1(resultadoConsulta.getDouble("Periodo1"));
                 nota.setPeriodo2(resultadoConsulta.getDouble("Periodo2"));

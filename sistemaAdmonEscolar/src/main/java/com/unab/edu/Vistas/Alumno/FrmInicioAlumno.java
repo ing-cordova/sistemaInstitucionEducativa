@@ -149,6 +149,11 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         btnTareas.setFocusPainted(false);
         btnTareas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnTareas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnTareas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTareasActionPerformed(evt);
+            }
+        });
 
         btnNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/grades.png"))); // NOI18N
         btnNotas.setText("     Notas");
@@ -268,6 +273,11 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         PnNotasAlumno pnNota = new PnNotasAlumno();
         cambio.CambiaPanel(pnCentral, pnNotas);
     }//GEN-LAST:event_btnNotasActionPerformed
+
+    private void btnTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTareasActionPerformed
+       PnTareasAlumno pnTareas = new PnTareasAlumno();
+       cambio.CambiaPanel(pnCentral, pnTareas);
+    }//GEN-LAST:event_btnTareasActionPerformed
 
     /**
      * @param args the command line arguments

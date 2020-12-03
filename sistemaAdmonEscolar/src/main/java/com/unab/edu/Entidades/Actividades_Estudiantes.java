@@ -6,7 +6,6 @@
 package com.unab.edu.Entidades;
 
 import java.util.Date;
-import javax.print.attribute.standard.Media;
 import lombok.Data;
 
 /**
@@ -19,7 +18,7 @@ public class Actividades_Estudiantes {
     protected int idEstudiante;
     protected int idActividad;
     protected double Nota_Obtenida;
-    protected Media  Archivo;
+    protected Byte  Archivo;
     protected Date Ultima_Modificacion;
     protected int Estado;
     
