@@ -5,6 +5,10 @@
  */
 package com.unab.edu.Vistas.Docente;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.table.DefaultTableColumnModel;
+
 /**
  *
  * @author CruzCalles
@@ -16,6 +20,20 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
      */
     public PnStrarMateriasDocente() {
         initComponents();
+        setBackground(new Color(0,0,0,0));
+        
+        tb_Materias_Docente.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Materias_Docente.getTableHeader().setOpaque(false);
+        tb_Materias_Docente.setBackground(new Color(0,201,215));
+        tb_Materias_Docente.setForeground(new Color(255,255,255));
+        tb_Materias_Docente.setRowHeight(25);
+        
+        tb_Materias_Asignadas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Materias_Asignadas.getTableHeader().setOpaque(false);
+        tb_Materias_Asignadas.setBackground(new Color(0,201,215));
+        tb_Materias_Asignadas.setForeground(new Color(255,255,255));
+        tb_Materias_Asignadas.setRowHeight(25);
+        
     }
 
     /**
@@ -84,6 +102,11 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                 "CÓDIGO", "NOMBRE MATERIA"
             }
         ));
+        tb_Materias_Docente.setFocusable(false);
+        tb_Materias_Docente.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tb_Materias_Docente.setRowHeight(25);
+        tb_Materias_Docente.setSelectionBackground(new java.awt.Color(0, 201, 215));
+        tb_Materias_Docente.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tb_Materias_Docente);
 
         txtNombres.setBackground(new java.awt.Color(68, 130, 195));
@@ -114,6 +137,12 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                 "CÓDIGO", "MATERIA SELECCIONADA"
             }
         ));
+        tb_Materias_Asignadas.setFocusable(false);
+        tb_Materias_Asignadas.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tb_Materias_Asignadas.setRowHeight(25);
+        tb_Materias_Asignadas.setSelectionBackground(new java.awt.Color(0, 201, 215));
+        tb_Materias_Asignadas.setShowVerticalLines(false);
+        tb_Materias_Asignadas.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tb_Materias_Asignadas);
 
         cbGradoAcademico.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
