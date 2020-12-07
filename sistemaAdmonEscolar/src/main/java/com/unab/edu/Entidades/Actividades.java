@@ -13,12 +13,12 @@ import lombok.Data;
  * @author BetoCalderon
  */
 @Data
-public class Actividades {
+public class Actividades extends Materia{
     protected int idActividad;
     protected int idDocente;
-    protected int idMateria;
     protected String Nombre_Actividad;
-    protected int Porcentaje;
+    protected double Porcentaje;
+    protected Date Fecha_Entrega;
     protected Date Ultima_Modificacion;
     protected int Estado;
 }

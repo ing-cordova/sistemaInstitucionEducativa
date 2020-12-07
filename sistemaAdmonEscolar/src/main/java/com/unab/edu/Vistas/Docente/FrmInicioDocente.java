@@ -21,13 +21,14 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     
     PnStartDocente pnStart = new PnStartDocente();
     PnStrarMateriasDocente pnMateria = new PnStrarMateriasDocente();
+    PnActividades_Docente pnActividades = new PnActividades_Docente();
     CambiarPanel cambio = new CambiarPanel();
 
     public FrmInicioDocente() {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        lblUsuarioActual.setText("Usuario Actual: " + FrmLogin.FULLNAME);
+        lblUsuarioActual.setText("Docente Actual: " + FrmLogin.FULLNAME);
     }
 
     /**
@@ -164,6 +165,11 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         btnActividades.setFocusPainted(false);
         btnActividades.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActividades.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnActividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActividadesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnIzquierdoLayout = new javax.swing.GroupLayout(pnIzquierdo);
         pnIzquierdo.setLayout(pnIzquierdoLayout);
@@ -252,6 +258,10 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     private void btnMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriasActionPerformed
         cambio.CambiaPanel(pnCentral, pnMateria);
     }//GEN-LAST:event_btnMateriasActionPerformed
+
+    private void btnActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActividadesActionPerformed
+        cambio.CambiaPanel(pnCentral, pnActividades);
+    }//GEN-LAST:event_btnActividadesActionPerformed
 
     /**
      * @param args the command line arguments
