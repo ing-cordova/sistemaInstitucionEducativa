@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,7 +28,8 @@ public class PnActividades_Docente extends javax.swing.JPanel {
     public PnActividades_Docente() {
         initComponents();
         MostrarMaterias();
-
+        
+        MostrarActividades();
         btnPublicarTarea.setEnabled(false);
         btnEditarTarea.setEnabled(false);
         btnEliminarTarea.setEnabled(false);
@@ -60,7 +62,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_Materias_Docente = new javax.swing.JTable();
+        tb_Actividades = new javax.swing.JTable();
         btnPublicarTarea = new com.unab.edu.Otros.Boton();
         btnNuevaTarea = new com.unab.edu.Otros.Boton();
         btnEditarTarea = new com.unab.edu.Otros.Boton();
@@ -114,7 +116,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("%");
 
-        tb_Materias_Docente.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Actividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -125,12 +127,12 @@ public class PnActividades_Docente extends javax.swing.JPanel {
                 "CÓDIGO", "NOMBRE MATERIA"
             }
         ));
-        tb_Materias_Docente.setFocusable(false);
-        tb_Materias_Docente.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        tb_Materias_Docente.setRowHeight(25);
-        tb_Materias_Docente.setSelectionBackground(new java.awt.Color(48, 218, 174));
-        tb_Materias_Docente.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(tb_Materias_Docente);
+        tb_Actividades.setFocusable(false);
+        tb_Actividades.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tb_Actividades.setRowHeight(25);
+        tb_Actividades.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_Actividades.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tb_Actividades);
 
         btnPublicarTarea.setText("     Publicar Tarea");
         btnPublicarTarea.setBorderPainted(false);
@@ -170,6 +172,11 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         lblActualizar.setForeground(new java.awt.Color(255, 255, 255));
         lblActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browser.png"))); // NOI18N
         lblActualizar.setText("Actualizar Tabla");
+        lblActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblActualizarMouseClicked(evt);
+            }
+        });
 
         txtFechaLimite.setForeground(new java.awt.Color(0, 0, 0));
         txtFechaLimite.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -301,10 +308,15 @@ public class PnActividades_Docente extends javax.swing.JPanel {
             clsActividad.AgregarActividad(act);
             LimpiarControles();
             btnPublicarTarea.setEnabled(false);
+            MostrarActividades();
         }
 
 
     }//GEN-LAST:event_btnPublicarTareaActionPerformed
+
+    private void lblActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActualizarMouseClicked
+        MostrarActividades();
+    }//GEN-LAST:event_lblActualizarMouseClicked
 
     String valueMember[];
     int contador = 1;
@@ -331,6 +343,29 @@ public class PnActividades_Docente extends javax.swing.JPanel {
 
         cbMateria.setModel(cbdefault);
     }
+
+    public void MostrarActividades() {
+
+        String TITULOS[] = {"CODIGO", "MATERIA", "ACTIVIDAD", "PORCENTAJE", "FECHA LIMITE"};
+        DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
+        
+        CLSActividades clsActividades = new CLSActividades();
+        ArrayList<Actividades> vistaActividades = clsActividades.MostrarActividades();
+        String Filas[] = new String[6];
+        
+        for(var iterar : vistaActividades){
+            
+            Filas[0] = String.valueOf(iterar.getIdActividad());
+            Filas[1] = String.valueOf(iterar.getNombre_Materia());
+            Filas[2] = String.valueOf(iterar.getNombre_Actividad());
+            Filas[3] = String.valueOf(iterar.getPorcentaje());
+            Filas[4] = String.valueOf(iterar.getFecha_Entrega());
+            
+            ModeloTabla.addRow(Filas);
+        }
+        
+        tb_Actividades.setModel(ModeloTabla);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnEditarTarea;
     private com.unab.edu.Otros.Boton btnEliminarTarea;
@@ -347,7 +382,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblActualizar;
-    private javax.swing.JTable tb_Materias_Docente;
+    private javax.swing.JTable tb_Actividades;
     private javax.swing.JTextField txtActividad;
     private com.toedter.calendar.JDateChooser txtFechaLimite;
     private javax.swing.JTextField txtPorcentaje;
