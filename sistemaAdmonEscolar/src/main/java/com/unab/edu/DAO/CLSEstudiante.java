@@ -222,4 +222,29 @@ public class CLSEstudiante {
 
         return ID;
     }
+    
+    public ArrayList<Estudiante> MostrarJoinEstudiantePersona(){
+        
+    ArrayList <Estudiante> lista =  new ArrayList();
+        try {
+            CallableStatement st = conectar.prepareCall("Call SP_S_JOINESTUDIANTEPERSONA(?,?,?,?,?");
+            
+            ResultSet rs = st.executeQuery();
+            while (rs.next ()){
+                Estudiante es = new Estudiante();
+                
+                es.setNombre(rs.getString("Nombre"));
+                es.setApellido(rs.getString("Apellido"));
+                es.setSexo(rs.getString("Sexo"));
+                es.setIdGradoAcademico(rs.getInt("Nombre_GradoAcad"));
+                es.setCorreo_Electronico(rs.getString("Correo_Electronico"));
+                
+                
+                lista.add(es);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, lista);
+        } 
+        return lista;
+    }
 }

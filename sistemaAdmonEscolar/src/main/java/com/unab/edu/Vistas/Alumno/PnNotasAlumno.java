@@ -5,9 +5,7 @@
  */
 package com.unab.edu.Vistas.Alumno;
 
-import com.unab.edu.DAO.CLSMateria;
 import com.unab.edu.DAO.CLSNotas;
-import com.unab.edu.Entidades.Materia;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
 import java.util.ArrayList;
