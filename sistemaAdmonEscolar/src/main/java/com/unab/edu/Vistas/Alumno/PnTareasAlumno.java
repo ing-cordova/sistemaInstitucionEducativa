@@ -5,13 +5,7 @@
  */
 package com.unab.edu.Vistas.Alumno;
 
-import com.unab.edu.DAO.CLSGradoAcademico;
-import com.unab.edu.DAO.CLSMateria;
-import com.unab.edu.DAO.CLSMateriaAlumno;
 import com.unab.edu.DAO.CLSNotas;
-import com.unab.edu.Entidades.Grados_Academicos;
-import com.unab.edu.Entidades.Materia;
-import com.unab.edu.Entidades.Materias_Alumnos;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
 import java.util.ArrayList;
@@ -187,10 +181,11 @@ public class PnTareasAlumno extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cb_Materias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(cb_Materias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -263,7 +258,6 @@ public class PnTareasAlumno extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.unab.edu.Otros.Boton btnAcceder;
     private com.unab.edu.Otros.Boton btnEntregar;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JComboBox<String> cb_Materias;
