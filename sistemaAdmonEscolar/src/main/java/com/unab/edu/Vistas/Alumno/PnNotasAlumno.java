@@ -5,9 +5,7 @@
  */
 package com.unab.edu.Vistas.Alumno;
 
-import com.unab.edu.DAO.CLSMateria;
 import com.unab.edu.DAO.CLSNotas;
-import com.unab.edu.Entidades.Materia;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
 import java.util.ArrayList;
@@ -53,6 +51,27 @@ public class PnNotasAlumno extends javax.swing.JPanel {
         }
 
         tb_Notas.setModel(ModeloTabla);
+        
+        tb_Notas.getTableHeader().getColumnModel().getColumn(1).setPreferredWidth(60);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(60);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(1).setMinWidth(60);
+        
+        tb_Notas.getTableHeader().getColumnModel().getColumn(2).setPreferredWidth(60);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(60);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(2).setMinWidth(60);
+        
+        tb_Notas.getTableHeader().getColumnModel().getColumn(3).setPreferredWidth(60);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(60);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(3).setMinWidth(60);
+        
+        tb_Notas.getTableHeader().getColumnModel().getColumn(4).setPreferredWidth(80);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(80);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(4).setMinWidth(80);
+        
+        tb_Notas.getTableHeader().getColumnModel().getColumn(5).setPreferredWidth(95);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(95);
+        tb_Notas.getTableHeader().getColumnModel().getColumn(5).setMinWidth(95);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -60,10 +79,10 @@ public class PnNotasAlumno extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tb_Notas = new javax.swing.JTable();
         lblNombre_Estudiante = new javax.swing.JLabel();
         lblActualizar = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tb_Notas = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(68, 130, 195));
 
@@ -71,19 +90,6 @@ public class PnNotasAlumno extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("¡Bienvenido a tu sección de Notas!");
-
-        tb_Notas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tb_Notas);
 
         lblNombre_Estudiante.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblNombre_Estudiante.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,6 +106,25 @@ public class PnNotasAlumno extends javax.swing.JPanel {
             }
         });
 
+        tb_Notas.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        tb_Notas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "CÓDIGO", "NOMBRE MATERIA"
+            }
+        ));
+        tb_Notas.setFocusable(false);
+        tb_Notas.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tb_Notas.setRowHeight(25);
+        tb_Notas.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_Notas.setShowVerticalLines(false);
+        jScrollPane2.setViewportView(tb_Notas);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,18 +132,15 @@ public class PnNotasAlumno extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(113, 113, 113))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNombre_Estudiante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblActualizar)
-                        .addGap(25, 25, 25))))
+                        .addComponent(lblActualizar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel1))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +151,9 @@ public class PnNotasAlumno extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblActualizar)
                     .addComponent(lblNombre_Estudiante))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(289, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(230, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -143,7 +165,7 @@ public class PnNotasAlumno extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JLabel lblActualizar;
     private javax.swing.JLabel lblNombre_Estudiante;
     private javax.swing.JTable tb_Notas;

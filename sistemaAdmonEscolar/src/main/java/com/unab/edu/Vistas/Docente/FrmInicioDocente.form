@@ -135,7 +135,7 @@
                           <Component id="jSeparator1" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="btnTareas" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnNotas" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnActividades" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -153,9 +153,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnMaterias" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnTareas" min="-2" pref="41" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnActividades" min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnNotas" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace pref="168" max="32767" attributes="0"/>
                   <Component id="btnLogOut" min="-2" pref="44" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -208,12 +208,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMateriasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="com.unab.edu.Otros.Boton" name="btnTareas">
+        <Component class="com.unab.edu.Otros.Boton" name="btnNotas">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Images/Homeworks.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="     Tereas"/>
+            <Property name="text" type="java.lang.String" value="     Notas"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -221,6 +221,9 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNotasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="com.unab.edu.Otros.Boton" name="btnLogOut">
           <Properties>

@@ -10,6 +10,8 @@ import com.unab.edu.DAO.CLSMateriaDocente;
 import com.unab.edu.Entidades.Actividades;
 import com.unab.edu.Entidades.Materias_Docentes;
 import com.unab.edu.Vistas.FrmLogin;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
@@ -28,7 +30,8 @@ public class PnActividades_Docente extends javax.swing.JPanel {
     public PnActividades_Docente() {
         initComponents();
         MostrarMaterias();
-        
+
+        lbl_id.setVisible(false);
         MostrarActividades();
         btnPublicarTarea.setEnabled(false);
         btnEditarTarea.setEnabled(false);
@@ -40,6 +43,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         txtActividad.setText("");
         txtPorcentaje.setText("");
         txtFechaLimite.setDate(null);
+        lbl_id.setText("0");
     }
 
     /**
@@ -70,6 +74,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         lblActualizar = new javax.swing.JLabel();
         txtFechaLimite = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
+        lbl_id = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(68, 130, 195));
 
@@ -116,6 +121,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("%");
 
+        tb_Actividades.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         tb_Actividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -132,6 +138,11 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         tb_Actividades.setRowHeight(25);
         tb_Actividades.setSelectionBackground(new java.awt.Color(48, 218, 174));
         tb_Actividades.setShowVerticalLines(false);
+        tb_Actividades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_ActividadesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_Actividades);
 
         btnPublicarTarea.setText("     Publicar Tarea");
@@ -161,12 +172,22 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         btnEditarTarea.setFocusPainted(false);
         btnEditarTarea.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnEditarTarea.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEditarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarTareaActionPerformed(evt);
+            }
+        });
 
         btnEliminarTarea.setText("     Eliminar  Tarea");
         btnEliminarTarea.setBorderPainted(false);
         btnEliminarTarea.setFocusPainted(false);
         btnEliminarTarea.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btnEliminarTarea.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEliminarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTareaActionPerformed(evt);
+            }
+        });
 
         lblActualizar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lblActualizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,17 +207,23 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fecha de Entrega:");
 
+        lbl_id.setBackground(new java.awt.Color(68, 130, 195));
+        lbl_id.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        lbl_id.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_id.setText("id");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(190, 190, 190))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbl_id)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(190, 190, 190))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addContainerGap())
@@ -240,7 +267,9 @@ public class PnActividades_Docente extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(lbl_id))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -283,6 +312,8 @@ public class PnActividades_Docente extends javax.swing.JPanel {
     private void btnNuevaTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaTareaActionPerformed
 
         btnPublicarTarea.setEnabled(true);
+        btnEditarTarea.setEnabled(false);
+        btnEliminarTarea.setEnabled(false);
         LimpiarControles();
     }//GEN-LAST:event_btnNuevaTareaActionPerformed
 
@@ -290,8 +321,8 @@ public class PnActividades_Docente extends javax.swing.JPanel {
 
         int combo = Integer.parseInt(valueMember[cbMateria.getSelectedIndex()]);
 
-        if (txtActividad.getText().isEmpty() || txtPorcentaje.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "¡No ha seleccionado una materia!");
+        if (txtActividad.getText().isEmpty() || txtPorcentaje.getText().isEmpty() || txtFechaLimite.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "¡Complete todos los datos para poder continuar!");
         } else {
             Date date = new Date();
             Double porcents = Double.parseDouble(txtPorcentaje.getText());
@@ -308,6 +339,8 @@ public class PnActividades_Docente extends javax.swing.JPanel {
             clsActividad.AgregarActividad(act);
             LimpiarControles();
             btnPublicarTarea.setEnabled(false);
+            btnEditarTarea.setEnabled(false);
+            btnEliminarTarea.setEnabled(false);
             MostrarActividades();
         }
 
@@ -317,6 +350,98 @@ public class PnActividades_Docente extends javax.swing.JPanel {
     private void lblActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActualizarMouseClicked
         MostrarActividades();
     }//GEN-LAST:event_lblActualizarMouseClicked
+
+    SimpleDateFormat formato = new SimpleDateFormat("d MMM y");
+    private void tb_ActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_ActividadesMouseClicked
+
+        //Acá estamos obteniendo la fila que el usuario seleccionó.
+        int filas = tb_Actividades.getSelectedRow();
+        //Asignamos todos los campos de la tabla.
+        String ID = String.valueOf(tb_Actividades.getValueAt(filas, 0));
+        String idMateria = String.valueOf(tb_Actividades.getValueAt(filas, 1));
+        //String Materia = String.valueOf(tb_Actividades.getValueAt(filas, 2));
+        String Actividad = String.valueOf(tb_Actividades.getValueAt(filas, 3));
+        String Porcentaje = String.valueOf(tb_Actividades.getValueAt(filas, 4));
+        String FechaLimite = String.valueOf(tb_Actividades.getValueAt(filas, 5));
+        //Pasamos los datos para la tabla a inscribir.
+        lbl_id.setText(ID);
+        txtActividad.setText(Actividad);
+        txtPorcentaje.setText(String.valueOf(Math.round(Double.parseDouble(Porcentaje) * 100)));
+
+        Date castfecha = new Date();
+        try {
+            castfecha = formato.parse(FechaLimite);
+            txtFechaLimite.setDate(castfecha);
+        } catch (ParseException ex) {
+            txtFechaLimite.setDate(null);
+        }
+
+        int seleccionadorDeVista = 0;
+        for (var iterar : valueMember) {
+            if (idMateria.equals(iterar)) {
+                cbMateria.setSelectedIndex(seleccionadorDeVista);
+            }
+            seleccionadorDeVista += 1;
+        }
+
+        btnPublicarTarea.setEnabled(false);
+        btnEditarTarea.setEnabled(true);
+        btnEliminarTarea.setEnabled(true);
+    }//GEN-LAST:event_tb_ActividadesMouseClicked
+
+    private void btnEditarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTareaActionPerformed
+
+        int combo = Integer.parseInt(valueMember[cbMateria.getSelectedIndex()]);
+        int idAct = Integer.parseInt(lbl_id.getText());
+        System.out.println(idAct);
+        if (txtActividad.getText().isEmpty() || txtPorcentaje.getText().isEmpty() || txtFechaLimite.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "¡Complete todos los datos para poder continuar!");
+        } else {
+
+            Date date = new Date();
+            Double porcents = Double.parseDouble(txtPorcentaje.getText());
+            CLSActividades clsActividad = new CLSActividades();
+            Actividades act = new Actividades();
+
+            act.setIdActividad(idAct);
+            act.setIdDocente(FrmLogin.envioIdDocente);
+            act.setIdMateria(combo);
+            act.setNombre_Actividad(txtActividad.getText());
+            act.setPorcentaje(porcents / 100);
+            act.setFecha_Entrega(txtFechaLimite.getDate());
+            act.setUltima_Modificacion(date);
+            act.setEstado(1);
+            clsActividad.ActualizarActividad(act);
+            LimpiarControles();
+            btnPublicarTarea.setEnabled(false);
+            btnEditarTarea.setEnabled(false);
+            btnEliminarTarea.setEnabled(false);
+            MostrarActividades();
+        }
+    }//GEN-LAST:event_btnEditarTareaActionPerformed
+
+    private void btnEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTareaActionPerformed
+        int idAct = Integer.parseInt(lbl_id.getText());
+        CLSActividades clsActividad = new CLSActividades();
+        Actividades act = new Actividades();
+
+        String botones[] = {"Eliminar", "Cancelar"};
+        int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres eliminar esta actividad?", "Confirmar", 0, 0, null, botones, this);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            act.setIdActividad(idAct);
+            clsActividad.EliminarActividad(act);
+            LimpiarControles();
+            btnPublicarTarea.setEnabled(false);
+            btnEditarTarea.setEnabled(false);
+            btnEliminarTarea.setEnabled(false);
+            MostrarActividades();
+        } else if (opcion == JOptionPane.NO_OPTION) {
+            System.out.println("¡Cancelado!");
+        }
+
+
+    }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
     String valueMember[];
     int contador = 1;
@@ -346,25 +471,44 @@ public class PnActividades_Docente extends javax.swing.JPanel {
 
     public void MostrarActividades() {
 
-        String TITULOS[] = {"CODIGO", "MATERIA", "ACTIVIDAD", "PORCENTAJE", "FECHA LIMITE"};
+        String TITULOS[] = {"CODIGO", "", "MATERIA", "ACTIVIDAD", "PORCENTAJE", "FECHA LIMITE"};
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
-        
+
         CLSActividades clsActividades = new CLSActividades();
         ArrayList<Actividades> vistaActividades = clsActividades.MostrarActividades();
         String Filas[] = new String[6];
-        
-        for(var iterar : vistaActividades){
-            
+
+        for (var iterar : vistaActividades) {
+
             Filas[0] = String.valueOf(iterar.getIdActividad());
-            Filas[1] = String.valueOf(iterar.getNombre_Materia());
-            Filas[2] = String.valueOf(iterar.getNombre_Actividad());
-            Filas[3] = String.valueOf(iterar.getPorcentaje());
-            Filas[4] = String.valueOf(iterar.getFecha_Entrega());
-            
+            Filas[1] = String.valueOf(iterar.getIdMateria());
+            Filas[2] = String.valueOf(iterar.getNombre_Materia());
+            Filas[3] = String.valueOf(iterar.getNombre_Actividad());
+            Filas[4] = String.valueOf(iterar.getPorcentaje());
+
+            if (iterar.getFecha_Entrega() == null) {
+                Filas[5] = "--/--/--";
+            } else {
+                Filas[5] = String.valueOf(formato.format(iterar.getFecha_Entrega()));
+            }
+
             ModeloTabla.addRow(Filas);
         }
-        
+
         tb_Actividades.setModel(ModeloTabla);
+        //AJUSTANDO EL TAMAÑO DE LA COLUMNA ID
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(0).setPreferredWidth(60);
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(60);
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(0).setMinWidth(60);
+        //AJUSTANDO EL TAMAÑO DE LA COLUMNA ID_MATERIA
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(1).setPreferredWidth(0);
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+        //AJUSTANDO EL TAMAÑO DE LA COLUMNA PORCENTAJE
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(4).setPreferredWidth(80);
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(80);
+        tb_Actividades.getTableHeader().getColumnModel().getColumn(4).setMinWidth(80);
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnEditarTarea;
@@ -382,6 +526,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblActualizar;
+    private javax.swing.JLabel lbl_id;
     private javax.swing.JTable tb_Actividades;
     private javax.swing.JTextField txtActividad;
     private com.toedter.calendar.JDateChooser txtFechaLimite;
