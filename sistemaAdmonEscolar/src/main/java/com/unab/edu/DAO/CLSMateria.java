@@ -66,8 +66,8 @@ public class CLSMateria {
             CallableStatement Statement = conectar.prepareCall("call SP_U_MATERIAS(?,?,?,?)");
 
             Statement.setInt("PidMateria", mate.getIdMateria());
-            Statement.setString("PNombreMateria", mate.getNombre_Materia());
-            Statement.setDate("PUltimaModificacion", new java.sql.Date(mate.getUltima_Modificacion().getTime()));
+            Statement.setString("PNombre_Materia", mate.getNombre_Materia());
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(mate.getUltima_Modificacion().getTime()));
             Statement.setInt("PEstado", mate.getEstado());
 
             Statement.execute();

@@ -227,19 +227,20 @@ public class CLSEstudiante {
         
     ArrayList <Estudiante> lista =  new ArrayList();
         try {
-            CallableStatement st = conectar.prepareCall("Call SP_S_JOINESTUDIANTEPERSONA(?)");
+            CallableStatement st = conectar.prepareCall("call SP_S_JOINESTUDIANTEPERSONA(?)");
             st.setInt("PidEstudiante",est.getIdEstudiante());
             ResultSet rs = st.executeQuery();
             while (rs.next ()){
                 Estudiante es = new Estudiante();
-
-            st.setString("Nombre", est.getNombre());
-            st.setString("Apellido", est.getApellido());
-            st.setString("Sexo", est.getSexo());
-            st.setString("Nombre_GradoAcad", est.getNombre_GradoAcad());
-            st.setString("Correo_Electronico", est.getCorreo_Electronico());
+                es.setNombre(rs.getString("Nombre"));
+                es.setApellido(rs.getString("Apellido"));
+                es.setSexo(rs.getString("Sexo"));
+                es.setDUI(rs.getString("Dui"));
+                es.setNIT(rs.getString("Nit"));
+                es.setNombre_GradoAcad(rs.getString("Nombre_GradoAcad"));
+                es.setCorreo_Electronico(rs.getString("Correo_Electronico"));
                 
-                lista.add(est);
+                lista.add(es);
                 
             }
             conectar.close();
