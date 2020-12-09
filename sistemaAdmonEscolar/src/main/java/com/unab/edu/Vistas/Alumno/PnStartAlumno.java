@@ -5,6 +5,12 @@
  */
 package com.unab.edu.Vistas.Alumno;
 
+import com.unab.edu.DAO.CLSEstudiante;
+import com.unab.edu.Vistas.FrmLogin;
+import com.unab.edu.Entidades.Estudiante;
+import java.util.ArrayList;
+
+
 /**
  *
  * @author AndresC
@@ -16,7 +22,26 @@ public class PnStartAlumno extends javax.swing.JPanel {
      */
     public PnStartAlumno() {
         initComponents();
+        Mostrar_JoinEstudiantePersona();
     }
+    public void Mostrar_JoinEstudiantePersona() {
+
+        CLSEstudiante clsEstudiante = new CLSEstudiante();
+        Estudiante est = new Estudiante();
+        est.setIdEstudiante(FrmLogin.envioIdEstudiante);
+        System.out.println(FrmLogin.envioIdEstudiante);
+        ArrayList <Estudiante> lista =  clsEstudiante.MostrarJoinEstudiantePersona(est);
+        for (var iterar : lista){        
+            
+            lbNombre.setText(String.valueOf(iterar.getNombre()));
+            lbApellido.setText(String.valueOf(iterar.getApellido()));
+            lbSexo.setText(String.valueOf(iterar.getSexo()));
+            lbGradoAcad.setText(String.valueOf(iterar.getNombre_GradoAcad()));
+            lbCorreoElect.setText(String.valueOf(iterar.getCorreo_Electronico()));
+               
+        }  
+    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,6 +55,15 @@ public class PnStartAlumno extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lblActualizar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        lbNombre = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lbApellido = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lbGradoAcad = new javax.swing.JLabel();
+        lbSexo = new javax.swing.JLabel();
+        lbCorreoElect = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(68, 130, 195));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -52,7 +86,35 @@ public class PnStartAlumno extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
+
+        lbNombre.setBackground(new java.awt.Color(255, 255, 255));
+        lbNombre.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Apellido:");
+
+        lbApellido.setBackground(new java.awt.Color(51, 51, 255));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Sexo:");
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Grado Academico:");
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Correo Electronico:");
+
+        lbGradoAcad.setBackground(new java.awt.Color(51, 51, 255));
+
+        lbSexo.setBackground(new java.awt.Color(51, 51, 255));
+
+        lbCorreoElect.setBackground(new java.awt.Color(51, 51, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,11 +124,34 @@ public class PnStartAlumno extends javax.swing.JPanel {
                 .addGap(76, 76, 76)
                 .addComponent(jLabel1)
                 .addContainerGap(86, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblActualizar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblActualizar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbGradoAcad, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbCorreoElect, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -74,11 +159,32 @@ public class PnStartAlumno extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblActualizar)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lbApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblActualizar)
-                    .addComponent(jLabel2))
-                .addContainerGap(462, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(lbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbCorreoElect, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addComponent(lbGradoAcad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -93,6 +199,15 @@ public class PnStartAlumno extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lbApellido;
+    private javax.swing.JLabel lbCorreoElect;
+    private javax.swing.JLabel lbGradoAcad;
+    private javax.swing.JLabel lbNombre;
+    private javax.swing.JLabel lbSexo;
     public javax.swing.JLabel lblActualizar;
     // End of variables declaration//GEN-END:variables
 }

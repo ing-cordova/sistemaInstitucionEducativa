@@ -223,25 +223,26 @@ public class CLSEstudiante {
         return ID;
     }
     
-    public ArrayList<Estudiante> MostrarJoinEstudiantePersona(){
+    public ArrayList<Estudiante> MostrarJoinEstudiantePersona(Estudiante est){
         
     ArrayList <Estudiante> lista =  new ArrayList();
         try {
-            CallableStatement st = conectar.prepareCall("Call SP_S_JOINESTUDIANTEPERSONA(?,?,?,?,?");
-            
+            CallableStatement st = conectar.prepareCall("Call SP_S_JOINESTUDIANTEPERSONA(?)");
+            st.setInt("PidEstudiante",est.getIdEstudiante());
             ResultSet rs = st.executeQuery();
             while (rs.next ()){
                 Estudiante es = new Estudiante();
-                
-                es.setNombre(rs.getString("Nombre"));
-                es.setApellido(rs.getString("Apellido"));
-                es.setSexo(rs.getString("Sexo"));
-                es.setIdGradoAcademico(rs.getInt("Nombre_GradoAcad"));
-                es.setCorreo_Electronico(rs.getString("Correo_Electronico"));
-                
+
+            st.setString("Nombre", est.getNombre());
+            st.setString("Apellido", est.getApellido());
+            st.setString("Sexo", est.getSexo());
+            st.setInt("Nombre_GradoAcad", est.getIdGradoAcademico());
+            st.setString("Correo_Electronico", est.getCorreo_Electronico());
                 
                 lista.add(es);
+                
             }
+            conectar.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, lista);
         } 

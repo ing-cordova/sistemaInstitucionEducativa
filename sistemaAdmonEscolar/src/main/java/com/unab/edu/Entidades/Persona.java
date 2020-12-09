@@ -13,7 +13,7 @@ import lombok.*;
  * @author BetoCalderon
  */
 @Data
-public class Persona {
+public class Persona extends Grados_Academicos{
     protected int idPersona;
     protected String Nombre;
     protected String Apellido;
