@@ -7,7 +7,10 @@ package com.unab.edu.Vistas.Docente;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -36,6 +39,17 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         
     }
 
+     public void limpiarTabla(JTable Tabla) {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
+            int filas = Tabla.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modelo.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,6 +121,11 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         tb_Materias_Docente.setRowHeight(25);
         tb_Materias_Docente.setSelectionBackground(new java.awt.Color(48, 218, 174));
         tb_Materias_Docente.setShowVerticalLines(false);
+        tb_Materias_Docente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_Materias_DocenteMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_Materias_Docente);
 
         txtNombres.setBackground(new java.awt.Color(68, 130, 195));
@@ -228,6 +247,31 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tb_Materias_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_Materias_DocenteMouseClicked
+        
+         //Acá estamos obteniendo la fila que el usuario seleccionó.
+        int filas = tb_Materias_Docente.getSelectedRow();
+        //Asignamos todos los campos de la tabla.
+        String ID = String.valueOf(tb_Materias_Docente.getValueAt(filas, 0));
+        String Nombre = String.valueOf(tb_Materias_Docente.getValueAt(filas, 1));
+        //Pasamos los datos para la tabla a inscribir.
+        String Filas[] = new String[3];
+        Filas[0] = ID;
+        Filas[1] = Nombre;
+        
+         for (int i = 0; i < tb_Materias_Asignadas.getRowCount(); i++) {
+
+            if (tb_Materias_Asignadas.getValueAt(i, 0) == ID) {
+                JOptionPane.showMessageDialog(null, "¡Ya ha seleccionado esta materia!");
+                ModeloTabla_MatSele.removeRow(i);
+                //no se de donde sale este atributo O de donde lo obtienen en el frm de estudiante materia.
+            }
+        }
+
+        ModeloTabla_MatSele.addRow(Filas);
+        tb_Materias_Asignadas.setModel(ModeloTabla_MatSele);
+    }//GEN-LAST:event_tb_Materias_DocenteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
