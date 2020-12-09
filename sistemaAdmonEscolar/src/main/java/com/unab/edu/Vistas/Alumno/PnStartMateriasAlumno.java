@@ -247,6 +247,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         } else if (tb_MateriasAInscribir.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
         } else {
+            
             ModeloTabla_MatSele.removeRow(tb_MateriasAInscribir.getSelectedRow());
         }
     }//GEN-LAST:event_lblEliminarMouseClicked
