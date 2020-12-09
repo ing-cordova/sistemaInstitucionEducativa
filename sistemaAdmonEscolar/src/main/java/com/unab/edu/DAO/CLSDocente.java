@@ -158,7 +158,7 @@ public class CLSDocente {
         return false;
     }
 
- public String RetornoFullName(String correo, String pass) {
+    public String RetornoFullName(String correo, String pass) {
 
         String fullName = "";
 
@@ -179,30 +179,52 @@ public class CLSDocente {
 
         return fullName;
     }
-     public ArrayList<Docente> MostrarJoinDocentePersona(){
-        
-    ArrayList <Docente> lista =  new ArrayList();
+
+    public ArrayList<Docente> MostrarJoinDocentePersona() {
+
+        ArrayList<Docente> lista = new ArrayList();
         try {
             CallableStatement st = conectar.prepareCall("Call SP_S_JOIN_DOCENTEPERSONA");
-            
+
             ResultSet rs = st.executeQuery();
-            while (rs.next ()){
+            while (rs.next()) {
                 Docente Do = new Docente();
-                
+
                 Do.setNombre(rs.getString("Nombre"));
-                Do.setApellido(rs.getString("Apellido"));              
+                Do.setApellido(rs.getString("Apellido"));
                 Do.setSexo(rs.getString("Sexo"));
                 Do.setDUI(rs.getString("Dui"));
                 Do.setNIT(rs.getString("Nit"));
                 Do.setEspecialidad(rs.getString("Especialidad"));
                 Do.setCorreo_Electronico(rs.getString("Correo_Electronico"));
-                
-                
+
                 lista.add(Do);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, lista);
-        } 
+        }
         return lista;
+    }
+    
+    public int RetornoIdDocente(String correo, String pass) {
+
+        int ID = 0;
+
+        try {
+
+            CallableStatement consulta = conectar.prepareCall("call SP_S_APELLIDOSNOMBRES_D(?,?)");
+            consulta.setString("PCorreo", correo);
+            consulta.setString("Ppass", pass);
+            ResultSet resultado = consulta.executeQuery();
+
+            while (resultado.next()) {
+
+                ID = resultado.getInt("idDocente");
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error en: \n" + e);
+        }
+
+        return ID;
     }
 }

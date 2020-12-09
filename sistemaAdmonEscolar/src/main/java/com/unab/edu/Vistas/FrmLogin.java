@@ -249,7 +249,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_chMostrarCaracActionPerformed
 
     public static String FULLNAME;
-    public static int envioID, envioIdEstudiante;
+    public static int envioID, envioIdEstudiante, envioIdDocente;
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
 
         String Correo = txtCorreo.getText();
@@ -268,10 +268,13 @@ public class FrmLogin extends javax.swing.JFrame {
             var enviarID = clsEstudiante.RetornoIdGrado(Correo, Password);
             var envioNombres_D = clsDocente.RetornoFullName(Correo, Password);
             var enviarIdEstudiante = clsEstudiante.RetornoIdEstudiante(Correo, Password);
+            var enviarIdDocente = clsDocente.RetornoIdDocente(Correo, Password);
 
             if (validacionDocente == true) {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + txtCorreo.getText() + ", usted acaba de iniciar sesión como DOCENTE.");
                 FULLNAME = envioNombres_D;
+                envioIdDocente = enviarIdDocente;
+                System.out.println("ID: " + envioIdDocente);
                 FrmInicioDocente loginDocente = new FrmInicioDocente();
                 loginDocente.setVisible(true);
                 this.dispose();

@@ -13,10 +13,9 @@ import lombok.Data;
  * @author BetoCalderon
  */
 @Data
-public class Materias_Docentes {
+public class Materias_Docentes extends Materia{
     protected int idMateriaDocente;
     protected int idDocente;
-    protected int idMateria;
     protected Date Ultima_Modificacion;
     protected int Estado;
 }

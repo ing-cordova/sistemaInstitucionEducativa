@@ -18,6 +18,7 @@ import lombok.EqualsAndHashCode;
 public class Notas extends Materia{
     protected int idNota;
     protected int idEstudiante;
+    protected String Correo_Electronico;
     protected double Periodo1;
     protected double Periodo2;
     protected double Periodo3;  
@@ -25,4 +26,5 @@ public class Notas extends Materia{
     protected double Recuperacion;
     protected Date Ultima_Modificacion;
     protected int Estado;
+    
 }

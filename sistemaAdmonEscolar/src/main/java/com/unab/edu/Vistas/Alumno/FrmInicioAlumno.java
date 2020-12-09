@@ -29,7 +29,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cambio.CambiaPanel(pnCentral, new PnStartAlumno());
-        lblUsuarioActual.setText("Usuario Actual: " + FrmLogin.FULLNAME);
+        lblUsuarioActual.setText("Estudiante Actual: " + FrmLogin.FULLNAME);
     }
 
     /**

@@ -21,13 +21,16 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     
     PnStartDocente pnStart = new PnStartDocente();
     PnStrarMateriasDocente pnMateria = new PnStrarMateriasDocente();
+    PnActividades_Docente pnActividades = new PnActividades_Docente();
+    PnPublicar_Notas pnNotas = new PnPublicar_Notas();
     CambiarPanel cambio = new CambiarPanel();
 
     public FrmInicioDocente() {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        lblUsuarioActual.setText("Usuario Actual: " + FrmLogin.FULLNAME);
+        cambio.CambiaPanel(pnCentral, pnStart);
+        lblUsuarioActual.setText("Docente Actual: " + FrmLogin.FULLNAME);
     }
 
     /**
@@ -47,7 +50,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btninicio = new com.unab.edu.Otros.Boton();
         btnMaterias = new com.unab.edu.Otros.Boton();
-        btnTareas = new com.unab.edu.Otros.Boton();
+        btnNotas = new com.unab.edu.Otros.Boton();
         btnLogOut = new com.unab.edu.Otros.Boton();
         lblImagen = new javax.swing.JLabel();
         btnActividades = new com.unab.edu.Otros.Boton();
@@ -135,12 +138,17 @@ public class FrmInicioDocente extends javax.swing.JFrame {
             }
         });
 
-        btnTareas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Homeworks.png"))); // NOI18N
-        btnTareas.setText("     Tereas");
-        btnTareas.setBorderPainted(false);
-        btnTareas.setFocusPainted(false);
-        btnTareas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnTareas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Homeworks.png"))); // NOI18N
+        btnNotas.setText("     Notas");
+        btnNotas.setBorderPainted(false);
+        btnNotas.setFocusPainted(false);
+        btnNotas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnNotas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNotasActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setForeground(new java.awt.Color(251, 74, 89));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout.png"))); // NOI18N
@@ -164,6 +172,11 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         btnActividades.setFocusPainted(false);
         btnActividades.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActividades.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnActividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActividadesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnIzquierdoLayout = new javax.swing.GroupLayout(pnIzquierdo);
         pnIzquierdo.setLayout(pnIzquierdoLayout);
@@ -182,7 +195,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
                     .addGroup(pnIzquierdoLayout.createSequentialGroup()
                         .addComponent(jSeparator1)
                         .addContainerGap())
-                    .addComponent(btnTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNotas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnActividades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnIzquierdoLayout.setVerticalGroup(
@@ -197,9 +210,9 @@ public class FrmInicioDocente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -253,6 +266,14 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         cambio.CambiaPanel(pnCentral, pnMateria);
     }//GEN-LAST:event_btnMateriasActionPerformed
 
+    private void btnActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActividadesActionPerformed
+        cambio.CambiaPanel(pnCentral, pnActividades);
+    }//GEN-LAST:event_btnActividadesActionPerformed
+
+    private void btnNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotasActionPerformed
+        cambio.CambiaPanel(pnCentral, pnNotas);
+    }//GEN-LAST:event_btnNotasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -292,7 +313,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     private com.unab.edu.Otros.Boton btnActividades;
     private com.unab.edu.Otros.Boton btnLogOut;
     private com.unab.edu.Otros.Boton btnMaterias;
-    private com.unab.edu.Otros.Boton btnTareas;
+    private com.unab.edu.Otros.Boton btnNotas;
     private com.unab.edu.Otros.Boton btninicio;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCerrar;

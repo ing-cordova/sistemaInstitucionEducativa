@@ -69,18 +69,14 @@ public class CLSNotas {
 
     public void ActualizarNotas(Notas not) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_U_Notas(?,?,?,?,?,?,?,?,?,?)");
-
-            Statement.setInt("JIdNota", not.getIdNota());
-            Statement.setInt("JIdEstudiante", not.getIdEstudiante());
-            Statement.setInt("JIdMateria", not.getIdMateria());
-            Statement.setDouble("JPeriodo1", not.getPeriodo1());
-            Statement.setDouble("JPeriodo2", not.getPeriodo2());
-            Statement.setDouble("JPeriodo3", not.getPeriodo3());
-            Statement.setDouble("JNotaFinal", not.getNotaFinal());
-            Statement.setDouble("JRecuperacion", not.getRecuperacion());
-            Statement.setDate("PUltimaModificacion", new java.sql.Date(not.getUltima_Modificacion().getTime()));
-            Statement.setInt("JEstado", not.getEstado());
+            CallableStatement Statement = conectar.prepareCall("call SP_U_NOTA_ALUMNO(?,?,?,?,?,?,?)");
+            Statement.setInt("PidNota", not.getIdNota());
+            Statement.setDouble("PP1", not.getPeriodo1());
+            Statement.setDouble("PP2", not.getPeriodo2());
+            Statement.setDouble("PP3", not.getPeriodo3());
+            Statement.setDouble("PFinal", not.getNotaFinal());
+            Statement.setDouble("PRepo", not.getRecuperacion());
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(not.getUltima_Modificacion().getTime()));
 
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Notas actualizada");
@@ -127,6 +123,34 @@ public class CLSNotas {
                 Notas nota = new Notas();
                 nota.setIdMateria(resultadoConsulta.getInt("idMateria"));
                 nota.setNombre_Materia(resultadoConsulta.getString("Nombre_Materia"));
+                nota.setPeriodo1(resultadoConsulta.getDouble("Periodo1"));
+                nota.setPeriodo2(resultadoConsulta.getDouble("Periodo2"));
+                nota.setPeriodo3(resultadoConsulta.getDouble("Periodo3"));
+                nota.setNotaFinal(resultadoConsulta.getDouble("Nota_Final"));
+                nota.setRecuperacion(resultadoConsulta.getDouble("Recuperacion"));
+
+                Nota.add(nota);
+            }
+            conectar.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return Nota;
+    }
+    
+    public ArrayList<Notas> NOTAS_PUBLICADAS(Notas n) {
+        ArrayList<Notas> Nota = new ArrayList<>();
+
+        try {
+            CallableStatement Statement = conectar.prepareCall("call SP_S_PUBLICAR_NOTAS(?)");
+            Statement.setInt("PidMateria", n.getIdMateria());
+            ResultSet resultadoConsulta = Statement.executeQuery();
+
+            while (resultadoConsulta.next()) {
+                Notas nota = new Notas();
+                nota.setIdNota(resultadoConsulta.getInt("idNota"));
+                nota.setIdEstudiante(resultadoConsulta.getInt("idEstudiante"));
+                nota.setCorreo_Electronico(resultadoConsulta.getString("Correo_Electronico"));
                 nota.setPeriodo1(resultadoConsulta.getDouble("Periodo1"));
                 nota.setPeriodo2(resultadoConsulta.getDouble("Periodo2"));
                 nota.setPeriodo3(resultadoConsulta.getDouble("Periodo3"));

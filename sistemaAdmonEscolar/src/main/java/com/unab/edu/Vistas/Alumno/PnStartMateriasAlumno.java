@@ -6,10 +6,8 @@
 package com.unab.edu.Vistas.Alumno;
 
 import com.unab.edu.DAO.CLSMateria;
-import com.unab.edu.DAO.CLSMateriaAlumno;
 import com.unab.edu.DAO.CLSNotas;
 import com.unab.edu.Entidades.Materia;
-import com.unab.edu.Entidades.Materias_Alumnos;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
 import java.awt.Color;
