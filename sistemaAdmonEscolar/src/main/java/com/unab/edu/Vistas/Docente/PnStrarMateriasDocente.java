@@ -248,6 +248,9 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    String TITULOS1[] = {"CODIGO", "MATERIA SELECCIONADA"};
+    DefaultTableModel ModeloTabla_MatSele = new DefaultTableModel(null, TITULOS1);
+    
     private void tb_Materias_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_Materias_DocenteMouseClicked
         
          //Acá estamos obteniendo la fila que el usuario seleccionó.
