@@ -26,7 +26,7 @@ public class CLSNotas {
         ArrayList<Notas> Nota = new ArrayList<>();
 
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_S_Notas()");
+            CallableStatement Statement = conectar.prepareCall("call SP_S_NOTAS()");
             ResultSet resultadoConsulta = Statement.executeQuery();
 
             while (resultadoConsulta.next()) {
@@ -38,9 +38,9 @@ public class CLSNotas {
                 nota.setPeriodo1(resultadoConsulta.getDouble("Periodo1"));
                 nota.setPeriodo2(resultadoConsulta.getDouble("Periodo2"));
                 nota.setPeriodo3(resultadoConsulta.getDouble("Periodo3"));
-                nota.setNotaFinal(resultadoConsulta.getDouble("NotaFinal"));
+                nota.setNotaFinal(resultadoConsulta.getDouble("Nota_Final"));
                 nota.setRecuperacion(resultadoConsulta.getDouble("Recuperacion"));
-                nota.setUltima_Modificacion(resultadoConsulta.getDate("Fecha"));
+                nota.setUltima_Modificacion(resultadoConsulta.getDate("Ultima_Modificacion"));
                 nota.setEstado(resultadoConsulta.getInt("Estado"));
 
                 Nota.add(nota);
@@ -54,7 +54,7 @@ public class CLSNotas {
 
     public void BorrarNotas(Notas not) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_D_Notas(?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_D_NOTAS(?)");
 
             Statement.setInt("PIdNotas", not.getIdNota());
 

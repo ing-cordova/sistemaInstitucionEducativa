@@ -236,10 +236,10 @@ public class CLSEstudiante {
             st.setString("Nombre", est.getNombre());
             st.setString("Apellido", est.getApellido());
             st.setString("Sexo", est.getSexo());
-            st.setInt("Nombre_GradoAcad", est.getIdGradoAcademico());
+            st.setString("Nombre_GradoAcad", est.getNombre_GradoAcad());
             st.setString("Correo_Electronico", est.getCorreo_Electronico());
                 
-                lista.add(es);
+                lista.add(est);
                 
             }
             conectar.close();

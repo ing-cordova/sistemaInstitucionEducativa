@@ -24,7 +24,7 @@ public class CLSDocente {
         ArrayList<Docente> Docentes = new ArrayList<>();
 
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_S_Docente()");
+            CallableStatement Statement = conectar.prepareCall("call SP_S_DOCENTES()");
             ResultSet resultadoConsulta = Statement.executeQuery();
 
             while (resultadoConsulta.next()) {
@@ -35,7 +35,7 @@ public class CLSDocente {
                 prof.setCorreo_Electronico(resultadoConsulta.getString("Correo_Electronico"));
                 prof.setPass(resultadoConsulta.getString("Pass"));
                 prof.setEspecialidad(resultadoConsulta.getString("Especialidad"));
-                prof.setUltima_Modificacion(resultadoConsulta.getDate("Fecha"));
+                prof.setUltima_Modificacion(resultadoConsulta.getDate("Ultima_Modificacion"));
                 prof.setEstado(resultadoConsulta.getInt("Estado"));
 
                 Docentes.add(prof);
@@ -49,8 +49,8 @@ public class CLSDocente {
 
     public void BorrarDocente(Docente profe) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_D_Docente(?)");
-            Statement.setInt("PIdDocente", profe.getIdDocente());
+            CallableStatement Statement = conectar.prepareCall("call SP_D_DOCENTES(?)");
+            Statement.setInt("PidDocente", profe.getIdDocente());
 
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Docente eliminado");
@@ -64,13 +64,13 @@ public class CLSDocente {
     public void ActualizarDocente(Docente profe) {
 
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_U_Docente(?,?,?,?,?,?,?)");
-            Statement.setInt("PIdDocente", profe.getIdDocente());
-            Statement.setInt("PIdPersona", profe.getIdPersona());
-            Statement.setString("PCorreoElectronico", profe.getCorreo_Electronico());
+            CallableStatement Statement = conectar.prepareCall("call SP_U_DOCENTES(?,?,?,?,?,?,?)");
+            Statement.setInt("PidDocente", profe.getIdDocente());
+            Statement.setInt("PidPersona", profe.getIdPersona());
+            Statement.setString("PCorreo_Electronico", profe.getCorreo_Electronico());
             Statement.setString("PPass", profe.getPass());
             Statement.setString("PEspecialidad", profe.getEspecialidad());
-            Statement.setDate("PUltimaModificacion", new java.sql.Date(profe.getUltima_Modificacion().getTime()));
+            Statement.setDate("PUltima_Modificacion", new java.sql.Date(profe.getUltima_Modificacion().getTime()));
             Statement.setInt("PEstado", profe.getEstado());
 
             Statement.execute();
