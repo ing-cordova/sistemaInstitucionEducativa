@@ -36,6 +36,8 @@ public class PnStartAlumno extends javax.swing.JPanel {
             lbNombre.setText(String.valueOf(iterar.getNombre()));
             lbApellido.setText(String.valueOf(iterar.getApellido()));
             lbSexo.setText(String.valueOf(iterar.getSexo()));
+            lblDUI.setText(String.valueOf(iterar.getDUI()));
+            lblNIT.setText(String.valueOf(iterar.getNIT()));
             lbGradoAcad.setText(String.valueOf(iterar.getNombre_GradoAcad()));
             lbCorreoElect.setText(String.valueOf(iterar.getCorreo_Electronico()));
                
