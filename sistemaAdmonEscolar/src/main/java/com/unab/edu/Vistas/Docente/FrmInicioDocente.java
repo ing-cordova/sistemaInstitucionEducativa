@@ -23,6 +23,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     PnStrarMateriasDocente pnMateria = new PnStrarMateriasDocente();
     PnActividades_Docente pnActividades = new PnActividades_Docente();
     PnPublicar_Notas pnNotas = new PnPublicar_Notas();
+    PnRevisar_Actividades pnRevisar = new PnRevisar_Actividades();
     CambiarPanel cambio = new CambiarPanel();
 
     public FrmInicioDocente() {
@@ -54,6 +55,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         btnLogOut = new com.unab.edu.Otros.Boton();
         lblImagen = new javax.swing.JLabel();
         btnActividades = new com.unab.edu.Otros.Boton();
+        btnRevisar_Acts = new com.unab.edu.Otros.Boton();
         pnCentral = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -178,6 +180,18 @@ public class FrmInicioDocente extends javax.swing.JFrame {
             }
         });
 
+        btnRevisar_Acts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/top-grades.png"))); // NOI18N
+        btnRevisar_Acts.setText("     Revisar Acts");
+        btnRevisar_Acts.setBorderPainted(false);
+        btnRevisar_Acts.setFocusPainted(false);
+        btnRevisar_Acts.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnRevisar_Acts.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnRevisar_Acts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRevisar_ActsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnIzquierdoLayout = new javax.swing.GroupLayout(pnIzquierdo);
         pnIzquierdo.setLayout(pnIzquierdoLayout);
         pnIzquierdoLayout.setHorizontalGroup(
@@ -197,6 +211,9 @@ public class FrmInicioDocente extends javax.swing.JFrame {
                         .addContainerGap())
                     .addComponent(btnNotas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnActividades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(pnIzquierdoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRevisar_Acts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnIzquierdoLayout.setVerticalGroup(
             pnIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +230,9 @@ public class FrmInicioDocente extends javax.swing.JFrame {
                 .addComponent(btnActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRevisar_Acts, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -274,6 +293,10 @@ public class FrmInicioDocente extends javax.swing.JFrame {
         cambio.CambiaPanel(pnCentral, pnNotas);
     }//GEN-LAST:event_btnNotasActionPerformed
 
+    private void btnRevisar_ActsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevisar_ActsActionPerformed
+        cambio.CambiaPanel(pnCentral, pnRevisar);
+    }//GEN-LAST:event_btnRevisar_ActsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -314,6 +337,7 @@ public class FrmInicioDocente extends javax.swing.JFrame {
     private com.unab.edu.Otros.Boton btnLogOut;
     private com.unab.edu.Otros.Boton btnMaterias;
     private com.unab.edu.Otros.Boton btnNotas;
+    private com.unab.edu.Otros.Boton btnRevisar_Acts;
     private com.unab.edu.Otros.Boton btninicio;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCerrar;

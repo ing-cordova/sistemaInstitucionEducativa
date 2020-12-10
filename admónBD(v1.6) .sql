@@ -31,6 +31,7 @@ CREATE TABLE `actividades` (
   `Nombre_Actividad` varchar(45) DEFAULT NULL,
   `Porcentaje` decimal(4,2) DEFAULT NULL,
   `Fecha_Entrega` date DEFAULT NULL,
+  `Estado_Actividad` varchar(45) DEFAULT NULL,
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idActividad`),
@@ -39,8 +40,18 @@ CREATE TABLE `actividades` (
   KEY `Fk_idMateria5_idx` (`idMateria`),
   CONSTRAINT `FK_idDocente3` FOREIGN KEY (`idDocente`) REFERENCES `docentes` (`idDocente`),
   CONSTRAINT `Fk_idMateria5` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `actividades`
+--
+
+LOCK TABLES `actividades` WRITE;
+/*!40000 ALTER TABLE `actividades` DISABLE KEYS */;
+INSERT INTO `actividades` VALUES (24,1,6,'Tercer Laboratorio',1.00,'2020-12-12','Recibida','2020-12-09',0),(25,1,1,'Tarea Sumativa',0.15,'2020-12-11','Recibida','2020-12-09',0),(26,1,1,'Tercer Examen Parcial',0.50,'2020-12-19','Recibida','2020-12-09',0),(27,1,2,'Tercer Laboratorio',0.40,'2020-12-11','Recibida','2020-12-09',0),(28,1,3,'Tercer Examen Parcial P1',0.50,'2020-12-10','Recibida','2020-12-09',0),(29,1,4,'Tercer Examen Parcial',0.60,'2020-12-18','Recibida','2020-12-09',0),(30,1,1,'Primer Examen de Laboratorio',0.50,'2020-12-23','Recibida','2020-12-09',1),(31,1,2,'Primer Examen de Laboratorio',0.40,'2020-12-23','Recibida','2020-12-09',1);
+/*!40000 ALTER TABLE `actividades` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `actividades_estudiantes`
@@ -66,8 +77,18 @@ CREATE TABLE `actividades_estudiantes` (
   CONSTRAINT `FK_idActividad` FOREIGN KEY (`idActividad`) REFERENCES `actividades` (`idActividad`),
   CONSTRAINT `FK_idEstudiante` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiante`),
   CONSTRAINT `FK_idMateria` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `actividades_estudiantes`
+--
+
+LOCK TABLES `actividades_estudiantes` WRITE;
+/*!40000 ALTER TABLE `actividades_estudiantes` DISABLE KEYS */;
+INSERT INTO `actividades_estudiantes` VALUES (1,1,26,1,0.00,_binary '%PDF-1.7\r\n%µµµµ\r\n1 0 obj\r\n<</Type/Catalog/Pages 2 0 R/Lang(es-SV) /S','Entregada','2020-12-09',1),(2,1,29,4,0.00,_binary '%PDF-1.7\r\n%µµµµ\r\n1 0 obj\r\n<</Type/Catalog/Pages 2 0 R/Lang(es-SV) /St','Entregada','2020-12-09',1),(3,1,26,1,0.00,NULL,'Entregada','2020-12-09',1),(4,1,29,4,0.00,_binary '%PDF-1.7\r\n%µµµµ\r\n1 0 obj\r\n<</Type/Catalog/Pages 2 0 R/Lang','Entregada','2020-12-09',1),(5,1,26,1,0.00,_binary '%PDF-1.7\r\n%µµµµ\r\n1 0 obj\r\n<</Type/Catalog/Pages 2 0 R/Lang(es-SV) /S','Entregada','2020-12-09',1),(6,1,29,4,0.00,_binary '%PDF-1.7\r\n%µµµµ\r\n1 0 obj\r\n<</Type/Catalog/Pages 2 0 R/Lang(es-S','Entregada','2020-12-09',1),(7,1,26,1,0.00,_binary '%PDF-1.7\r\n%µµµµ\r\n1 0 obj\r\n<</Type/Catalog/Pages 2 0 R/Lang','Entregada','2020-12-09',1),(8,1,26,1,0.00,NULL,'Entregada','2020-12-09',1),(10,1,26,1,0.00,_binary '%PDF-1.7\r\n%µµµµ\r\n1 0 obj\r\n<</Type/Catalog/Pages 2 0 R/Lang','Entregada','2020-12-09',1),(11,1,30,1,0.00,_binary '%PDF-1.7\r\n%µµµµ\r\n1 0 obj\r\n<</Type/Catalog/Pages 2 0 R/Lang(es-SV) /St','Entregada','2020-12-09',1);
+/*!40000 ALTER TABLE `actividades_estudiantes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `docentes`
@@ -87,8 +108,18 @@ CREATE TABLE `docentes` (
   PRIMARY KEY (`idDocente`),
   KEY `FK_idPersona_idx` (`idPersona`),
   CONSTRAINT `FK_idPersona` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `docentes`
+--
+
+LOCK TABLES `docentes` WRITE;
+/*!40000 ALTER TABLE `docentes` DISABLE KEYS */;
+INSERT INTO `docentes` VALUES (1,2,'julio.serrano@unab.edu.sv','b89c887a62ff3715f457097f861bbecf69b98b72d6b3971a8eef7d962028e43a128b1b2cc7fabbe0e809ff703bf75108ca60aec4d4443611ce46096237f796f2','Ingeniero en Sistemas','2020-12-06',1),(2,3,'fatima.calles@unab.edu.sv','75b51441152bc22952b0403faf428475c880fdcdce0ca712309a2bb4c1c290e854d02ed4adb698f0b939382b708c83b58d1167b27931d9a5ae6dfdeb4418c977','Ingeniera en Sistemas','2020-12-06',1);
+/*!40000 ALTER TABLE `docentes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `estudiantes`
@@ -110,8 +141,18 @@ CREATE TABLE `estudiantes` (
   KEY `FK_idGradoAcademico_idx` (`idGradoAcademico`),
   CONSTRAINT `FK_idGradoAcademico` FOREIGN KEY (`idGradoAcademico`) REFERENCES `grados_academicos` (`idGradoAcademico`),
   CONSTRAINT `FK_idPersona1` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estudiantes`
+--
+
+LOCK TABLES `estudiantes` WRITE;
+/*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
+INSERT INTO `estudiantes` VALUES (1,1,'co0428032019@unab.edu.sv','d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db',1,'2020-12-03',1),(2,4,'bl0536452879@unab.edu.sv','d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db',1,'2020-12-07',1);
+/*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `grados_academicos`
@@ -126,8 +167,18 @@ CREATE TABLE `grados_academicos` (
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idGradoAcademico`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `grados_academicos`
+--
+
+LOCK TABLES `grados_academicos` WRITE;
+/*!40000 ALTER TABLE `grados_academicos` DISABLE KEYS */;
+INSERT INTO `grados_academicos` VALUES (1,'IngenierÃ­a en Sistemas','2020-12-02',1),(2,'Lic. en EnfermerÃ­a','2020-12-02',1),(3,'Lic. en Trabajo Social','2020-12-02',1),(4,'Lic. en ComputaciÃ³n','2020-12-02',1),(5,'Lic. en AdmÃ³n de Empresas','2020-12-02',1),(6,'Lic. Ciencias JurÃ­dicas','2020-12-02',1),(7,'Lic. en ContadurÃ­a PÃºblica','2020-12-02',1),(8,'TÃ©c. en DiseÃ±o GrÃ¡fico','2020-12-02',1);
+/*!40000 ALTER TABLE `grados_academicos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `materias`
@@ -146,8 +197,18 @@ CREATE TABLE `materias` (
   KEY `fk_idMateria_idx` (`idMateria`),
   KEY `FK_idGradoAcademico4_idx` (`idGradoAcademico`),
   CONSTRAINT `FK_idGradoAcademico4` FOREIGN KEY (`idGradoAcademico`) REFERENCES `grados_academicos` (`idGradoAcademico`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materias`
+--
+
+LOCK TABLES `materias` WRITE;
+/*!40000 ALTER TABLE `materias` DISABLE KEYS */;
+INSERT INTO `materias` VALUES (1,1,'MatemÃ¡tica IV','2020-12-02',1),(2,1,'FÃ­sica I','2020-12-02',1),(3,1,'Sistemas Operativos I','2020-12-02',1),(4,1,'P.G de EconomÃ­a','2020-12-02',1),(5,1,'P.O a Objetos','2020-12-02',1),(6,1,'Sistemas Digitales','2020-12-02',1);
+/*!40000 ALTER TABLE `materias` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `materias_alumnos`
@@ -171,6 +232,15 @@ CREATE TABLE `materias_alumnos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `materias_alumnos`
+--
+
+LOCK TABLES `materias_alumnos` WRITE;
+/*!40000 ALTER TABLE `materias_alumnos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `materias_alumnos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `materias_docentes`
 --
 
@@ -188,8 +258,18 @@ CREATE TABLE `materias_docentes` (
   KEY `FK_idMateria4_idx` (`idMateria`),
   CONSTRAINT `FK_idDocente` FOREIGN KEY (`idDocente`) REFERENCES `docentes` (`idDocente`),
   CONSTRAINT `FK_idMateria4` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materias_docentes`
+--
+
+LOCK TABLES `materias_docentes` WRITE;
+/*!40000 ALTER TABLE `materias_docentes` DISABLE KEYS */;
+INSERT INTO `materias_docentes` VALUES (1,1,1,'2020-12-07',1),(2,1,2,'2020-12-07',1),(3,1,3,'2020-12-07',1),(4,1,4,'2020-12-07',1),(5,1,5,'2020-12-07',1),(6,1,6,'2020-12-07',1);
+/*!40000 ALTER TABLE `materias_docentes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `notas`
@@ -214,8 +294,18 @@ CREATE TABLE `notas` (
   KEY `FK_idMateria_idx` (`idMateria`),
   CONSTRAINT `FK_idEstudiante2` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiante`),
   CONSTRAINT `FK_idMateria3` FOREIGN KEY (`idMateria`) REFERENCES `materias` (`idMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notas`
+--
+
+LOCK TABLES `notas` WRITE;
+/*!40000 ALTER TABLE `notas` DISABLE KEYS */;
+INSERT INTO `notas` VALUES (1,1,1,3.30,3.30,3.30,9.90,0.00,'2020-12-09',1),(2,1,4,3.23,2.87,3.30,9.41,0.00,'2020-12-09',1),(3,1,5,3.30,2.31,0.99,6.60,0.00,'2020-12-09',1),(4,1,2,2.64,1.98,2.97,7.59,0.00,'2020-12-07',1),(5,1,6,2.81,2.38,3.23,8.42,0.00,'2020-12-09',1),(6,2,1,0.00,0.00,0.00,0.00,0.00,'2020-12-09',1),(7,2,2,0.00,0.00,0.00,0.00,0.00,'2020-12-07',1),(8,2,3,0.00,0.00,0.00,0.00,0.00,'2020-12-07',1),(9,2,4,0.00,0.00,0.00,0.00,0.00,'2020-12-07',1),(10,2,5,0.00,0.00,0.00,0.00,0.00,'2020-12-07',1);
+/*!40000 ALTER TABLE `notas` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `personas`
@@ -235,8 +325,18 @@ CREATE TABLE `personas` (
   `Ultima_Modificacion` date DEFAULT NULL,
   `Estado` int DEFAULT NULL,
   PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personas`
+--
+
+LOCK TABLES `personas` WRITE;
+/*!40000 ALTER TABLE `personas` DISABLE KEYS */;
+INSERT INTO `personas` VALUES (1,'Andres Eduardo','CÃ³rdova Orellana','Masculino','05259878-8','0407-030601-520-9','2001-03-06','2020-12-03',1),(2,'Julio David','Amaya Serrano','Masculino','01258964-7','0407-020509-101-4','1990-01-16','2020-12-06',1),(3,'Fatima Marlene','Cruz Calles','Femenino','05896345-8','0304-108596-123-5','2001-09-23','2020-12-06',1),(4,'Oscar Alfredo','Barrera Lopez','Masculino','08569878-2','0407-101654-132-2','2001-12-26','2020-12-07',1);
+/*!40000 ALTER TABLE `personas` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'administracionescolar'
@@ -435,9 +535,30 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_ACTIVIDAD`(PidDocente int, PidMateria int, PNombre_Actividad varchar(45), PPorcentaje decimal(4,2), PFecha_Entrega date,PUltima_Modificacion date, PEstado int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_ACTIVIDAD`(PidDocente int, PidMateria int, PNombre_Actividad varchar(45), PPorcentaje decimal(4,2), PFecha_Entrega date, PEstado_Actividad varchar(45), PUltima_Modificacion date, PEstado int)
 BEGIN
-Insert into actividades(idDocente, idMateria, Nombre_Actividad, Porcentaje, Fecha_Entrega,Ultima_Modificacion, Estado) values(PidDocente, PidMateria, PNombre_Actividad, PPorcentaje, PFecha_Entrega,PUltima_Modificacion, PEstado);
+Insert into actividades(idDocente, idMateria, Nombre_Actividad, Porcentaje, Fecha_Entrega, Estado_Actividad, Ultima_Modificacion, Estado) values(PidDocente, PidMateria, PNombre_Actividad, PPorcentaje, PFecha_Entrega, PEstado_Actividad, PUltima_Modificacion, PEstado);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_I_ACTIVIDADES_ESTUDIANTES` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_ACTIVIDADES_ESTUDIANTES`(PidEstudiante int, PidActividad int, PidMateria int, 
+PNota decimal(4,2), PArchivo mediumblob, PEstado_Act varchar(45), PUltima_Modificacion date, PEstado int)
+BEGIN
+Insert into actividades_estudiantes(idEstudiante, idActividad, idMateria, Nota_Obtenida, Archivo, Estado_Actividad, Ultima_Modificacion, Estado)
+values(PidEstudiante, PidActividad, PidMateria, PNota, PArchivo, PEstado_Act, PUltima_Modificacion, PEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -772,6 +893,30 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_JOINESTUDIANTEPERSONA` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_JOINESTUDIANTEPERSONA`(
+PidEstudiante int(11))
+BEGIN
+select p.Nombre, p.Apellido, p.Sexo, p.Nit, p.Dui, ga.Nombre_GradoAcad, e.Correo_Electronico
+from estudiantes as e
+	inner join personas as p on e.idPersona = p.idPersona
+    inner join grados_academicos as ga on e.idGradoAcademico = ga.idGradoAcademico
+    where e.idEstudiante = PidEstudiante;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_S_JOIN_DOCENTEPERSONA` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -935,6 +1080,26 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_MOSTRAR_ACTS`()
 BEGIN
 Select a.idActividad, a.idMateria, m.Nombre_Materia, a.Nombre_Actividad, a.Porcentaje, a.Fecha_Entrega from actividades as a
 inner join materias as m on a.idMateria = m.idMateria where a.Estado=1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_S_MOSTRAR_TAREAS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_MOSTRAR_TAREAS`(PidMateria int)
+BEGIN
+Select idActividad, Nombre_Actividad, Porcentaje, Fecha_Entrega, Estado_Actividad from actividades as a
+where Estado_Actividad='Recibida' and idMateria = PidMateria and Estado=1;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1319,4 +1484,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-07 22:58:52
+-- Dump completed on 2020-12-09 22:20:39
