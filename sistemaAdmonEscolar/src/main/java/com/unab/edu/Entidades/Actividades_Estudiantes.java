@@ -13,12 +13,12 @@ import lombok.Data;
  * @author BetoCalderon
  */
 @Data 
-public class Actividades_Estudiantes {
+public class Actividades_Estudiantes extends Actividades{
     protected int idActividadEstudiante;
     protected int idEstudiante;
-    protected int idActividad;
+    protected int idMateria;
     protected double Nota_Obtenida;
-    protected Byte  Archivo;
+    protected byte[]  Archivo;
     protected Date Ultima_Modificacion;
     protected int Estado;
     

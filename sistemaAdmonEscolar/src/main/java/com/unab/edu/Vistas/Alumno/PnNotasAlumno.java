@@ -25,6 +25,7 @@ public class PnNotasAlumno extends javax.swing.JPanel {
         
         lblNombre_Estudiante.setText("> " + FrmLogin.FULLNAME);
         Mostrar_Tabla_Materias();
+        tb_Notas.setEnabled(false);
     }
 
     public void Mostrar_Tabla_Materias() {
@@ -118,8 +119,14 @@ public class PnNotasAlumno extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/libro-abierto.png"))); // NOI18N
 
         lblActulizar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        lblActulizar.setForeground(new java.awt.Color(255, 255, 255));
         lblActulizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browser.png"))); // NOI18N
         lblActulizar.setText("Actualizar");
+        lblActulizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblActulizarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -149,15 +156,20 @@ public class PnNotasAlumno extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(76, 76, 76)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre_Estudiante)
                     .addComponent(lblActulizar))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblActulizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActulizarMouseClicked
+        
+        Mostrar_Tabla_Materias();
+    }//GEN-LAST:event_lblActulizarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

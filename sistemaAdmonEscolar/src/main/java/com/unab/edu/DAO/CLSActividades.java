@@ -25,12 +25,13 @@ public class CLSActividades {
     public void AgregarActividad(Actividades act) {
 
         try {
-            CallableStatement statement = conectar.prepareCall("call SP_I_ACTIVIDAD(?,?,?,?,?,?,?)");
+            CallableStatement statement = conectar.prepareCall("call SP_I_ACTIVIDAD(?,?,?,?,?,?,?,?)");
             statement.setInt("PidDocente", act.getIdDocente());
             statement.setInt("PidMateria", act.getIdMateria());
             statement.setString("PNombre_Actividad", act.getNombre_Actividad());
             statement.setDouble("PPorcentaje", act.getPorcentaje());
             statement.setDate("PFecha_Entrega", new java.sql.Date(act.getFecha_Entrega().getTime()));
+            statement.setString("PEstado_Actividad", act.getEstado_Actividad());
             statement.setDate("PUltima_Modificacion", new java.sql.Date(act.getUltima_Modificacion().getTime()));
             statement.setInt("PEstado", act.getEstado());
 
@@ -61,7 +62,7 @@ public class CLSActividades {
                 act.setFecha_Entrega(rs.getDate("Fecha_Entrega"));
                 actividades.add(act);
             }
-            
+
             conectar.close();
         } catch (Exception e) {
         }
@@ -80,30 +81,56 @@ public class CLSActividades {
             st.setDate("PFecha_Entrega", new java.sql.Date(act.getFecha_Entrega().getTime()));
             st.setDate("PUltima_Modificacion", new java.sql.Date(act.getUltima_Modificacion().getTime()));
             st.setInt("PEstado", act.getEstado());
-            
+
             st.execute();
             JOptionPane.showMessageDialog(null, "¡ ACTIVIDAD ACTUALIZADA CON EXITO !");
-            
+
             conectar.close();
         } catch (Exception e) {
-            
+
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public void EliminarActividad(Actividades act) {
 
         try {
             CallableStatement st = conectar.prepareCall("call SP_D_ACTIVIDAD(?)");
             st.setInt("PidActividad", act.getIdActividad());
-            
+
             st.execute();
             JOptionPane.showMessageDialog(null, "¡ ACTIVIDAD ELIMINADA CON EXITO !");
-            
+
             conectar.close();
         } catch (Exception e) {
-            
+
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+
+    public ArrayList<Actividades> Mostrar_Tareas_By_Materia(Actividades act) {
+
+        ArrayList<Actividades> lista = new ArrayList<>();
+        try {
+            CallableStatement statement = conectar.prepareCall("call SP_S_MOSTRAR_TAREAS(?)");
+            statement.setInt("PidMateria", act.getIdMateria());
+            ResultSet rs = statement.executeQuery();
+            
+            while(rs.next()){
+                
+                Actividades activ = new Actividades();
+                activ.setIdActividad(rs.getInt("idActividad"));
+                activ.setNombre_Actividad(rs.getString("Nombre_Actividad"));
+                activ.setPorcentaje(rs.getDouble("Porcentaje"));
+                activ.setFecha_Entrega(rs.getDate("Fecha_Entrega"));
+                activ.setEstado_Actividad(rs.getString("Estado_Actividad"));
+                
+                lista.add(activ);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        return lista;
     }
 }

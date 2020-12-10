@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymealft.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>ADMIN ESCOLAR | INICIO</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<th>GRADO ACADEMICO</th>
+		</thead>
+		<tbody>
+			<tr th:each="Grados_Academicos : ${grados}">
+				<td th:text="${Grados_Academicos.Nombre_GradoAcad}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

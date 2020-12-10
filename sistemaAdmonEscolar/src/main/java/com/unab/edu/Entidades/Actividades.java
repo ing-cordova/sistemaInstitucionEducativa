@@ -19,6 +19,7 @@ public class Actividades extends Materia{
     protected String Nombre_Actividad;
     protected double Porcentaje;
     protected Date Fecha_Entrega;
+    protected String Estado_Actividad;
     protected Date Ultima_Modificacion;
     protected int Estado;
 }

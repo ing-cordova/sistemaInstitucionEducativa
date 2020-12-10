@@ -5,13 +5,24 @@
  */
 package com.unab.edu.Vistas.Alumno;
 
+import com.unab.edu.DAO.CLSActividades;
+import com.unab.edu.DAO.CLSActividades_Alumno;
 import com.unab.edu.DAO.CLSNotas;
+import com.unab.edu.Entidades.Actividades;
+import com.unab.edu.Entidades.Actividades_Estudiantes;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +37,8 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         initComponents();
         txtActividad.setEditable(false);
         MostrarMaterias();
+        limpiarTabla(tb_Tareas);
+        lbl_idActividad.setVisible(false);
     }
 
     /**
@@ -43,15 +56,16 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtActividad = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        lbl_Actualizar = new javax.swing.JLabel();
         btnEntregar = new com.unab.edu.Otros.Boton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tb_Tareas = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         btnSeleccionar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        lbl_idActividad = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(68, 130, 195));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -80,7 +94,12 @@ public class PnTareasAlumno extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browser.png"))); // NOI18N
+        lbl_Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browser.png"))); // NOI18N
+        lbl_Actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_ActualizarMouseClicked(evt);
+            }
+        });
 
         btnEntregar.setText("  Marcar como Entregada");
         btnEntregar.setBorderPainted(false);
@@ -93,18 +112,24 @@ public class PnTareasAlumno extends javax.swing.JPanel {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Tareas.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        tb_Tareas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        tb_Tareas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_TareasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tb_Tareas);
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,6 +157,8 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/leer.png"))); // NOI18N
         jLabel7.setText("jLabel7");
 
+        lbl_idActividad.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,9 +172,9 @@ public class PnTareasAlumno extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_Materias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cb_Materias, 0, 327, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(lbl_Actualizar)
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +184,8 @@ public class PnTareasAlumno extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lbl_idActividad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnEntregar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,13 +199,13 @@ public class PnTareasAlumno extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEstado)
-                        .addGap(190, 190, 190))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 110, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
+                        .addGap(190, 190, 190))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +216,7 @@ public class PnTareasAlumno extends javax.swing.JPanel {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addComponent(lbl_Actualizar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(cb_Materias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -208,19 +236,71 @@ public class PnTareasAlumno extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSeleccionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEntregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEntregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_idActividad))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-        
+
         SeleccionarPDF();
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
-        System.out.println("Materia Seleccionada: " + Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]));
+
+        int combo = Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]);
+        Date date = new Date();
+        CLSActividades_Alumno clsAct_Almuno = new CLSActividades_Alumno();
+        Actividades_Estudiantes act_est = new Actividades_Estudiantes();
+        act_est.setIdEstudiante(FrmLogin.envioIdEstudiante);
+        act_est.setIdActividad(Integer.parseInt(lbl_idActividad.getText()));
+        act_est.setIdMateria(combo);
+        act_est.setNota_Obtenida(0.00);
+
+        try {
+            byte[] pdf = new byte[(int) ruta_archivo.length()];
+            InputStream input = new FileInputStream(ruta_archivo);
+            input.read(pdf);
+            act_est.setArchivo(pdf);
+        } catch (Exception e) {
+
+            act_est.setArchivo(null);
+        }
+
+        act_est.setEstado_Actividad("Entregada");
+        act_est.setUltima_Modificacion(date);
+        act_est.setEstado(1);
+
+        clsAct_Almuno.Insertar_Actividad(act_est);
+        Limpiar_Controles();
+
     }//GEN-LAST:event_btnEntregarActionPerformed
+
+    private void lbl_ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ActualizarMouseClicked
+
+        if (cb_Materias.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "¡Aún no se ha seleccionado una materia!");
+        } else {
+            Mostrar_Tareas();
+        }
+    }//GEN-LAST:event_lbl_ActualizarMouseClicked
+
+    private void tb_TareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_TareasMouseClicked
+
+        int combo = Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]);
+        //Acá estamos obteniendo la fila que el usuario seleccionó.
+        int filas = tb_Tareas.getSelectedRow();
+
+        String IdActividad = String.valueOf(tb_Tareas.getValueAt(filas, 0));
+        String NombreActividad = String.valueOf(tb_Tareas.getValueAt(filas, 1));
+        String Estado = String.valueOf(tb_Tareas.getValueAt(filas, 4));
+
+        lbl_idActividad.setText(IdActividad);
+        txtActividad.setText(NombreActividad);
+        lblEstado.setText(Estado);
+    }//GEN-LAST:event_tb_TareasMouseClicked
 
     String ruta_archivo = "";
 
@@ -236,7 +316,29 @@ public class PnTareasAlumno extends javax.swing.JPanel {
             ruta_archivo = jchooser.getSelectedFile().getAbsolutePath();
         }
     }
-    
+
+    public void Limpiar_Controles() {
+
+        cb_Materias.setSelectedIndex(0);
+        txtActividad.setText("");
+        lblEstado.setText("");
+        lbl_idActividad.setText("0");
+        limpiarTabla(tb_Tareas);
+        btnSeleccionar.setText("Seleccione un archivo pdf...");
+    }
+
+    public void limpiarTabla(JTable Tabla) {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
+            int filas = Tabla.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modelo.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        }
+    }
+
     String valueMember[];
     int contador = 1;
 
@@ -262,7 +364,56 @@ public class PnTareasAlumno extends javax.swing.JPanel {
 
         cb_Materias.setModel(cbdefault);
     }
-    
+
+    SimpleDateFormat formato = new SimpleDateFormat("d MMM y");
+
+    public void Mostrar_Tareas() {
+
+        int combo = Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]);
+        String TITULOS[] = {"CODIGO", "ACTIVIDAD", "PORCENTAJE", "FECHA LIMITE", "ESTADO"};
+        DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
+        CLSActividades clsActividades = new CLSActividades();
+        Actividades act = new Actividades();
+        act.setIdMateria(combo);
+        ArrayList<Actividades> vistaTareas = clsActividades.Mostrar_Tareas_By_Materia(act);
+        String Filas[] = new String[6];
+
+        for (var iterar : vistaTareas) {
+
+            Filas[0] = String.valueOf(iterar.getIdActividad());
+            Filas[1] = String.valueOf(iterar.getNombre_Actividad());
+            Filas[2] = String.valueOf(iterar.getPorcentaje());
+
+            if (iterar.getFecha_Entrega() == null) {
+                Filas[3] = "--/--/--";
+            } else {
+                Filas[3] = String.valueOf(formato.format(iterar.getFecha_Entrega()));
+            }
+
+            Filas[4] = String.valueOf(iterar.getEstado_Actividad());
+
+            ModeloTabla.addRow(Filas);
+        }
+
+        tb_Tareas.setModel(ModeloTabla);
+
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(0).setPreferredWidth(60);
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(60);
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(0).setMinWidth(60);
+
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(2).setPreferredWidth(85);
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(85);
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(2).setMinWidth(85);
+
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(4).setPreferredWidth(85);
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(85);
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(4).setMinWidth(85);
+
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(3).setPreferredWidth(100);
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(100);
+        tb_Tareas.getTableHeader().getColumnModel().getColumn(3).setMinWidth(100);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnEntregar;
     private javax.swing.JButton btnSeleccionar;
@@ -270,14 +421,15 @@ public class PnTareasAlumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lbl_Actualizar;
+    private javax.swing.JLabel lbl_idActividad;
+    private javax.swing.JTable tb_Tareas;
     private javax.swing.JTextField txtActividad;
     // End of variables declaration//GEN-END:variables
 }
