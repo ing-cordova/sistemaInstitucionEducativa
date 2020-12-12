@@ -17,6 +17,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author CruzCalles
@@ -28,23 +29,22 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
      */
     public PnStartMateriasAlumno() {
         initComponents();
-        
+
         tb_Materias.getTableHeader().setOpaque(false);
-        tb_Materias.setBackground(new Color(0,201,215));
-        tb_Materias.setForeground(new Color(255,255,255));
+        tb_Materias.setBackground(new Color(0, 201, 215));
+        tb_Materias.setForeground(new Color(255, 255, 255));
         tb_Materias.setRowHeight(25);
-        
+
         tb_MateriasAInscribir.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_MateriasAInscribir.getTableHeader().setOpaque(false);
-        tb_MateriasAInscribir.setBackground(new Color(0,201,215));
-        tb_MateriasAInscribir.setForeground(new Color(255,255,255));
+        tb_MateriasAInscribir.setBackground(new Color(0, 201, 215));
+        tb_MateriasAInscribir.setForeground(new Color(255, 255, 255));
         tb_MateriasAInscribir.setRowHeight(25);
-        
 
         limpiarTabla(tb_MateriasAInscribir);
         Mostrar_Tabla_Materias();
     }
-    
+
     public void limpiarTabla(JTable Tabla) {
         try {
             DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
@@ -73,7 +73,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tb_Materias = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        scrollPaneMaterias_A_Inscribir = new javax.swing.JScrollPane();
         tb_MateriasAInscribir = new javax.swing.JTable();
         lblEliminar = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -146,7 +146,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         tb_MateriasAInscribir.setSelectionBackground(new java.awt.Color(48, 218, 174));
         tb_MateriasAInscribir.setShowVerticalLines(false);
         tb_MateriasAInscribir.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(tb_MateriasAInscribir);
+        scrollPaneMaterias_A_Inscribir.setViewportView(tb_MateriasAInscribir);
 
         lblEliminar.setBackground(new java.awt.Color(68, 130, 195));
         lblEliminar.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -186,7 +186,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPaneMaterias_A_Inscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -214,7 +214,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(lblEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneMaterias_A_Inscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -249,7 +249,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         } else if (tb_MateriasAInscribir.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
         } else {
-            
+
             ModeloTabla_MatSele.removeRow(tb_MateriasAInscribir.getSelectedRow());
         }
     }//GEN-LAST:event_lblEliminarMouseClicked
@@ -286,15 +286,15 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         } else {
 
             String botones[] = {"Aceptar", "Cancelar"};
-            int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres matricular " + tb_MateriasAInscribir.getRowCount() + " materias? \n\nYo que tu, lo pensara más.", "Confirmar", 0, 0, null, botones, this);
+            int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres matricular " + tb_MateriasAInscribir.getRowCount() + " materias?", "Confirmar", 0, 0, null, botones, this);
 
             if (opcion == JOptionPane.YES_OPTION) {
                 for (int i = 0; i < tb_MateriasAInscribir.getRowCount(); i++) {
+
                     CLSNotas clsNotas = new CLSNotas();
                     Notas notas = new Notas();
                     String idMateria = String.valueOf(tb_MateriasAInscribir.getValueAt(i, 0));
                     int idMateriaC = Integer.parseInt(idMateria);
-
                     notas.setIdEstudiante(FrmLogin.envioIdEstudiante);
                     notas.setIdMateria(idMateriaC);
                     notas.setPeriodo1(0);
@@ -304,7 +304,6 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
                     notas.setRecuperacion(0);
                     notas.setUltima_Modificacion(date);
                     notas.setEstado(1);
-
                     clsNotas.AgregarNotas(notas);
                 }
 
@@ -340,7 +339,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
 
         tb_Materias.setModel(ModeloTabla);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnInscribir;
     private javax.swing.JLabel jLabel1;
@@ -349,8 +348,8 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblEliminar;
+    private javax.swing.JScrollPane scrollPaneMaterias_A_Inscribir;
     private javax.swing.JTable tb_Materias;
     private javax.swing.JTable tb_MateriasAInscribir;
     // End of variables declaration//GEN-END:variables

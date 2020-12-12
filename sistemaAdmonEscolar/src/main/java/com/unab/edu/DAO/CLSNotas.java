@@ -110,7 +110,7 @@ public class CLSNotas {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public ArrayList<Notas> MostrarNotaByStudente(Notas n) {
         ArrayList<Notas> Nota = new ArrayList<>();
 
@@ -137,7 +137,7 @@ public class CLSNotas {
         }
         return Nota;
     }
-    
+
     public ArrayList<Notas> NOTAS_PUBLICADAS(Notas n) {
         ArrayList<Notas> Nota = new ArrayList<>();
 
@@ -164,5 +164,26 @@ public class CLSNotas {
             JOptionPane.showMessageDialog(null, e);
         }
         return Nota;
+    }
+
+    public boolean Verificar_Materias(int idEstudiante) {
+
+        boolean verifica = false;
+
+        try {
+
+            CallableStatement st = conectar.prepareCall("call SP_S_VERIFICAR_MATERIAS(?)");
+            st.setInt("PidEstudiante", idEstudiante);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                verifica = true;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        return verifica;
     }
 }

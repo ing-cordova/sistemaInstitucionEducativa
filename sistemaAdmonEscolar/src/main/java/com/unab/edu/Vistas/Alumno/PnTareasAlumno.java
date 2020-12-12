@@ -254,6 +254,7 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         Date date = new Date();
         CLSActividades_Alumno clsAct_Almuno = new CLSActividades_Alumno();
         Actividades_Estudiantes act_est = new Actividades_Estudiantes();
+
         act_est.setIdEstudiante(FrmLogin.envioIdEstudiante);
         act_est.setIdActividad(Integer.parseInt(lbl_idActividad.getText()));
         act_est.setIdMateria(combo);
@@ -273,8 +274,23 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         act_est.setUltima_Modificacion(date);
         act_est.setEstado(1);
 
-        clsAct_Almuno.Insertar_Actividad(act_est);
-        Limpiar_Controles();
+        System.out.println("Hay datos: " + clsAct_Almuno.Verificar_Entrega(act_est));
+        if (clsAct_Almuno.Verificar_Entrega(act_est) == true) {
+            JOptionPane.showMessageDialog(null, "¡Esta actividad ya ha sido enviada!");
+        } else {
+
+            String botones[] = {"Entregar", "Cancelar"};
+            int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres enviar " + txtActividad.getText() + "? \nLa acción no se podrá deshacer", "Confirmar", 0, 0, null, botones, this);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                clsAct_Almuno.Insertar_Actividad(act_est);
+                Limpiar_Controles();
+            } else if (opcion == JOptionPane.NO_OPTION) {
+                System.out.println("¡Cancelado!");
+            }
+
+        }
+
 
     }//GEN-LAST:event_btnEntregarActionPerformed
 

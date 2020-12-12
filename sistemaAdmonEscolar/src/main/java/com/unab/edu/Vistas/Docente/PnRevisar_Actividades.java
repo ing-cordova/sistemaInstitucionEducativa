@@ -5,6 +5,15 @@
  */
 package com.unab.edu.Vistas.Docente;
 
+import com.unab.edu.DAO.CLSActividades;
+import com.unab.edu.DAO.CLSMateriaDocente;
+import com.unab.edu.Entidades.Actividades;
+import com.unab.edu.Entidades.Materias_Docentes;
+import com.unab.edu.Vistas.FrmLogin;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author AndresC
@@ -16,6 +25,61 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
      */
     public PnRevisar_Actividades() {
         initComponents();
+        MostrarMaterias();
+    }
+
+    String valueMember[];
+    int contador = 1;
+
+    String valueMember1[];
+    int contador1 = 1;
+
+    public void MostrarMaterias() {
+
+        DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
+        CLSMateriaDocente clsMateria = new CLSMateriaDocente();
+        Materias_Docentes m = new Materias_Docentes();
+        m.setIdDocente(FrmLogin.envioIdDocente);
+        ArrayList<Materias_Docentes> materia = clsMateria.ShowMateriasByDocente(m);
+        valueMember = new String[materia.size() + 1];
+
+        String Filas[] = new String[6];
+        cbdefault.addElement("Seleccione una opcion");
+        for (var iterar : materia) {
+
+            Filas[0] = String.valueOf(iterar.getIdMateria());
+            Filas[1] = iterar.getNombre_Materia();
+            valueMember[contador] = Filas[0];
+            cbdefault.addElement(Filas[1]);
+            contador++;
+        }
+
+        cb_Materias.setModel(cbdefault);
+    }
+
+    public void MostrarActividades() {
+
+        int combo = Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]);
+        DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
+        CLSActividades clsActs = new CLSActividades();
+        Actividades m = new Actividades();
+        m.setIdMateria(combo);
+        m.setIdDocente(FrmLogin.envioIdDocente);
+        ArrayList<Actividades> materia = clsActs.Mostrar_Tareas_By_Materia(m);
+        valueMember1 = new String[materia.size() + 1];
+
+        String Filas[] = new String[6];
+        cbdefault.addElement("Seleccione una opcion");
+        for (var iterar : materia) {
+
+            Filas[0] = String.valueOf(iterar.getIdActividad());
+            Filas[1] = iterar.getNombre_Actividad();
+            valueMember1[contador1] = Filas[0];
+            cbdefault.addElement(Filas[1]);
+            contador1++;
+        }
+
+        cb_Actividades.setModel(cbdefault);
     }
 
     /**
@@ -33,6 +97,8 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_Actividades = new javax.swing.JTable();
         lbl_Actualizar = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cb_Actividades = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(68, 130, 195));
 
@@ -43,7 +109,7 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Revisar actividades por:");
+        jLabel2.setText("Materia:");
 
         cb_Materias.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         cb_Materias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
@@ -65,11 +131,6 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
         tb_Actividades.setRowHeight(25);
         tb_Actividades.setSelectionBackground(new java.awt.Color(48, 218, 174));
         tb_Actividades.setShowVerticalLines(false);
-        tb_Actividades.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tb_ActividadesMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tb_Actividades);
 
         lbl_Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browser.png"))); // NOI18N
@@ -78,6 +139,13 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
                 lbl_ActualizarMouseClicked(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Actividad:");
+
+        cb_Actividades.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        cb_Actividades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -92,13 +160,17 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 222, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(cb_Materias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addGap(6, 6, 6)
+                                .addComponent(cb_Actividades, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbl_Actualizar)
-                                .addGap(113, 113, 113)))))
+                                .addComponent(lbl_Actualizar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(139, 139, 139)
+                                .addComponent(jLabel1)
+                                .addGap(0, 221, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -108,29 +180,38 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(cb_Materias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_Actualizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(cb_Materias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(cb_Actividades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_Actualizar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tb_ActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_ActividadesMouseClicked
-
-        
-    }//GEN-LAST:event_tb_ActividadesMouseClicked
-
     private void lbl_ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ActualizarMouseClicked
+
+        if (cb_Materias.getSelectedIndex() == 0) {
+            cb_Actividades.removeAllItems();
+        } else {
+            MostrarActividades();
+        }
 
     }//GEN-LAST:event_lbl_ActualizarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_Actividades;
     private javax.swing.JComboBox<String> cb_Materias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_Actualizar;
     private javax.swing.JTable tb_Actividades;
