@@ -26,7 +26,7 @@ public class CLSMateriaDocente {
         ArrayList<Materias_Docentes> MateriaAlumno = new ArrayList<>();
 
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_S_MATERIAS_DOCENTES()");
+            CallableStatement Statement = conectar.prepareCall("call SP_S_MATERIASDOCENTE()");
             ResultSet resultadoConsulta = Statement.executeQuery();
 
             while (resultadoConsulta.next()) {

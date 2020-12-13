@@ -44,6 +44,8 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         tb_Materias_Asignadas.setForeground(new Color(255, 255, 255));
         tb_Materias_Asignadas.setRowHeight(25);
 
+        Mostrar_Tabla_Materias();
+        //limpiarTabla(tb_Materias_Docente);
     }
 
     public void limpiarTabla(JTable Tabla) {
@@ -80,6 +82,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         lblEliminar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel3.setBackground(new java.awt.Color(68, 130, 195));
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -182,6 +185,11 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/libro.png"))); // NOI18N
         jLabel5.setText("jLabel5");
 
+        jLabel6.setBackground(new java.awt.Color(68, 130, 195));
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Materias disponibles para impartir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -202,7 +210,8 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblActulizar)
                                 .addGap(11, 11, 11)))))
                 .addGap(34, 34, 34))
@@ -220,8 +229,10 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(lblActulizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblActulizar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73)
@@ -311,12 +322,12 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
 
                     String idMateria = String.valueOf(tb_Materias_Asignadas.getValueAt(i, 0));
                     int idMateriaDoc = Integer.parseInt(idMateria);
-                    
+
                     materiaDoc.setIdDocente(idMateriaDoc);
                     materiaDoc.setIdDocente(FrmLogin.envioIdDocente);
                     materiaDoc.setUltima_Modificacion(date);
                     materiaDoc.setEstado(1);
-                    
+
                 }
                 JOptionPane.showMessageDialog(null, "¡" + tb_Materias_Asignadas.getRowCount() + " Materias registrada con éxito!");
                 limpiarTabla(tb_Materias_Asignadas);
@@ -324,8 +335,6 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
                 System.out.println("¡Cancelado!");
             }
         }
-
-
     }//GEN-LAST:event_btnInscribir1ActionPerformed
 
     public void Mostrar_Tabla_Materias() {
@@ -357,6 +366,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
