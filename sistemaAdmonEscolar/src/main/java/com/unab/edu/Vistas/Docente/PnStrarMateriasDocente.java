@@ -6,11 +6,14 @@
 package com.unab.edu.Vistas.Docente;
 
 import com.unab.edu.DAO.CLSMateria;
+import com.unab.edu.DAO.CLSMateriaDocente;
 import com.unab.edu.Entidades.Materia;
+import com.unab.edu.Entidades.Materias_Docentes;
 import com.unab.edu.Vistas.FrmLogin;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableColumnModel;
@@ -27,23 +30,23 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
      */
     public PnStrarMateriasDocente() {
         initComponents();
-        setBackground(new Color(0,0,0,0));
-        
+        setBackground(new Color(0, 0, 0, 0));
+
         tb_Materias_Docente.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_Materias_Docente.getTableHeader().setOpaque(false);
-        tb_Materias_Docente.setBackground(new Color(0,201,215));
-        tb_Materias_Docente.setForeground(new Color(255,255,255));
+        tb_Materias_Docente.setBackground(new Color(0, 201, 215));
+        tb_Materias_Docente.setForeground(new Color(255, 255, 255));
         tb_Materias_Docente.setRowHeight(25);
-        
+
         tb_Materias_Asignadas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_Materias_Asignadas.getTableHeader().setOpaque(false);
-        tb_Materias_Asignadas.setBackground(new Color(0,201,215));
-        tb_Materias_Asignadas.setForeground(new Color(255,255,255));
+        tb_Materias_Asignadas.setBackground(new Color(0, 201, 215));
+        tb_Materias_Asignadas.setForeground(new Color(255, 255, 255));
         tb_Materias_Asignadas.setRowHeight(25);
-        
+
     }
 
-     public void limpiarTabla(JTable Tabla) {
+    public void limpiarTabla(JTable Tabla) {
         try {
             DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
             int filas = Tabla.getRowCount();
@@ -54,6 +57,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,10 +253,10 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
 
     String TITULOS1[] = {"CODIGO", "MATERIA SELECCIONADA"};
     DefaultTableModel ModeloTabla_MatSele = new DefaultTableModel(null, TITULOS1);
-    
+
     private void tb_Materias_DocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_Materias_DocenteMouseClicked
-        
-         //Acá estamos obteniendo la fila que el usuario seleccionó.
+
+        //Acá estamos obteniendo la fila que el usuario seleccionó.
         int filas = tb_Materias_Docente.getSelectedRow();
         //Asignamos todos los campos de la tabla.
         String ID = String.valueOf(tb_Materias_Docente.getValueAt(filas, 0));
@@ -261,8 +265,8 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         String Filas[] = new String[3];
         Filas[0] = ID;
         Filas[1] = Nombre;
-        
-         for (int i = 0; i < tb_Materias_Asignadas.getRowCount(); i++) {
+
+        for (int i = 0; i < tb_Materias_Asignadas.getRowCount(); i++) {
 
             if (tb_Materias_Asignadas.getValueAt(i, 0) == ID) {
                 JOptionPane.showMessageDialog(null, "¡Ya ha seleccionado esta materia!");
@@ -288,15 +292,41 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
     }//GEN-LAST:event_lblEliminarMouseClicked
 
     private void btnInscribir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInscribir1MouseClicked
-        
+
     }//GEN-LAST:event_btnInscribir1MouseClicked
 
     private void btnInscribir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribir1ActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_btnInscribir1ActionPerformed
 
+        Date date = new Date();
+        if (tb_Materias_Asignadas.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
+        } else {
+            String botones[] = {"Aceptar", "Cancelar"};
+            int opcion = JOptionPane.showOptionDialog(this, "¿Está seguro que quieres matricular " + tb_Materias_Asignadas.getRowCount() + " materias?", "Confirmar", 0, 0, null, botones, this);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                for (int i = 0; i < tb_Materias_Asignadas.getRowCount(); i++) {
+                    CLSMateriaDocente materiadoc = new CLSMateriaDocente();
+                    Materias_Docentes materiaDoc = new Materias_Docentes();
+
+                    String idMateria = String.valueOf(tb_Materias_Asignadas.getValueAt(i, 0));
+                    int idMateriaDoc = Integer.parseInt(idMateria);
+                    
+                    materiaDoc.setIdDocente(idMateriaDoc);
+                    materiaDoc.setIdDocente(FrmLogin.envioIdDocente);
+                    materiaDoc.setUltima_Modificacion(date);
+                    materiaDoc.setEstado(1);
+                    
+                }
+                JOptionPane.showMessageDialog(null, "¡" + tb_Materias_Asignadas.getRowCount() + " Materias registrada con éxito!");
+                limpiarTabla(tb_Materias_Asignadas);
+            } else if (opcion == JOptionPane.NO_OPTION) {
+                System.out.println("¡Cancelado!");
+            }
+        }
+
+
+    }//GEN-LAST:event_btnInscribir1ActionPerformed
 
     public void Mostrar_Tabla_Materias() {
 
@@ -318,7 +348,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
 
         tb_Materias_Docente.setModel(ModeloTabla);
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnInscribir;
