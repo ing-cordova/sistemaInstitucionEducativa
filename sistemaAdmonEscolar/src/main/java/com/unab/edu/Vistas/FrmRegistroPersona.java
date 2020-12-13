@@ -14,6 +14,7 @@ import com.unab.edu.Entidades.Estudiante;
 import com.unab.edu.Entidades.Grados_Academicos;
 import com.unab.edu.Entidades.Persona;
 import com.unab.edu.Otros.CambiarPanel;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
@@ -164,6 +165,11 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtEspecialidad.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
         txtEspecialidad.setBorder(null);
+        txtEspecialidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEspecialidadKeyTyped(evt);
+            }
+        });
 
         sepEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
         sepEspecialidad.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -174,6 +180,11 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtNombres.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtNombres.setForeground(new java.awt.Color(255, 255, 255));
         txtNombres.setBorder(null);
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,11 +200,21 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtNIT.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtNIT.setForeground(new java.awt.Color(255, 255, 255));
         txtNIT.setBorder(null);
+        txtNIT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNITKeyTyped(evt);
+            }
+        });
 
         txtApellidos.setBackground(new java.awt.Color(13, 94, 222));
         txtApellidos.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtApellidos.setForeground(new java.awt.Color(255, 255, 255));
         txtApellidos.setBorder(null);
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosKeyTyped(evt);
+            }
+        });
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -248,6 +269,11 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtDUI.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtDUI.setForeground(new java.awt.Color(255, 255, 255));
         txtDUI.setBorder(null);
+        txtDUI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDUIKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -600,7 +626,6 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "¡Aún no selecciona un grado académico!");
                     } else {
 
-                        
                         int combo = Integer.parseInt(valueMember[cbGradoAcademico.getSelectedIndex()]);
                         persona.setNombre(txtNombres.getText());
                         persona.setApellido(txtApellidos.getText());
@@ -654,6 +679,70 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void txtDUIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDUIKeyTyped
+        // TODO add your handling code here:
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car) && (car < '-' || car > '-')) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "INGRESE SOLO NUMEROS Y GUION CORRESPONDIENTES");
+        } else if (txtDUI.getText().length() >= 10) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_txtDUIKeyTyped
+
+    private void txtNITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITKeyTyped
+        // TODO add your handling code here:
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car) && (car < '-' || car > '-')) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "INGRESE SOLO NUMEROS Y GUION CORRESPONDIENTE");
+        } else if (txtNIT.getText().length() >= 16) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+
+
+    }//GEN-LAST:event_txtNITKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        // TODO add your handling code here:
+        char GG = evt.getKeyChar();
+
+        if (Character.isDigit(GG)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "SOLO INGRESAR LETRAS");
+        }
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
+        // TODO add your handling code here:
+        char GG = evt.getKeyChar();
+
+        if (Character.isDigit(GG)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "SOLO INGRESAR LETRAS");
+        }
+    }//GEN-LAST:event_txtApellidosKeyTyped
+
+    private void txtEspecialidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEspecialidadKeyTyped
+        // TODO add your handling code here:
+        char GG = evt.getKeyChar();
+
+        if (Character.isDigit(GG)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "SOLO INGRESAR LETRAS");
+        }
+    }//GEN-LAST:event_txtEspecialidadKeyTyped
 
     /**
      * @param args the command line arguments
