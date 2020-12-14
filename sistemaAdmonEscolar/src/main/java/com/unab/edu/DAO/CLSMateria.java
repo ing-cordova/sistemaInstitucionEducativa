@@ -45,6 +45,30 @@ public class CLSMateria {
         }
         return Materias;
     }
+    
+    public ArrayList<Materia> MostrarMateria() {
+        ArrayList<Materia> Materias = new ArrayList<>();
+
+        try {
+            CallableStatement Statement = conectar.prepareCall("call SP_S_ALL_MATERIAS()");
+            ResultSet resultadoConsulta = Statement.executeQuery();
+
+            while (resultadoConsulta.next()) {
+                Materia mat = new Materia();
+                mat.setIdMateria(resultadoConsulta.getInt("idMateria"));
+                mat.setIdGradoAcademico(resultadoConsulta.getInt("idGradoAcademico"));
+                mat.setNombre_Materia(resultadoConsulta.getString("Nombre_Materia"));
+                mat.setUltima_Modificacion(resultadoConsulta.getDate("Ultima_Modificacion"));
+                mat.setEstado(resultadoConsulta.getInt("Estado"));
+
+                Materias.add(mat);
+            }
+            conectar.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return Materias;
+    }
 
     public void BorrarMateria(Materia mate) {
         try {

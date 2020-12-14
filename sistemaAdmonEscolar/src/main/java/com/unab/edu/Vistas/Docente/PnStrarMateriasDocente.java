@@ -108,11 +108,6 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         btnInscribir1.setFocusPainted(false);
         btnInscribir1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         btnInscribir1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnInscribir1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnInscribir1MouseClicked(evt);
-            }
-        });
         btnInscribir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInscribir1ActionPerformed(evt);
@@ -304,37 +299,41 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_lblEliminarMouseClicked
 
-    private void btnInscribir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInscribir1MouseClicked
-
-    }//GEN-LAST:event_btnInscribir1MouseClicked
-
     private void btnInscribir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribir1ActionPerformed
 
         Date date = new Date();
         if (tb_Materias_Asignadas.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
         } else {
-            String botones[] = {"Aceptar", "Cancelar"};
-            int opcion = JOptionPane.showOptionDialog(this, "¿Está seguro que quieres matricular " + tb_Materias_Asignadas.getRowCount() + " materias?", "Confirmar", 0, 0, null, botones, this);
+            CLSMateriaDocente materiadoc = new CLSMateriaDocente();
 
-            if (opcion == JOptionPane.YES_OPTION) {
-                for (int i = 0; i < tb_Materias_Asignadas.getRowCount(); i++) {
-                    CLSMateriaDocente materiadoc = new CLSMateriaDocente();
-                    Materias_Docentes materiaDoc = new Materias_Docentes();
-
-                    String idMateria = String.valueOf(tb_Materias_Asignadas.getValueAt(i, 0));
-                    int idMateriaDoc = Integer.parseInt(idMateria);
-
-                    materiaDoc.setIdDocente(idMateriaDoc);
-                    materiaDoc.setIdDocente(FrmLogin.envioIdDocente);
-                    materiaDoc.setUltima_Modificacion(date);
-                    materiaDoc.setEstado(1);
-
-                }
-                JOptionPane.showMessageDialog(null, "¡" + tb_Materias_Asignadas.getRowCount() + " Materias registrada con éxito!");
+            if (materiadoc.Verificar_Materias(FrmLogin.envioIdDocente) == true) {
+                JOptionPane.showMessageDialog(null, "¡Solo se permite una vez la inscripción de materias\n"
+                        + "ponte en contacto con el encargado para poder eliminar o inscribir otra vez!");
                 limpiarTabla(tb_Materias_Asignadas);
-            } else if (opcion == JOptionPane.NO_OPTION) {
-                System.out.println("¡Cancelado!");
+            } else {
+                String botones[] = {"Aceptar", "Cancelar"};
+                int opcion = JOptionPane.showOptionDialog(this, "¿Está seguro que quieres matricular " + tb_Materias_Asignadas.getRowCount() + " materias?", "Confirmar", 0, 0, null, botones, this);
+
+                if (opcion == JOptionPane.YES_OPTION) {
+                    for (int i = 0; i < tb_Materias_Asignadas.getRowCount(); i++) {
+
+                        Materias_Docentes materiaDoc = new Materias_Docentes();
+
+                        String idMateria = String.valueOf(tb_Materias_Asignadas.getValueAt(i, 0));
+                        int idMateriaDoc = Integer.parseInt(idMateria);
+
+                        materiaDoc.setIdMateria(idMateriaDoc);
+                        materiaDoc.setIdDocente(FrmLogin.envioIdDocente);
+                        materiaDoc.setUltima_Modificacion(date);
+                        materiaDoc.setEstado(1);
+                        materiadoc.AgregarMateriaDocente(materiaDoc);
+                    }
+                    JOptionPane.showMessageDialog(null, "¡" + tb_Materias_Asignadas.getRowCount() + " Materias registrada con éxito!");
+                    limpiarTabla(tb_Materias_Asignadas);
+                } else if (opcion == JOptionPane.NO_OPTION) {
+                    System.out.println("¡Cancelado!");
+                }
             }
         }
     }//GEN-LAST:event_btnInscribir1ActionPerformed
@@ -344,9 +343,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         String TITULOS2[] = {"CODIGO", "NOMBRE MATERIA"};
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS2);
         CLSMateria clsMateria = new CLSMateria();
-        Materia materia = new Materia();
-        materia.setIdGradoAcademico(FrmLogin.envioID);
-        ArrayList<Materia> vistaMaterias = clsMateria.MostrarMateria(materia);
+        ArrayList<Materia> vistaMaterias = clsMateria.MostrarMateria();
         String Filas[] = new String[5];
 
         for (var iterar : vistaMaterias) {
@@ -358,6 +355,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         }
 
         tb_Materias_Docente.setModel(ModeloTabla);
+
     }
 
 

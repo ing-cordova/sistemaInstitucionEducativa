@@ -115,7 +115,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="scrollPaneMaterias_A_Inscribir" min="-2" pref="145" max="-2" attributes="0"/>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
                   <Component id="btnInscribir" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

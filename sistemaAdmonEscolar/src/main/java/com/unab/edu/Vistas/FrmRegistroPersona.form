@@ -53,7 +53,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="40" width="700" height="590"/>
+              <AbsoluteConstraints x="0" y="40" width="710" height="590"/>
             </Constraint>
           </Constraints>
 
@@ -710,7 +710,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="700" height="40"/>
+              <AbsoluteConstraints x="0" y="0" width="710" height="40"/>
             </Constraint>
           </Constraints>
 
@@ -720,7 +720,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblRegresar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="553" max="32767" attributes="0"/>
+                      <EmptySpace pref="564" max="32767" attributes="0"/>
                       <Component id="lblMinimize" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblCerrar" min="-2" pref="16" max="-2" attributes="0"/>

@@ -438,7 +438,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnPrincipal.add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 700, 590));
+        pnPrincipal.add(pnCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 710, 590));
 
         pnSuperior.setBackground(new java.awt.Color(8, 62, 148));
 
@@ -474,7 +474,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblRegresar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 553, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 564, Short.MAX_VALUE)
                 .addComponent(lblMinimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -491,7 +491,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnPrincipal.add(pnSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 40));
+        pnPrincipal.add(pnSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -651,29 +651,36 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
                     }
                 } else if (cbTipoUsuario.getSelectedItem().equals("Docente")) {
                     if (txtEspecialidad.getText().isEmpty()) {
-                        System.out.println("No ha escrito nada");
+                        JOptionPane.showMessageDialog(null, "No ha escrito nada");
                     } else {
-                        persona.setNombre(txtNombres.getText());
-                        persona.setApellido(txtApellidos.getText());
-                        persona.setSexo(String.valueOf(cbSexo.getSelectedItem()));
-                        persona.setDUI(txtDUI.getText());
-                        persona.setNIT(txtNIT.getText());
-                        persona.setFecha_Nacimiento(txtFecha.getDate());
-                        persona.setUltima_Modificacion(date);
-                        persona.setEstado(1);
-                        clsPersona.AgregarPersona(persona);
 
-                        docente.setIdPersona(ultimo);
-                        docente.setCorreo_Electronico(txtCorreoElectronico.getText());
-                        docente.setPass(pwContra.getText());
-                        docente.setEspecialidad(txtEspecialidad.getText());
-                        docente.setUltima_Modificacion(date);
-                        docente.setEstado(1);
-                        clsDocente.AgregarDocente(docente);
-                        VaciarControles();
-                        register.setVisible(true);
-                        this.dispose();
+                        final String validar = "admin";
+                        String pin = JOptionPane.showInputDialog(null, "PIN DE SEGURIDAD");
 
+                        if (!pin.equals(validar)) {
+                            JOptionPane.showMessageDialog(null, "¡*****ACCESO DENEGADO*****!");
+                        } else {
+                            persona.setNombre(txtNombres.getText());
+                            persona.setApellido(txtApellidos.getText());
+                            persona.setSexo(String.valueOf(cbSexo.getSelectedItem()));
+                            persona.setDUI(txtDUI.getText());
+                            persona.setNIT(txtNIT.getText());
+                            persona.setFecha_Nacimiento(txtFecha.getDate());
+                            persona.setUltima_Modificacion(date);
+                            persona.setEstado(1);
+                            clsPersona.AgregarPersona(persona);
+
+                            docente.setIdPersona(ultimo);
+                            docente.setCorreo_Electronico(txtCorreoElectronico.getText());
+                            docente.setPass(pwContra.getText());
+                            docente.setEspecialidad(txtEspecialidad.getText());
+                            docente.setUltima_Modificacion(date);
+                            docente.setEstado(1);
+                            clsDocente.AgregarDocente(docente);
+                            VaciarControles();
+                            register.setVisible(true);
+                            this.dispose();
+                        }
                     }
                 }
             }
@@ -700,7 +707,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(rootPane, "INGRESE SOLO NUMEROS Y GUION CORRESPONDIENTE");
-        } else if (txtNIT.getText().length() >= 16) {
+        } else if (txtNIT.getText().length() > 16) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
         }

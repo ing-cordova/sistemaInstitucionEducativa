@@ -95,7 +95,7 @@ public class CLSMateriaDocente {
             Statement.setInt("PEstado", matProf.getEstado());
 
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Datos agregados con éxito");
+            System.out.println("¡Materias agregadas con éxito!");
 
             conectar.close();
 
@@ -115,12 +115,33 @@ public class CLSMateriaDocente {
                 Materias_Docentes MatProf = new Materias_Docentes();
                 MatProf.setIdMateria(resultadoConsulta.getInt("idMateria"));
                 MatProf.setNombre_Materia(resultadoConsulta.getString("Nombre_Materia"));
-                
+
                 MateriaAlumno.add(MatProf);
             }
             conectar.close();
         } catch (Exception e) {
         }
         return MateriaAlumno;
+    }
+
+    public boolean Verificar_Materias(int idDocente) {
+
+        boolean verifica = false;
+
+        try {
+
+            CallableStatement st = conectar.prepareCall("call SP_S_VARIFICAR_MATERIAS_DOCENTE(?)");
+            st.setInt("PidDocente", idDocente);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                verifica = true;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        return verifica;
     }
 }

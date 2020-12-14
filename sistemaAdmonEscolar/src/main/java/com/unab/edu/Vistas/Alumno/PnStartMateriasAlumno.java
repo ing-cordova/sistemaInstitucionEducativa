@@ -284,35 +284,40 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         if (tb_MateriasAInscribir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
         } else {
+            CLSNotas clsNotas = new CLSNotas();
 
-            String botones[] = {"Aceptar", "Cancelar"};
-            int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres matricular " + tb_MateriasAInscribir.getRowCount() + " materias?", "Confirmar", 0, 0, null, botones, this);
-
-            if (opcion == JOptionPane.YES_OPTION) {
-                for (int i = 0; i < tb_MateriasAInscribir.getRowCount(); i++) {
-
-                    CLSNotas clsNotas = new CLSNotas();
-                    Notas notas = new Notas();
-                    String idMateria = String.valueOf(tb_MateriasAInscribir.getValueAt(i, 0));
-                    int idMateriaC = Integer.parseInt(idMateria);
-                    notas.setIdEstudiante(FrmLogin.envioIdEstudiante);
-                    notas.setIdMateria(idMateriaC);
-                    notas.setPeriodo1(0);
-                    notas.setPeriodo2(0);
-                    notas.setPeriodo3(0);
-                    notas.setNotaFinal(0);
-                    notas.setRecuperacion(0);
-                    notas.setUltima_Modificacion(date);
-                    notas.setEstado(1);
-                    clsNotas.AgregarNotas(notas);
-                }
-
-                JOptionPane.showMessageDialog(null, "¡" + tb_MateriasAInscribir.getRowCount() + " Materias inscritas con éxito!");
+            if (clsNotas.Verificar_Materias(FrmLogin.envioIdEstudiante) == true) {
+                JOptionPane.showMessageDialog(null, "¡Solo se permite una vez la inscripción de materias\n"
+                        + "ponte en contacto con el encargado para poder eliminar o inscribir otra vez!");
                 limpiarTabla(tb_MateriasAInscribir);
-            } else if (opcion == JOptionPane.NO_OPTION) {
-                System.out.println("¡Cancelado!");
-            }
+            } else {
+                String botones[] = {"Aceptar", "Cancelar"};
+                int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres matricular " + tb_MateriasAInscribir.getRowCount() + " materias?", "Confirmar", 0, 0, null, botones, this);
 
+                if (opcion == JOptionPane.YES_OPTION) {
+                    for (int i = 0; i < tb_MateriasAInscribir.getRowCount(); i++) {
+
+                        Notas notas = new Notas();
+                        String idMateria = String.valueOf(tb_MateriasAInscribir.getValueAt(i, 0));
+                        int idMateriaC = Integer.parseInt(idMateria);
+                        notas.setIdEstudiante(FrmLogin.envioIdEstudiante);
+                        notas.setIdMateria(idMateriaC);
+                        notas.setPeriodo1(0);
+                        notas.setPeriodo2(0);
+                        notas.setPeriodo3(0);
+                        notas.setNotaFinal(0);
+                        notas.setRecuperacion(0);
+                        notas.setUltima_Modificacion(date);
+                        notas.setEstado(1);
+
+                        clsNotas.AgregarNotas(notas);
+                    }
+                    JOptionPane.showMessageDialog(null, "¡" + tb_MateriasAInscribir.getRowCount() + " Materias inscritas con éxito!");
+                    limpiarTabla(tb_MateriasAInscribir);
+                } else if (opcion == JOptionPane.NO_OPTION) {
+                    System.out.println("¡Cancelado!");
+                }
+            }
         }
     }//GEN-LAST:event_btnInscribirActionPerformed
 
