@@ -31,15 +31,23 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         initComponents();
 
         tb_Materias.getTableHeader().setOpaque(false);
-        tb_Materias.setBackground(new Color(0, 201, 215));
+        tb_Materias.setBackground(new Color(45, 86, 130));
         tb_Materias.setForeground(new Color(255, 255, 255));
         tb_Materias.setRowHeight(25);
+        
+        tb_Materias.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Materias.getTableHeader().setBackground(new Color(8, 62, 148));
+        tb_Materias.getTableHeader().setForeground(Color.white);
 
         tb_MateriasAInscribir.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_MateriasAInscribir.getTableHeader().setOpaque(false);
-        tb_MateriasAInscribir.setBackground(new Color(0, 201, 215));
+        tb_MateriasAInscribir.setBackground(new Color(45, 86, 130));
         tb_MateriasAInscribir.setForeground(new Color(255, 255, 255));
         tb_MateriasAInscribir.setRowHeight(25);
+        
+        tb_MateriasAInscribir.getTableHeader().setFont(new Font("Century Gothic",Font.PLAIN, 11));
+        tb_MateriasAInscribir.getTableHeader().setBackground(new Color(8, 62, 148));
+        tb_MateriasAInscribir.getTableHeader().setForeground(Color.white);
 
         limpiarTabla(tb_MateriasAInscribir);
         Mostrar_Tabla_Materias();
@@ -119,7 +127,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         tb_Materias.setFocusable(false);
         tb_Materias.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tb_Materias.setRowHeight(25);
-        tb_Materias.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_Materias.setSelectionBackground(new java.awt.Color(115, 142, 171));
         tb_Materias.setShowVerticalLines(false);
         tb_Materias.getTableHeader().setReorderingAllowed(false);
         tb_Materias.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,7 +151,7 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         tb_MateriasAInscribir.setFocusable(false);
         tb_MateriasAInscribir.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tb_MateriasAInscribir.setRowHeight(25);
-        tb_MateriasAInscribir.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_MateriasAInscribir.setSelectionBackground(new java.awt.Color(115, 142, 171));
         tb_MateriasAInscribir.setShowVerticalLines(false);
         tb_MateriasAInscribir.getTableHeader().setReorderingAllowed(false);
         scrollPaneMaterias_A_Inscribir.setViewportView(tb_MateriasAInscribir);

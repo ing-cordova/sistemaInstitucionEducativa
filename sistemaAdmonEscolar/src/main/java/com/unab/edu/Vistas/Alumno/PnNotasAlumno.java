@@ -10,6 +10,7 @@ import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.swing.JTable;
@@ -33,6 +34,16 @@ public class PnNotasAlumno extends javax.swing.JPanel {
         Mostrar_Tabla_Materias();
         tb_Notas.setEnabled(false);
         setCellRender(tb_Notas);
+        
+        tb_Notas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Notas.getTableHeader().setOpaque(false);
+        tb_Notas.setBackground(new Color(45, 86, 130));
+        tb_Notas.setForeground(new Color(255, 255, 255));
+        tb_Notas.setRowHeight(25);
+        
+        tb_Notas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Notas.getTableHeader().setBackground(new Color(8, 62, 148));
+        tb_Notas.getTableHeader().setForeground(Color.white);
         
     }
     
@@ -127,7 +138,7 @@ public class PnNotasAlumno extends javax.swing.JPanel {
         tb_Notas.setFocusable(false);
         tb_Notas.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tb_Notas.setRowHeight(25);
-        tb_Notas.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_Notas.setSelectionBackground(new java.awt.Color(115, 142, 171));
         tb_Notas.setShowVerticalLines(false);
         jScrollPane2.setViewportView(tb_Notas);
 

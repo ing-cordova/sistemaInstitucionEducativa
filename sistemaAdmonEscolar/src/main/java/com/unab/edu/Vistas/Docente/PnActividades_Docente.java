@@ -10,6 +10,8 @@ import com.unab.edu.DAO.CLSMateriaDocente;
 import com.unab.edu.Entidades.Actividades;
 import com.unab.edu.Entidades.Materias_Docentes;
 import com.unab.edu.Vistas.FrmLogin;
+import java.awt.Color;
+import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +39,12 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         btnPublicarTarea.setEnabled(false);
         btnEditarTarea.setEnabled(false);
         btnEliminarTarea.setEnabled(false);
+      
+        tb_Actividades.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Actividades.getTableHeader().setOpaque(false);
+        tb_Actividades.setBackground(new Color(45, 86, 130));
+        tb_Actividades.setForeground(new Color(255, 255, 255));
+        tb_Actividades.setRowHeight(25);
     }
 
     void LimpiarControles() {
@@ -97,7 +105,6 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         txtActividad.setForeground(new java.awt.Color(255, 255, 255));
         txtActividad.setBorder(null);
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setBackground(new java.awt.Color(68, 130, 195));
@@ -110,7 +117,6 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         txtPorcentaje.setForeground(new java.awt.Color(255, 255, 255));
         txtPorcentaje.setBorder(null);
 
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setBackground(new java.awt.Color(68, 130, 195));
@@ -196,7 +202,6 @@ public class PnActividades_Docente extends javax.swing.JPanel {
             }
         });
 
-        txtFechaLimite.setForeground(new java.awt.Color(0, 0, 0));
         txtFechaLimite.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
 
         jLabel6.setBackground(new java.awt.Color(68, 130, 195));
@@ -207,7 +212,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         lbl_id.setBackground(new java.awt.Color(68, 130, 195));
         lbl_id.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         lbl_id.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_id.setText("id");
+        lbl_id.setText("Id");
 
         jLabel7.setBackground(new java.awt.Color(68, 130, 195));
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
@@ -251,7 +256,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtActividad)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
