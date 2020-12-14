@@ -8,8 +8,14 @@ package com.unab.edu.Vistas.Alumno;
 import com.unab.edu.DAO.CLSNotas;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
+import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -26,8 +32,17 @@ public class PnNotasAlumno extends javax.swing.JPanel {
         lblNombre_Estudiante.setText("> " + FrmLogin.FULLNAME);
         Mostrar_Tabla_Materias();
         tb_Notas.setEnabled(false);
+        setCellRender(tb_Notas);
+        
     }
-
+    
+    public void setCellRender(JTable table) {
+        Enumeration<TableColumn> en = table.getColumnModel().getColumns();
+        while (en.hasMoreElements()) {
+            TableColumn tc = en.nextElement();
+            tc.setCellRenderer(new Celdas());
+        }
+    }
     public void Mostrar_Tabla_Materias() {
 
         String TITULOS2[] = {"MATERIA", "P1", "P2", "P3", "NOTA FINAL", "RECUPERACIÓN"};
@@ -72,9 +87,9 @@ public class PnNotasAlumno extends javax.swing.JPanel {
         tb_Notas.getTableHeader().getColumnModel().getColumn(5).setPreferredWidth(95);
         tb_Notas.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(95);
         tb_Notas.getTableHeader().getColumnModel().getColumn(5).setMinWidth(95);
-        
+       
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -180,4 +195,5 @@ public class PnNotasAlumno extends javax.swing.JPanel {
     private javax.swing.JLabel lblNombre_Estudiante;
     private javax.swing.JTable tb_Notas;
     // End of variables declaration//GEN-END:variables
+
 }

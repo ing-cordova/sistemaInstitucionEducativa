@@ -9,6 +9,15 @@ package com.unab.edu.Vistas.Alumno;
  *
  * @author dayan
  */
-public class ColorCeldas {
-    
+public class ClassPrincipal {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+       PnNotasAlumno tablaNotas = new PnNotasAlumno();
+       tablaNotas.setVisible(true);
+    }
 }
+    
