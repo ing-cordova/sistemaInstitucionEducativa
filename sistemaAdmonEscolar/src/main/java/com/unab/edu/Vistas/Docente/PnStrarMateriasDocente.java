@@ -34,15 +34,24 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
 
         tb_Materias_Docente.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_Materias_Docente.getTableHeader().setOpaque(false);
-        tb_Materias_Docente.setBackground(new Color(45, 86, 130));
+        tb_Materias_Docente.setBackground(new Color(46, 134, 193));
         tb_Materias_Docente.setForeground(new Color(255, 255, 255));
         tb_Materias_Docente.setRowHeight(25);
+        
+        tb_Materias_Docente.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Materias_Docente.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Materias_Docente.getTableHeader().setForeground(Color.white);
 
         tb_Materias_Asignadas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_Materias_Asignadas.getTableHeader().setOpaque(false);
-        tb_Materias_Asignadas.setBackground(new Color(45, 86, 130));
+        tb_Materias_Asignadas.setBackground(new Color(46, 134, 193));
         tb_Materias_Asignadas.setForeground(new Color(255, 255, 255));
         tb_Materias_Asignadas.setRowHeight(25);
+        
+        tb_Materias_Asignadas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Materias_Asignadas.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Materias_Asignadas.getTableHeader().setForeground(Color.white);
+        
 
         Mostrar_Tabla_Materias();
         //limpiarTabla(tb_Materias_Docente);
