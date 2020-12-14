@@ -99,6 +99,7 @@ public class PnStartDocente extends javax.swing.JPanel {
         jLabel4.setText("Apellido:");
 
         lblApellidos.setBackground(new java.awt.Color(51, 51, 255));
+        lblApellidos.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
         lblApellidos.setForeground(new java.awt.Color(0, 0, 102));
 
         jLabel5.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
