@@ -139,7 +139,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         tb_Actividades.setFocusable(false);
         tb_Actividades.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tb_Actividades.setRowHeight(25);
-        tb_Actividades.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_Actividades.setSelectionBackground(new java.awt.Color(93, 173, 226));
         tb_Actividades.setShowVerticalLines(false);
         tb_Actividades.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -128,7 +128,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         tb_Materias_Docente.setFocusable(false);
         tb_Materias_Docente.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tb_Materias_Docente.setRowHeight(25);
-        tb_Materias_Docente.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_Materias_Docente.setSelectionBackground(new java.awt.Color(93, 173, 226));
         tb_Materias_Docente.setShowVerticalLines(false);
         tb_Materias_Docente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -155,7 +155,7 @@ public class PnStrarMateriasDocente extends javax.swing.JPanel {
         tb_Materias_Asignadas.setFocusable(false);
         tb_Materias_Asignadas.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tb_Materias_Asignadas.setRowHeight(25);
-        tb_Materias_Asignadas.setSelectionBackground(new java.awt.Color(48, 218, 174));
+        tb_Materias_Asignadas.setSelectionBackground(new java.awt.Color(93, 173, 226));
         tb_Materias_Asignadas.setShowVerticalLines(false);
         tb_Materias_Asignadas.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tb_Materias_Asignadas);
