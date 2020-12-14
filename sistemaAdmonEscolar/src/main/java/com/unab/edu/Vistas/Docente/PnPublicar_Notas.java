@@ -481,6 +481,7 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
 
             if (opcion == JOptionPane.YES_OPTION) {
                 Date date = new Date();
+                //Clase que me formatea la salida de los Double.
                 DecimalFormat twoDForm = new DecimalFormat("#.00");
                 Double P1 = (Double.parseDouble(txt_P1.getText()) * 0.33);
                 Double P2 = (Double.parseDouble(txt_P2.getText()) * 0.33);

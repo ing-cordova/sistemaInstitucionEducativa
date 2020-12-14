@@ -12,6 +12,7 @@ import com.unab.edu.Entidades.Actividades;
 import com.unab.edu.Entidades.Actividades_Estudiantes;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -248,32 +249,32 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         SeleccionarPDF();
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
-    private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
-
-        int combo = Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]);
+    public void Guardar_Actividad(int idEstudiante, int idActividad, int combo, File ruta){
+        
         Date date = new Date();
         CLSActividades_Alumno clsAct_Almuno = new CLSActividades_Alumno();
         Actividades_Estudiantes act_est = new Actividades_Estudiantes();
-
-        act_est.setIdEstudiante(FrmLogin.envioIdEstudiante);
-        act_est.setIdActividad(Integer.parseInt(lbl_idActividad.getText()));
+        
+        act_est.setIdEstudiante(idEstudiante);
+        act_est.setIdActividad(idActividad);
         act_est.setIdMateria(combo);
         act_est.setNota_Obtenida(0.00);
-
+        
         try {
             byte[] pdf = new byte[(int) ruta_archivo.length()];
             InputStream input = new FileInputStream(ruta_archivo);
             input.read(pdf);
+            
             act_est.setArchivo(pdf);
         } catch (Exception e) {
 
             act_est.setArchivo(null);
         }
-
+        
         act_est.setEstado_Actividad("Entregada");
         act_est.setUltima_Modificacion(date);
         act_est.setEstado(1);
-
+        
         System.out.println("Hay datos: " + clsAct_Almuno.Verificar_Entrega(act_est));
         if (clsAct_Almuno.Verificar_Entrega(act_est) == true) {
             JOptionPane.showMessageDialog(null, "¡Esta actividad ya ha sido enviada!");
@@ -290,8 +291,14 @@ public class PnTareasAlumno extends javax.swing.JPanel {
             }
 
         }
+    }
+    private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
 
-
+        
+        int combo = Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]);
+        int idActividad = Integer.parseInt(lbl_idActividad.getText());
+        File ruta = new File(ruta_archivo);
+        Guardar_Actividad(FrmLogin.envioIdEstudiante, idActividad, combo, ruta);
     }//GEN-LAST:event_btnEntregarActionPerformed
 
     private void lbl_ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ActualizarMouseClicked
@@ -340,6 +347,7 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         lblEstado.setText("");
         lbl_idActividad.setText("0");
         limpiarTabla(tb_Tareas);
+        ruta_archivo = "";
         btnSeleccionar.setText("Seleccione un archivo pdf...");
     }
 

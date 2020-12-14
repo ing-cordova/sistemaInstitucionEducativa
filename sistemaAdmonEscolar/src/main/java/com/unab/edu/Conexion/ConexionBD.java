@@ -13,22 +13,21 @@ import java.sql.DriverManager;
  * @author patty
  */
 public class ConexionBD {
-    
+
     private Connection coon;
-    
-    public ConexionBD()
-    {
-    try{
-        coon = DriverManager.getConnection("jdbc:mysql://localhost/administracionescolar","root","root");
-        System.out.println("Conectado a la Base de Datos");
-        
-    }catch (Exception e)
-    {
-        System.out.println("Error de Conexion "+ e);
+
+    public ConexionBD() {
+        try {
+            coon = DriverManager.getConnection("jdbc:mysql://localhost/administracionescolar", "root", "root");
+            System.out.println("> Conexión establecida con éxito.");
+
+        } catch (Exception e) {
+            System.out.println("Error de Conexion " + e);
+        }
     }
+
+    public Connection RetornarConexion() {
+        return coon;
     }
-    public Connection RetornarConexion(){   
-        return coon;   
-    }
-    
+
 }
