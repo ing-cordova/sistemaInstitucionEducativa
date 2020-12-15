@@ -97,7 +97,7 @@ public class CLSMateriaDocente {
             Statement.execute();
             System.out.println("¡Materias agregadas con éxito!");
 
-            conectar.close();
+            //conectar.close();
 
         } catch (Exception e) {
         }

@@ -6,8 +6,10 @@
 package com.unab.edu.Vistas.Docente;
 
 import com.unab.edu.DAO.CLSActividades;
+import com.unab.edu.DAO.CLSActividades_Alumno;
 import com.unab.edu.DAO.CLSMateriaDocente;
 import com.unab.edu.Entidades.Actividades;
+import com.unab.edu.Entidades.Actividades_Estudiantes;
 import com.unab.edu.Entidades.Materias_Docentes;
 import com.unab.edu.Vistas.FrmLogin;
 import java.awt.Color;
@@ -39,7 +41,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         btnPublicarTarea.setEnabled(false);
         btnEditarTarea.setEnabled(false);
         btnEliminarTarea.setEnabled(false);
-      
+
         tb_Actividades.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_Actividades.getTableHeader().setOpaque(false);
         tb_Actividades.setBackground(new Color(45, 86, 130));
@@ -333,7 +335,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
 
         int combo = Integer.parseInt(valueMember[cbMateria.getSelectedIndex()]);
 
-        if (txtActividad.getText().isEmpty() || txtPorcentaje.getText().isEmpty() || txtFechaLimite.getDate() == null || cbMateria.getSelectedIndex() == 0) {
+        if (txtActividad.getText().equals("") || txtPorcentaje.getText().equals("") || txtFechaLimite.getDate() == null || cbMateria.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "¡Complete todos los datos para poder continuar!");
         } else {
             Date date = new Date();
@@ -346,7 +348,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
             act.setNombre_Actividad(txtActividad.getText());
             act.setPorcentaje(porcents / 100);
             act.setFecha_Entrega(txtFechaLimite.getDate());
-            act.setEstado_Actividad("Recibida");
+            act.setEstado_Actividad("Pendiente");
             act.setUltima_Modificacion(date);
             act.setEstado(1);
             clsActividad.AgregarActividad(act);
@@ -411,26 +413,33 @@ public class PnActividades_Docente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "¡Complete todos los datos para poder continuar!");
         } else {
 
-            Date date = new Date();
-            Double porcents = Double.parseDouble(txtPorcentaje.getText());
-            CLSActividades clsActividad = new CLSActividades();
-            Actividades act = new Actividades();
+            String botones[] = {"Editar", "Cancelar"};
+            int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres editar la actividad?", "Confirmar", 0, 0, null, botones, this);
 
-            act.setIdActividad(idAct);
-            act.setIdDocente(FrmLogin.envioIdDocente);
-            act.setIdMateria(combo);
-            act.setNombre_Actividad(txtActividad.getText());
-            act.setPorcentaje(porcents / 100);
-            act.setFecha_Entrega(txtFechaLimite.getDate());
-            act.setEstado_Actividad("Recibida");
-            act.setUltima_Modificacion(date);
-            act.setEstado(1);
-            clsActividad.ActualizarActividad(act);
-            LimpiarControles();
-            btnPublicarTarea.setEnabled(false);
-            btnEditarTarea.setEnabled(false);
-            btnEliminarTarea.setEnabled(false);
-            MostrarActividades();
+            if (opcion == JOptionPane.YES_OPTION) {
+                Date date = new Date();
+                Double porcents = Double.parseDouble(txtPorcentaje.getText());
+                CLSActividades clsActividad = new CLSActividades();
+                Actividades act = new Actividades();
+
+                act.setIdActividad(idAct);
+                act.setIdDocente(FrmLogin.envioIdDocente);
+                act.setIdMateria(combo);
+                act.setNombre_Actividad(txtActividad.getText());
+                act.setPorcentaje(porcents / 100);
+                act.setFecha_Entrega(txtFechaLimite.getDate());
+                act.setEstado_Actividad("Recibida");
+                act.setUltima_Modificacion(date);
+                act.setEstado(1);
+                clsActividad.ActualizarActividad(act);
+                LimpiarControles();
+                btnPublicarTarea.setEnabled(false);
+                btnEditarTarea.setEnabled(false);
+                btnEliminarTarea.setEnabled(false);
+                MostrarActividades();
+            } else if (opcion == JOptionPane.NO_OPTION) {
+                System.out.println("¡Cancelado!");
+            }
         }
     }//GEN-LAST:event_btnEditarTareaActionPerformed
 
@@ -483,7 +492,6 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         cbMateria.setModel(cbdefault);
     }
 
-    
     public void MostrarActividades() {
 
         String TITULOS[] = {"CODIGO", "", "MATERIA", "ACTIVIDAD", "PORCENTAJE", "FECHA LIMITE"};
@@ -523,7 +531,7 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         tb_Actividades.getTableHeader().getColumnModel().getColumn(4).setPreferredWidth(80);
         tb_Actividades.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(80);
         tb_Actividades.getTableHeader().getColumnModel().getColumn(4).setMinWidth(80);
-        
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.unab.edu.Otros.Boton btnEditarTarea;

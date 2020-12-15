@@ -251,6 +251,7 @@ public class PnTareasAlumno extends javax.swing.JPanel {
 
     public void Guardar_Actividad(int idEstudiante, int idActividad, int combo, File ruta){
         
+        byte[] pdf = null;
         Date date = new Date();
         CLSActividades_Alumno clsAct_Almuno = new CLSActividades_Alumno();
         Actividades_Estudiantes act_est = new Actividades_Estudiantes();
@@ -261,8 +262,9 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         act_est.setNota_Obtenida(0.00);
         
         try {
-            byte[] pdf = new byte[(int) ruta_archivo.length()];
-            InputStream input = new FileInputStream(ruta_archivo);
+
+            pdf = new byte[(int) ruta.length()];
+            InputStream input = new FileInputStream(ruta);
             input.read(pdf);
             
             act_est.setArchivo(pdf);
@@ -293,10 +295,10 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         }
     }
     private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
-
-        
+  
         int combo = Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]);
         int idActividad = Integer.parseInt(lbl_idActividad.getText());
+        
         File ruta = new File(ruta_archivo);
         Guardar_Actividad(FrmLogin.envioIdEstudiante, idActividad, combo, ruta);
     }//GEN-LAST:event_btnEntregarActionPerformed
@@ -330,6 +332,7 @@ public class PnTareasAlumno extends javax.swing.JPanel {
     public void SeleccionarPDF() {
 
         JFileChooser jchooser = new JFileChooser();
+        jchooser.setDialogTitle("Buscar PDF");
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("pdf", "pdf");
         jchooser.setFileFilter(filtro);
         int c = jchooser.showOpenDialog(this);

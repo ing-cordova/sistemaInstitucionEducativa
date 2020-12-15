@@ -54,6 +54,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         btnTareas = new com.unab.edu.Otros.Boton();
         btnNotas = new com.unab.edu.Otros.Boton();
         btnLogOut = new com.unab.edu.Otros.Boton();
+        btnVer_Actividades = new com.unab.edu.Otros.Boton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -181,6 +182,18 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
             }
         });
 
+        btnVer_Actividades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/view.png"))); // NOI18N
+        btnVer_Actividades.setText("     Ver Actividades");
+        btnVer_Actividades.setBorderPainted(false);
+        btnVer_Actividades.setFocusPainted(false);
+        btnVer_Actividades.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnVer_Actividades.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnVer_Actividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVer_ActividadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnIzquierdoLayout = new javax.swing.GroupLayout(pnIzquierdo);
         pnIzquierdo.setLayout(pnIzquierdoLayout);
         pnIzquierdoLayout.setHorizontalGroup(
@@ -204,6 +217,9 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
                         .addContainerGap())
                     .addComponent(btnTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNotas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(pnIzquierdoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnVer_Actividades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnIzquierdoLayout.setVerticalGroup(
             pnIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,8 +235,10 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTareas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVer_Actividades, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -279,6 +297,11 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
        cambio.CambiaPanel(pnCentral, pnTareas);
     }//GEN-LAST:event_btnTareasActionPerformed
 
+    private void btnVer_ActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVer_ActividadesActionPerformed
+        PnVer_Actividades pnVerActs = new PnVer_Actividades();
+        cambio.CambiaPanel(pnCentral, pnVerActs);
+    }//GEN-LAST:event_btnVer_ActividadesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +342,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
     private com.unab.edu.Otros.Boton btnMaterias;
     private com.unab.edu.Otros.Boton btnNotas;
     private com.unab.edu.Otros.Boton btnTareas;
+    private com.unab.edu.Otros.Boton btnVer_Actividades;
     private com.unab.edu.Otros.Boton btninicio;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCerrar;

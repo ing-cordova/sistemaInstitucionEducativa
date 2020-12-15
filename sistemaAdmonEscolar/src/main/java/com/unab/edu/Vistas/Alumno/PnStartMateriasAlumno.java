@@ -34,9 +34,9 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         tb_Materias.setBackground(new Color(46, 134, 193));
         tb_Materias.setForeground(new Color(255, 255, 255));
         tb_Materias.setRowHeight(25);
-        
+
         tb_Materias.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
-        tb_Materias.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Materias.getTableHeader().setBackground(new Color(36, 113, 163));
         tb_Materias.getTableHeader().setForeground(Color.white);
 
         tb_MateriasAInscribir.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
@@ -44,9 +44,9 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         tb_MateriasAInscribir.setBackground(new Color(46, 134, 193));
         tb_MateriasAInscribir.setForeground(new Color(255, 255, 255));
         tb_MateriasAInscribir.setRowHeight(25);
-        
-        tb_MateriasAInscribir.getTableHeader().setFont(new Font("Century Gothic",Font.PLAIN, 11));
-        tb_MateriasAInscribir.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+
+        tb_MateriasAInscribir.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_MateriasAInscribir.getTableHeader().setBackground(new Color(36, 113, 163));
         tb_MateriasAInscribir.getTableHeader().setForeground(Color.white);
 
         limpiarTabla(tb_MateriasAInscribir);
@@ -287,12 +287,11 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
     }//GEN-LAST:event_tb_MateriasMouseClicked
 
     private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
-
+        CLSNotas clsNotas = new CLSNotas();
         Date date = new Date();
         if (tb_MateriasAInscribir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "¡Aún no ha seleccionado ninguna materia!");
         } else {
-            CLSNotas clsNotas = new CLSNotas();
 
             if (clsNotas.Verificar_Materias(FrmLogin.envioIdEstudiante) == true) {
                 JOptionPane.showMessageDialog(null, "¡Solo se permite una vez la inscripción de materias\n"

@@ -105,8 +105,8 @@ public class CLSNotas {
             Statement.execute();
             System.out.println("Notas guardada");
 
-            conectar.close();
-        } catch (SQLException e) {
+            //conectar.close();
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
