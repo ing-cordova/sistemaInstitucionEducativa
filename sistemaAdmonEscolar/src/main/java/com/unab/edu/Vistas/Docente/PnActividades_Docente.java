@@ -44,9 +44,13 @@ public class PnActividades_Docente extends javax.swing.JPanel {
 
         tb_Actividades.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_Actividades.getTableHeader().setOpaque(false);
-        tb_Actividades.setBackground(new Color(45, 86, 130));
+        tb_Actividades.setBackground(new Color(46, 134, 193));
         tb_Actividades.setForeground(new Color(255, 255, 255));
         tb_Actividades.setRowHeight(25);
+        
+        tb_Actividades.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Actividades.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Actividades.getTableHeader().setForeground(Color.white);
     }
 
     void LimpiarControles() {
