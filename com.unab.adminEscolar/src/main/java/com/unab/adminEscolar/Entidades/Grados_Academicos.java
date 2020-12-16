@@ -1,8 +1,9 @@
-package com.unab.adminEscolar.Entidad;
+package com.unab.adminEscolar.Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,23 @@ import lombok.Data;
 @Table(name = "grados_academicos")
 public class Grados_Academicos implements Serializable{
 
+	
+
 	private static final long serialVersionUID=1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idgradoacademico")
+	private Long idGradoAcademico;
+	
+	@Column(name = "nombre_gradoacad")
+	private String Nombre_GradoAcad;
+	
+	@Column(name = "ultima_modificacion")
+	private Date Ultima_Modificacion;
+	
+	@Column(name = "estado")
+	private int Estado;
 	
 	public Long getIdGradoAcademico() {
 		return idGradoAcademico;
@@ -42,15 +59,7 @@ public class Grados_Academicos implements Serializable{
 	public void setEstado(int estado) {
 		Estado = estado;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idGradoAcademico;
-	
-	private String Nombre_GradoAcad;
-	private Date Ultima_Modificacion;
-	private int Estado;
-	
-	
-	
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymealft.org">
+<head>
+<meta charset="utf-8">
+<title>AgregarGrados | AdmónEscolar</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<body>
+
+	<a th:href="@{/principal}">volver</a>
+	<h1 align="center">DATOS DEL GRADO ACADEMICO</h1>
+
+	<form th:action="@{/guardar}" method="post" th:object="${grados}">
+	
+		<input type="hidden" name="idGradoAcademico" th:field="*{idGradoAcademico}">
+
+		<br>
+		<label for="Nombre_GradoAcad">Nombre del Grado Académico:</label>
+		<input type="text" name="Nombre_GradoAcad" th:field="*{Nombre_GradoAcad}">
+
+		<br>
+		<label for="Ultima_Modificacion">Última modificación:</label>
+		<input type="text" name="Ultima_Modificacion" th:field="*{Ultima_Modificacion}">
+
+		<br>
+		<label for="Estado">Estado:</label>
+		<input type="text" name="Estado" th:field="*{Estado}">
+
+		<br>
+		<input type="submit" name="guardar" value="Guardar/EnviarDatos">
+
+	</form>
+
+</body>
+</html>

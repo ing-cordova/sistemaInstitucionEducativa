@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymealft.org">
+<head>
+<meta charset="utf-8">
+<title>Principal | AdmónEscolar</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<body class="p-3 mb-2 bg-secondary text-white">
+	<div >
+		<h1 align="center" class="display-4">LISTADO DE GRADOS ACADEMICOS DISPONIBLES</h1>
+	</div>
+	<br>
+	<div>
+		<table class="table table-striped table-dark">
+		<thead>
+			<th>NOMBRE DEL GRADO ACADEMICO</th>
+			<th>EDICION</th>
+		</thead>
+		<tbody>
+			<tr th:each="Gradoss : ${Grados}">
+				<td th:text="${Gradoss.Nombre_GradoAcad}"></td>
+				<td ><a class="btn btn-warning" th:href="@{/editar/} + ${Gradoss.idGradoAcademico}">EDITAR</a></td>
+			</tr>
+		</tbody>	
+		</table>
+	</div>
+	<div align="center">
+		<a class="btn btn-primary btn-lg btn-block" th:href="@{/agregar}">¡Agregar uno nuevo!</a>
+	</div>	
+</body>
+</html>

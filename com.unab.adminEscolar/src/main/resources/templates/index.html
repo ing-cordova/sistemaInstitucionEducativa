@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymealft.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>ADMIN ESCOLAR | INICIO</title>
+<meta charset="utf-8">
+<title>Inicio | AdmónEscolar</title>
 </head>
-<body>
-	<table>
-		<thead>
-			<th>GRADO ACADEMICO</th>
-		</thead>
-		<tbody>
-			<tr th:each="Grados_Academicos : ${grados}">
-				<td th:text="${Grados_Academicos.Nombre_GradoAcad}"></td>
-			</tr>
-		</tbody>
-	</table>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<body class="p-3 mb-2 bg-secondary text-white">
+	<div >
+		<h1 align="center" class="display-3">BIENVENIDO A NUESTRO CENTRO EDUCATIVO</h1>
+	</div>
+	<br>
+	<div align="center" class="blockquote">
+		<p>
+			¡Hey, te damos la bienvenida a nuestra página web oficial!
+			<br>
+			Bien, te explicaremos un poco como funciona nuestro sistema para la correcta administración de un centro educativo.
+			<br>
+			<br>
+			Este proyecto ha sido diseñado, con el fin de dar una solución a las muchas instituciones administrativas escolares, pero te preguntarás ¿que es lo que realmente puedo hacer?, este sistema lleva un control para los 2 principales roles dentro de una institución educativa, tales como un <strong>Docente</strong> y un <strong>Estudiante</strong>. Resumiendo, un <strong>Docente</strong> tiene la facultada de ejecutar algunas de las siguientes tareas: Crear una nueva tarea, Revisar las tareas, inscribir las materias a impartir, etc. Un <strong>Estudiante</strong> tendría las facultades de enviar las tareas que se le han sido asignadas, visualizar las notas, inscribir materias, etc.
+		</p>
+	</div>
+	<br>
+	<br>
+	<div align="center" class="link">
+		<a class="btn btn-primary btn-lg btn-block"  href="https://github.com/AndresC-O/sistemaInstitucionEducativa" target="_BLANK">¡Descargar sistema escolar ahora!</a>
+		<a class="btn btn-warning btn-lg btn-block"  th:href="@{/principal}">¡Quiero saber más!</a>
+	</div>
+	<br>
+	<br>
+	<br>
+	<footer>
+			<p align="center"><b>Copyright - Todos los derechos reservados | Administración Escolar | Programación II Ciclo 02-2020.</b></p>
+	</footer>
 </body>
 </html>
