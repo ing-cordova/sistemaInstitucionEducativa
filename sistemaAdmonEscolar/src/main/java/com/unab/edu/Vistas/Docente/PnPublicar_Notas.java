@@ -10,6 +10,7 @@ import com.unab.edu.DAO.CLSNotas;
 import com.unab.edu.Entidades.Materias_Docentes;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
+import java.awt.Toolkit;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,7 +48,7 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         }
     }
-    
+
     public void MostrarMaterias() {
 
         DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
@@ -230,8 +231,12 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         txt_P1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txt_P1.setForeground(new java.awt.Color(255, 255, 255));
         txt_P1.setBorder(null);
+        txt_P1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_P1KeyTyped(evt);
+            }
+        });
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(18, 58, 108));
 
         jLabel6.setBackground(new java.awt.Color(68, 130, 195));
@@ -243,8 +248,12 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         txt_P2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txt_P2.setForeground(new java.awt.Color(255, 255, 255));
         txt_P2.setBorder(null);
+        txt_P2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_P2KeyTyped(evt);
+            }
+        });
 
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(18, 58, 108));
 
         jLabel7.setBackground(new java.awt.Color(68, 130, 195));
@@ -257,7 +266,6 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         txt_P3.setForeground(new java.awt.Color(255, 255, 255));
         txt_P3.setBorder(null);
 
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator3.setForeground(new java.awt.Color(18, 58, 108));
 
         jLabel8.setBackground(new java.awt.Color(68, 130, 195));
@@ -270,7 +278,6 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         lbl_Final.setForeground(new java.awt.Color(255, 255, 255));
         lbl_Final.setText("9.8");
 
-        jSeparator4.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setBackground(new java.awt.Color(68, 130, 195));
@@ -457,8 +464,8 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         TablaNotas();
     }//GEN-LAST:event_btnMostrarActionPerformed
 
-    public void LImpiarControles(){
-        
+    public void LImpiarControles() {
+
         lbl_Correo.setText("-");
         lblidNota.setText("0");
         lbl_Final.setText("0.00");
@@ -511,6 +518,32 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         LImpiarControles();
         limpiarTabla(tb_Notas);
     }//GEN-LAST:event_lbl_LimpiarMouseClicked
+
+    private void txt_P1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_P1KeyTyped
+        // TODO add your handling code here:
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car) && (car < '.' || car > '.')) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO LOS NUMEROS Y PUNTOS CORRESPONDIENTES");
+        } else if (txt_P1.getText().length() > 3) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_txt_P1KeyTyped
+
+    private void txt_P2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_P2KeyTyped
+        // TODO add your handling code here:
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car) && (car < '.' || car > '.')) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO LOS NUMEROS Y PUNTOS CORRESPONDIENTES");
+        } else if (txt_P1.getText().length() > 3) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_txt_P2KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
