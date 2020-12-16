@@ -30,7 +30,7 @@ private static final long serialVersionUID=1L;
 	
 	@ManyToOne
 	@JoinColumn(name = "idgradoacademico")
-	private Grados_Academicos idGradoAcademico;
+	private Grado idGradoAcademico;
 	
 	@Column(name = "nombre_materia")
 	private String Nombre_Materia;
@@ -49,11 +49,11 @@ private static final long serialVersionUID=1L;
 		this.idMateria = idMateria;
 	}
 
-	public Grados_Academicos getIdGradoAcademico() {
+	public Grado getIdGradoAcademico() {
 		return idGradoAcademico;
 	}
 
-	public void setIdGradoAcademico(Grados_Academicos idGradoAcademico) {
+	public void setIdGradoAcademico(Grado idGradoAcademico) {
 		this.idGradoAcademico = idGradoAcademico;
 	}
 
