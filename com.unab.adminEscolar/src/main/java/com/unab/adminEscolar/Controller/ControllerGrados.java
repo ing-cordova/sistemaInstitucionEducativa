@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.unab.adminEscolar.DAO.Grados_AcademicosDAO;
+import com.unab.adminEscolar.DAO.MateriasDAO;
 import com.unab.adminEscolar.Entidades.Grados_Academicos;
 
 @Controller
@@ -14,11 +15,15 @@ public class ControllerGrados {
 
 	@Autowired
 	private Grados_AcademicosDAO gradosdao;
+	@Autowired
+	private MateriasDAO materiasdao;
 	
 	@GetMapping("/principal")
 	public String Inicio(Model m) {
 		var grados = gradosdao.findAll();
+		var materias = materiasdao.findAll();
 		m.addAttribute("Grados", grados);
+		m.addAttribute("materias", materias);
 		return "principal";
 	}
 	

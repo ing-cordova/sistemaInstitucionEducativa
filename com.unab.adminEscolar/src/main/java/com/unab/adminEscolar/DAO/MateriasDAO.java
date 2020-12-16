@@ -1,5 +1,9 @@
 package com.unab.adminEscolar.DAO;
 
-public interface MateriasDAO {
+import org.springframework.data.repository.CrudRepository;
+
+import com.unab.adminEscolar.Entidades.Materias;
+
+public interface MateriasDAO extends CrudRepository<Materias, Long> {
 
 }
