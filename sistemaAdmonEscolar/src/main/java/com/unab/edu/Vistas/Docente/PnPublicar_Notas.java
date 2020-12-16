@@ -265,6 +265,11 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         txt_P3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txt_P3.setForeground(new java.awt.Color(255, 255, 255));
         txt_P3.setBorder(null);
+        txt_P3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_P3KeyTyped(evt);
+            }
+        });
 
         jSeparator3.setForeground(new java.awt.Color(18, 58, 108));
 
@@ -525,7 +530,7 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         if (Character.isLetter(car) && (car < '.' || car > '.')) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null, "INGRESE SOLO LOS NUMEROS Y PUNTOS CORRESPONDIENTES");
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO LOS NUMEROS Y PUNTO CORRESPONDIENTE");
         } else if (txt_P1.getText().length() > 3) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
@@ -538,12 +543,25 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         if (Character.isLetter(car) && (car < '.' || car > '.')) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null, "INGRESE SOLO LOS NUMEROS Y PUNTOS CORRESPONDIENTES");
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO LOS NUMEROS Y PUNTO CORRESPONDIENTE");
         } else if (txt_P1.getText().length() > 3) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
         }
     }//GEN-LAST:event_txt_P2KeyTyped
+
+    private void txt_P3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_P3KeyTyped
+        // TODO add your handling code here:
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car) && (car < '.' || car > '.')) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO LOS NUMEROS Y PUNTO CORRESPONDIENTE");
+        } else if (txt_P1.getText().length() > 3) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_txt_P3KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
