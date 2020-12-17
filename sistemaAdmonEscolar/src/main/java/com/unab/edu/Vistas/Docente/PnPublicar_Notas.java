@@ -11,6 +11,8 @@ import com.unab.edu.Entidades.Materias_Docentes;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
 import java.awt.Toolkit;
+import java.awt.Color;
+import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +32,17 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
      */
     public PnPublicar_Notas() {
         initComponents();
+        
+        tb_Notas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Notas.getTableHeader().setOpaque(false);
+        tb_Notas.setBackground(new Color(46, 134, 193));
+        tb_Notas.setForeground(new Color(255, 255, 255));
+        tb_Notas.setRowHeight(25);
+        
+        tb_Notas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Notas.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Notas.getTableHeader().setForeground(Color.white);
+
         MostrarMaterias();
         lblidNota.setVisible(false);
     }

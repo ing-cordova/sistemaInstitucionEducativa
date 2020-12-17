@@ -12,6 +12,8 @@ import com.unab.edu.Entidades.Actividades;
 import com.unab.edu.Entidades.Actividades_Estudiantes;
 import com.unab.edu.Entidades.Notas;
 import com.unab.edu.Vistas.FrmLogin;
+import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -36,6 +38,17 @@ public class PnTareasAlumno extends javax.swing.JPanel {
      */
     public PnTareasAlumno() {
         initComponents();
+        
+        tb_Tareas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Tareas.getTableHeader().setOpaque(false);
+        tb_Tareas.setBackground(new Color(46, 134, 193));
+        tb_Tareas.setForeground(new Color(255, 255, 255));
+        tb_Tareas.setRowHeight(25);
+        
+        tb_Tareas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Tareas.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Tareas.getTableHeader().setForeground(Color.white);
+
         txtActividad.setEditable(false);
         MostrarMaterias();
         limpiarTabla(tb_Tareas);

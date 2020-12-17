@@ -13,7 +13,9 @@ import com.unab.edu.Entidades.Actividades_Estudiantes;
 import com.unab.edu.Entidades.Materias_Docentes;
 import com.unab.edu.Otros.ImagenTabla;
 import com.unab.edu.Vistas.FrmLogin;
+import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
@@ -36,6 +38,17 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
      */
     public PnRevisar_Actividades() {
         initComponents();
+        
+        tb_Actividades.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Actividades.getTableHeader().setOpaque(false);
+        tb_Actividades.setBackground(new Color(46, 134, 193));
+        tb_Actividades.setForeground(new Color(255, 255, 255));
+        tb_Actividades.setRowHeight(25);
+        
+        tb_Actividades.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        tb_Actividades.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Actividades.getTableHeader().setForeground(Color.white);
+
         MostrarMaterias();
         lblidActividad_Estudiante.setVisible(false);
         lblidEstudiante.setVisible(false);
