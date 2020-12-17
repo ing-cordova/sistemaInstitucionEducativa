@@ -608,6 +608,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         Persona persona = new Persona();
         Docente docente = new Docente();
         Estudiante estudiante = new Estudiante();
+        //Variable que nos retorna el último idPersona + 1
         int ultimo = clsPersona.RetornoLastID() + 1;
         FrmRegistrado register = new FrmRegistrado();
 

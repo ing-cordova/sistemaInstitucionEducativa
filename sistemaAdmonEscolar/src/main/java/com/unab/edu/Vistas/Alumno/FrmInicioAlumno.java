@@ -145,7 +145,7 @@ public class FrmInicioAlumno extends javax.swing.JFrame {
         });
 
         btnTareas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Homeworks.png"))); // NOI18N
-        btnTareas.setText("     Tereas");
+        btnTareas.setText("     Tareas");
         btnTareas.setBorderPainted(false);
         btnTareas.setFocusPainted(false);
         btnTareas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N

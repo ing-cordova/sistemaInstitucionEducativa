@@ -430,7 +430,7 @@ public class PnVer_Actividades extends javax.swing.JPanel {
 
         act_est.setIdActividadEstudiante(idActividad);
         act_est.setIdEstudiante(idEstudiante);
-        
+
         try {
             pdf = new byte[(int) ruta.length()];
             InputStream input = new FileInputStream(ruta);
@@ -451,18 +451,24 @@ public class PnVer_Actividades extends javax.swing.JPanel {
         if (lblidActividad.getText().equals("0") || lblEstado.getText().equals("-")) {
             JOptionPane.showMessageDialog(this, "¡No se permiten envíos vacíos!");
         } else {
-            String botones[] = {"Reenviar", "Cancelar"};
-            int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres reenviar la tarea?", "Confirmar", 0, 0, null, botones, this);
+            if (!lblEstado.getText().equals("Calificada")) {
 
-            if (opcion == JOptionPane.YES_OPTION) {
-                File ruta = new File(ruta_archivo);
-                Guardar_Actividad(FrmLogin.envioIdEstudiante, Integer.parseInt(lblidActividad.getText()), ruta);
-                Mostrar_Actividades();
-                Limpiar();
-            } else if (opcion == JOptionPane.NO_OPTION) {
-                System.out.println("¡Cancelado!");
-                Mostrar_Actividades();
-                Limpiar();
+                String botones[] = {"Reenviar", "Cancelar"};
+                int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres reenviar la tarea?", "Confirmar", 0, 0, null, botones, this);
+                if (opcion == JOptionPane.YES_OPTION) {
+
+                    File ruta = new File(ruta_archivo);
+                    Guardar_Actividad(FrmLogin.envioIdEstudiante, Integer.parseInt(lblidActividad.getText()), ruta);
+                    Mostrar_Actividades();
+                    Limpiar();
+
+                } else if (opcion == JOptionPane.NO_OPTION) {
+                    System.out.println("¡Cancelado!");
+                    Mostrar_Actividades();
+                    Limpiar();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "¡La tarea ya ha sido calificada!");
             }
         }
     }//GEN-LAST:event_btnEnviarActionPerformed

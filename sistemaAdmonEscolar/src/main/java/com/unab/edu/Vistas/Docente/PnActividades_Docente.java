@@ -6,10 +6,8 @@
 package com.unab.edu.Vistas.Docente;
 
 import com.unab.edu.DAO.CLSActividades;
-import com.unab.edu.DAO.CLSActividades_Alumno;
 import com.unab.edu.DAO.CLSMateriaDocente;
 import com.unab.edu.Entidades.Actividades;
-import com.unab.edu.Entidades.Actividades_Estudiantes;
 import com.unab.edu.Entidades.Materias_Docentes;
 import com.unab.edu.Vistas.FrmLogin;
 import java.awt.Color;
@@ -20,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,9 +44,9 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         tb_Actividades.setBackground(new Color(46, 134, 193));
         tb_Actividades.setForeground(new Color(255, 255, 255));
         tb_Actividades.setRowHeight(25);
-        
+
         tb_Actividades.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
-        tb_Actividades.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Actividades.getTableHeader().setBackground(new Color(36, 113, 163));
         tb_Actividades.getTableHeader().setForeground(Color.white);
     }
 
@@ -342,28 +339,34 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         if (txtActividad.getText().equals("") || txtPorcentaje.getText().equals("") || txtFechaLimite.getDate() == null || cbMateria.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "¡Complete todos los datos para poder continuar!");
         } else {
-            Date date = new Date();
-            Double porcents = Double.parseDouble(txtPorcentaje.getText());
-            CLSActividades clsActividad = new CLSActividades();
-            Actividades act = new Actividades();
 
-            act.setIdDocente(FrmLogin.envioIdDocente);
-            act.setIdMateria(combo);
-            act.setNombre_Actividad(txtActividad.getText());
-            act.setPorcentaje(porcents / 100);
-            act.setFecha_Entrega(txtFechaLimite.getDate());
-            act.setEstado_Actividad("Pendiente");
-            act.setUltima_Modificacion(date);
-            act.setEstado(1);
-            clsActividad.AgregarActividad(act);
-            LimpiarControles();
-            btnPublicarTarea.setEnabled(false);
-            btnEditarTarea.setEnabled(false);
-            btnEliminarTarea.setEnabled(false);
-            MostrarActividades();
+            String botones[] = {"Editar", "Cancelar"};
+            int opcion = JOptionPane.showOptionDialog(this, "¿Estás seguro que quieres editar la actividad?", "Confirmar", 0, 0, null, botones, this);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                Date date = new Date();
+                Double porcents = Double.parseDouble(txtPorcentaje.getText());
+                CLSActividades clsActividad = new CLSActividades();
+                Actividades act = new Actividades();
+
+                act.setIdDocente(FrmLogin.envioIdDocente);
+                act.setIdMateria(combo);
+                act.setNombre_Actividad(txtActividad.getText());
+                act.setPorcentaje(porcents / 100);
+                act.setFecha_Entrega(txtFechaLimite.getDate());
+                act.setEstado_Actividad("Pendiente");
+                act.setUltima_Modificacion(date);
+                act.setEstado(1);
+                clsActividad.AgregarActividad(act);
+                LimpiarControles();
+                btnPublicarTarea.setEnabled(false);
+                btnEditarTarea.setEnabled(false);
+                btnEliminarTarea.setEnabled(false);
+                MostrarActividades();
+            } else if (opcion == JOptionPane.NO_OPTION) {
+                System.out.println("¡Cancelado!");
+            }
         }
-
-
     }//GEN-LAST:event_btnPublicarTareaActionPerformed
 
     private void lblActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActualizarMouseClicked
@@ -466,8 +469,6 @@ public class PnActividades_Docente extends javax.swing.JPanel {
         } else if (opcion == JOptionPane.NO_OPTION) {
             System.out.println("¡Cancelado!");
         }
-
-
     }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
     String valueMember[];

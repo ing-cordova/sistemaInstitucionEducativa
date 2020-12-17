@@ -251,6 +251,7 @@ public class PnTareasAlumno extends javax.swing.JPanel {
 
     public void Guardar_Actividad(int idEstudiante, int idActividad, int combo, File ruta){
         
+        //Declaramos una variable de tipo arreglo byte.
         byte[] pdf = null;
         Date date = new Date();
         CLSActividades_Alumno clsAct_Almuno = new CLSActividades_Alumno();
@@ -263,10 +264,14 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         
         try {
 
+            //Le asignamos el tamaño del archivo.
             pdf = new byte[(int) ruta.length()];
+            //Pasamos el archivo hacia un método pre-definido por 
+            //la clase ImputStream.
             InputStream input = new FileInputStream(ruta);
             input.read(pdf);
             
+            //Acá el archivo ya está en arreglo de bytes
             act_est.setArchivo(pdf);
         } catch (Exception e) {
 
@@ -299,6 +304,7 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         int combo = Integer.parseInt(valueMember[cb_Materias.getSelectedIndex()]);
         int idActividad = Integer.parseInt(lbl_idActividad.getText());
         
+        //Creamos una variable ruta de tipo File(clase de java).
         File ruta = new File(ruta_archivo);
         Guardar_Actividad(FrmLogin.envioIdEstudiante, idActividad, combo, ruta);
     }//GEN-LAST:event_btnEntregarActionPerformed
@@ -327,10 +333,12 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         lblEstado.setText(Estado);
     }//GEN-LAST:event_tb_TareasMouseClicked
 
+    //Variable que obtendrá la ruta seleccionada.
     String ruta_archivo = "";
 
     public void SeleccionarPDF() {
 
+        
         JFileChooser jchooser = new JFileChooser();
         jchooser.setDialogTitle("Buscar PDF");
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("pdf", "pdf");
@@ -338,7 +346,9 @@ public class PnTareasAlumno extends javax.swing.JPanel {
         int c = jchooser.showOpenDialog(this);
 
         if (c == 0) {
+            //Poner el nombre del archivo, en el botón.
             this.btnSeleccionar.setText("" + jchooser.getSelectedFile().getName());
+            //obtener la ruta exacta donde obtendremos el archivo.
             ruta_archivo = jchooser.getSelectedFile().getAbsolutePath();
         }
     }

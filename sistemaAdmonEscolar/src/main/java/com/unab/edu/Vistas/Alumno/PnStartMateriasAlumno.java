@@ -328,7 +328,9 @@ public class PnStartMateriasAlumno extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnInscribirActionPerformed
 
+    
     String TITULOS1[] = {"CODIGO", "MATERIA SELECCIONADA"};
+    //DefaultTableModel declarado de forma global, para poder iterar.
     DefaultTableModel ModeloTabla_MatSele = new DefaultTableModel(null, TITULOS1);
 
     public void Mostrar_Tabla_Materias() {

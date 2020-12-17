@@ -22,7 +22,9 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        //Centrarnos la ventana.
         this.setLocationRelativeTo(null);
+        //Definimos el tipo de caracter que se mostrará.
         pwContra.setEchoChar('\u2022');
     }
 

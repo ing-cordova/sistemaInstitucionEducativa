@@ -455,11 +455,12 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         String FINAL = String.valueOf(tb_Notas.getValueAt(filas, 6));
         String REPO = String.valueOf(tb_Notas.getValueAt(filas, 7));
 
+        DecimalFormat twoDForm = new DecimalFormat("#.00");
         lblidNota.setText(ID);
         lbl_Correo.setText(CorreoElec);
-        txt_P1.setText(String.valueOf(Math.round(Double.parseDouble(P1) / 0.33)));
-        txt_P2.setText(String.valueOf(Math.round(Double.parseDouble(P2) / 0.33)));
-        txt_P3.setText(String.valueOf(Math.round(Double.parseDouble(P3) / 0.33)));
+        txt_P1.setText(String.valueOf(twoDForm.format(Double.parseDouble(P1) / 0.33)));
+        txt_P2.setText(String.valueOf(twoDForm.format(Double.parseDouble(P2) / 0.33)));
+        txt_P3.setText(String.valueOf(twoDForm.format(Double.parseDouble(P3) / 0.33)));
         lbl_Final.setText(String.valueOf(Math.round(Double.parseDouble(FINAL))));
         txt_REP.setText(REPO);
     }//GEN-LAST:event_tb_NotasMouseClicked
@@ -474,7 +475,7 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         lbl_Correo.setText("-");
         lblidNota.setText("0");
         lbl_Final.setText("0.00");
-        cbMateria.setSelectedIndex(0);
+        //cbMateria.setSelectedIndex(0);
         txt_P1.setText("");
         txt_P2.setText("");
         txt_P3.setText("");
@@ -506,6 +507,7 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
                 nota.setPeriodo1(Double.parseDouble(twoDForm.format(P1)));
                 nota.setPeriodo2(Double.parseDouble(twoDForm.format(P2)));
                 nota.setPeriodo3(Double.parseDouble(twoDForm.format(P3)));
+                //Por aqui tiene que ser esta vaina.
                 nota.setNotaFinal(Final);
                 nota.setUltima_Modificacion(date);
                 clsNotas.ActualizarNotas(nota);
@@ -521,6 +523,7 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
 
     private void lbl_LimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_LimpiarMouseClicked
         LImpiarControles();
+        cbMateria.setSelectedIndex(0);
         limpiarTabla(tb_Notas);
     }//GEN-LAST:event_lbl_LimpiarMouseClicked
 

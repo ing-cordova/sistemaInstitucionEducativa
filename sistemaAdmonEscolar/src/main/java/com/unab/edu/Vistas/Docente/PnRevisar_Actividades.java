@@ -402,7 +402,7 @@ public class PnRevisar_Actividades extends javax.swing.JPanel {
                 ((JButton) value).doClick();
                 JButton button = (JButton) value;
 
-                if (button.getText().equals("Vacío")) {
+                if (button.getText().equals("Vacio")) {
                     JOptionPane.showMessageDialog(null, "¡No hay ningún archivo!");
                 } else {
                     CLSActividades_Alumno clsAct = new CLSActividades_Alumno();

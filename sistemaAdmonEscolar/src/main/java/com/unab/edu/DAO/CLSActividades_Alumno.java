@@ -170,10 +170,12 @@ public class CLSActividades_Alumno {
         byte[] archivo = null;
 
         try {
+            //Consulta nativa hacia MySQL
             sentencia = conectar.prepareStatement("SELECT Archivo FROM actividades_estudiantes WHERE idActividadEstudiante = ?;");
             sentencia.setInt(1, id);
             resultado = sentencia.executeQuery();
 
+            
             if (resultado.next()) {
                 archivo = resultado.getBytes(1);
             }
@@ -184,8 +186,10 @@ public class CLSActividades_Alumno {
             System.out.println("> Tamaño:" + sizeInput + " bytes");
             byte[] datosPDF = new byte[sizeInput];
 
+            //Leemos PDF(bytes, - , tamaño)
             input.read(datosPDF, 0, sizeInput);
 
+            //Guardamos la salida en un archivo pdf temporal.
             OutputStream out = new FileOutputStream("new.pdf");
             out.write(datosPDF);
             //Abrir Archivo
