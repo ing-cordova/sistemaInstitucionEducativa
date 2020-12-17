@@ -32,15 +32,15 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
      */
     public PnPublicar_Notas() {
         initComponents();
-        
+
         tb_Notas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_Notas.getTableHeader().setOpaque(false);
         tb_Notas.setBackground(new Color(46, 134, 193));
         tb_Notas.setForeground(new Color(255, 255, 255));
         tb_Notas.setRowHeight(25);
-        
+
         tb_Notas.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
-        tb_Notas.getTableHeader().setBackground(new Color( 36, 113, 163 ));
+        tb_Notas.getTableHeader().setBackground(new Color(36, 113, 163));
         tb_Notas.getTableHeader().setForeground(Color.white);
 
         MostrarMaterias();
@@ -294,7 +294,7 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
         lbl_Final.setBackground(new java.awt.Color(68, 130, 195));
         lbl_Final.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         lbl_Final.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_Final.setText("9.8");
+        lbl_Final.setText("0.0");
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -512,16 +512,30 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
                 Double P1 = (Double.parseDouble(txt_P1.getText()) * 0.33);
                 Double P2 = (Double.parseDouble(txt_P2.getText()) * 0.33);
                 Double P3 = (Double.parseDouble(txt_P3.getText()) * 0.33);
-                Double REPO = (Double.parseDouble(txt_REP.getText()) * 0.33);
+                Double REPO = (Double.parseDouble(txt_REP.getText()) * 0.99);
                 Double Final = P1 + P2 + P3;
+                
                 CLSNotas clsNotas = new CLSNotas();
                 Notas nota = new Notas();
-                nota.setIdNota(idNota);
-                nota.setPeriodo1(Double.parseDouble(twoDForm.format(P1)));
-                nota.setPeriodo2(Double.parseDouble(twoDForm.format(P2)));
-                nota.setPeriodo3(Double.parseDouble(twoDForm.format(P3)));
+
                 //Por aqui tiene que ser esta vaina.
-                nota.setNotaFinal(Final);
+                if (P1 >= 0.0 && P2 >= 0.0 && P3 >= 0.0 ) {
+                    nota.setIdNota(idNota);
+                    nota.setPeriodo1(Double.parseDouble(twoDForm.format(P1)));
+                    nota.setPeriodo2(Double.parseDouble(twoDForm.format(P2)));
+                    nota.setPeriodo3(Double.parseDouble(twoDForm.format(P3)));
+                    nota.setNotaFinal(Final);
+                    nota.setRecuperacion(0.00);
+                    
+                } else if (P1 >= 0.0 && P2 >= 0.0 && P3 >= 0.0 || Final < 6){
+                    nota.setIdNota(idNota);
+                    nota.setPeriodo1(0.00);
+                    nota.setPeriodo2(0.00);
+                    nota.setPeriodo3(0.00);
+                    nota.setNotaFinal(REPO);
+                    nota.setRecuperacion(Double.parseDouble(twoDForm.format(REPO)));         
+                }
+
                 nota.setUltima_Modificacion(date);
                 clsNotas.ActualizarNotas(nota);
                 TablaNotas();
