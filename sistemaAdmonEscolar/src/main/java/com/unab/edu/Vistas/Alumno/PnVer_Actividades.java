@@ -43,7 +43,7 @@ public class PnVer_Actividades extends javax.swing.JPanel {
         tb_Actividades.getTableHeader().setOpaque(false);
         tb_Actividades.setBackground(new Color(46, 134, 193));
         tb_Actividades.setForeground(new Color(255, 255, 255));
-        tb_Actividades.setRowHeight(25);
+        tb_Actividades.setRowHeight(32);
         
         tb_Actividades.getTableHeader().setFont(new Font("Century Gothic", Font.PLAIN, 11));
         tb_Actividades.getTableHeader().setBackground(new Color( 36, 113, 163 ));
