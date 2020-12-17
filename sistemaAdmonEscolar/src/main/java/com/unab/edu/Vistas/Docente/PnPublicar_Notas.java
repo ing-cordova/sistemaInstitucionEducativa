@@ -527,7 +527,7 @@ public class PnPublicar_Notas extends javax.swing.JPanel {
                     nota.setNotaFinal(Final);
                     nota.setRecuperacion(0.00);
                     
-                } else if (P1 >= 0.0 && P2 >= 0.0 && P3 >= 0.0 || Final < 6){
+                }else if (P1 >= 0.0 && P2 >= 0.0 && P3 >= 0.0 || Final < 6){
                     nota.setIdNota(idNota);
                     nota.setPeriodo1(0.00);
                     nota.setPeriodo2(0.00);
