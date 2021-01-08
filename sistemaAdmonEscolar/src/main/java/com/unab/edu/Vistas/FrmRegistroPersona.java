@@ -270,6 +270,9 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
         txtDUI.setForeground(new java.awt.Color(255, 255, 255));
         txtDUI.setBorder(null);
         txtDUI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDUIKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDUIKeyTyped(evt);
             }
@@ -689,7 +692,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtDUIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDUIKeyTyped
-        // TODO add your handling code here:
+        
         char car = evt.getKeyChar();
         if (Character.isLetter(car) && (car < '-' || car > '-')) {
             getToolkit().beep();
@@ -699,6 +702,7 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
         }
+        
     }//GEN-LAST:event_txtDUIKeyTyped
 
     private void txtNITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITKeyTyped
@@ -751,6 +755,18 @@ public class FrmRegistroPersona extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "SOLO INGRESAR LETRAS");
         }
     }//GEN-LAST:event_txtEspecialidadKeyTyped
+
+    private void txtDUIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDUIKeyReleased
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car) && (car < '-' || car > '-')) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "INGRESE SOLO NUMEROS Y GUION CORRESPONDIENTES");
+        } else if (txtDUI.getText().length() >= 10) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_txtDUIKeyReleased
 
     /**
      * @param args the command line arguments
